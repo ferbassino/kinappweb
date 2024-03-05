@@ -34,7 +34,7 @@ const NavBar = ({ handleLogout }) => {
         </div>
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
           <NavLink
-            to="/kinapp"
+            to="/about"
             className={({ isActive }) => (isActive ? activeLink : btnLink)}
           >
             Acerca de KinApp

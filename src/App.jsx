@@ -12,6 +12,8 @@ import NavBar from "./components/Navbar";
 import logout from "./services/logout";
 import login from "./services/login";
 import { useLogin } from "./context/LoginProvider";
+import About from "./pages/About";
+import JumpCourse from "./pages/JumpCourse";
 
 function App() {
   const navigate = useNavigate();
@@ -69,6 +71,8 @@ function App() {
         />
         <Route path="/profile" element={<Profile />} />
         <Route path="/cursos" element={<Cursos />} />
+        <Route path="/jump_course" element={<JumpCourse />} />
+        <Route path="/about" element={<About />} />
         <Route path="/users" element={<Users />} />
         <Route path="/user/:id" element={<User />} />
         <Route path="*" element={<Navigate to="/"></Navigate>} />
