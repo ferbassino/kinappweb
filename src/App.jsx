@@ -14,13 +14,20 @@ import login from "./services/login";
 import { useLogin } from "./context/LoginProvider";
 import About from "./pages/About";
 import JumpCourse from "./pages/JumpCourse";
+import CourseForm from "./pages/CourseForm";
+import AdminRoutes from "./utils/AdminRoutes";
+import UserJC24Profile from "./pages/UserJC24Profile";
+import Reader from "./pages/Reader";
+import JumpCourse2024Routes from "./utils/JumpCourse2024";
+import ReaderRoutes from "./utils/ReaderRoutes";
 
 function App() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setProfile, setErrorMessage } = useLogin();
+  const { profile, setProfile, setErrorMessage } = useLogin();
   const [error, setError] = useState(false);
+  const [roles, setRoles] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,13 +38,26 @@ function App() {
       });
       if (data) {
         setProfile(data);
-        navigate("/profile");
+        setRoles(data.roles);
+        console.log(data.roles);
+        if (data.roles === "admin") {
+          navigate("/profile");
+        }
+        if (data.roles === "jumpCourse2024") {
+          navigate("/userJC24Profile");
+        }
+        if (data.roles === "reader") {
+          navigate("/reader");
+        }
+
         setPassword("");
         setEmail("");
       } else {
         setError(true);
         setErrorMessage("Email o password incorrectos");
         setTimeout(() => {
+          setPassword("");
+          setEmail("");
           setErrorMessage(false);
         }, 5000);
       }
@@ -56,6 +76,8 @@ function App() {
       <NavBar handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<KinApp />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/cursos" element={<Cursos />} />
         <Route
           path="/Login_form"
           element={
@@ -69,13 +91,25 @@ function App() {
             />
           }
         />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/cursos" element={<Cursos />} />
         <Route path="/jump_course" element={<JumpCourse />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/user/:id" element={<User />} />
+        <Route path="/jump_course" element={<JumpCourse />} />
+        <Route path="/course_form" element={<CourseForm />} />
         <Route path="*" element={<Navigate to="/"></Navigate>} />
+
+        {/* protected admin routes */}
+        <Route element={<AdminRoutes roles={roles} />}>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/user/:id" element={<User />} />
+        </Route>
+
+        {/* protected reader users routes */}
+        <Route element={<JumpCourse2024Routes roles={roles} />}>
+          <Route path="/userJC24Profile" element={<UserJC24Profile />} />
+        </Route>
+        <Route element={<ReaderRoutes roles={roles} />}>
+          <Route path="/reader" element={<Reader />} />
+        </Route>
       </Routes>
 
       <Footer />

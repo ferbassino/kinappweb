@@ -9,6 +9,18 @@ const activeLink = "blok inline-block py-1 text-blue-800 mr-4 ";
 
 const NavBar = ({ handleLogout }) => {
   const { profile } = useLogin();
+  const [rolesUrl, setRolesUrl] = useState("");
+  useEffect(() => {
+    if (profile.roles === "jumpCourse2024") {
+      setRolesUrl("userJC24Profile");
+    }
+    if (profile.roles === "admin") {
+      setRolesUrl("/profile");
+    }
+    if (profile.roles === "reader") {
+      setRolesUrl("/reader");
+    }
+  });
 
   return (
     <header className="text-gray-600 body-font">
@@ -25,12 +37,12 @@ const NavBar = ({ handleLogout }) => {
             ></img>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/"
             className={({ isActive }) => (isActive ? activeLink : btnLink)}
           >
             kinApp
-          </NavLink>
+          </NavLink> */}
         </div>
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
           <NavLink
@@ -50,7 +62,7 @@ const NavBar = ({ handleLogout }) => {
           <>
             <NavLink
               // onClick={handleLogout}
-              to="/profile"
+              to={rolesUrl}
               className={({ isActive }) => (isActive ? activeLink : btnLink)}
             >
               {profile.userName}

@@ -1,7 +1,12 @@
 import React from "react";
+import CourseForm from "./CourseForm";
 
 const JumpCourse = () => {
-  return <div>zaraza</div>;
+  return (
+    <div>
+      <CourseForm />
+    </div>
+  );
 };
 
 export default JumpCourse;

@@ -53,7 +53,7 @@ const Cursos = () => {
                 Interpretación de los datos registrado por las unidades
                 inerciales (I.M.U.)
               </p>
-              <p className="leading-relaxed text-base">próximamente</p>
+              <p className="leading-relaxed text-base">Agotado</p>
               {/* <Link
                 to="/jump_course"
                 className="text-sm font-semibold leading-6 text-gray-900"

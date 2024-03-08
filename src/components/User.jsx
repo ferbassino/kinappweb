@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getUser } from "../requests/getUser";
+import client from "../api/client";
+import { useNavigate } from "react-router-dom";
 
 const User = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState([]);
   const [clients, setClients] = useState(0);
   const [tests, setTests] = useState(0);
@@ -11,13 +14,26 @@ const User = () => {
   useEffect(() => {
     const getOneUser = async () => {
       const user = await getUser(id);
-      console.log(user);
       setClients(user.client.length);
       setTests(user.motion.length);
       setUser(user);
     };
     getOneUser();
   }, []);
+
+  const handleDelete = async () => {
+    try {
+      const response = await client.delete(`/api/user/${user._id}`);
+      if (response.data.success) {
+        alert("User deleted successfully");
+        navigate("/users");
+      } else {
+        alert("error has ocurred, try again later ");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -70,7 +86,10 @@ const User = () => {
               <span className="title-font font-medium text-2xl text-gray-900">
                 $58.00
               </span>
-              <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+              <button
+                onClick={handleDelete}
+                className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+              >
                 Eliminar
               </button>
             </div>

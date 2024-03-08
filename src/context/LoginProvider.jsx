@@ -10,6 +10,7 @@ const LoginProvider = ({ children }) => {
   const [loginPending, setLoginPending] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,12 +39,21 @@ const LoginProvider = ({ children }) => {
         }
       };
       fetchUser();
-      navigate("/profile");
+      console.log(user.roles);
+      if (user.roles === "admin") {
+        navigate("/profile");
+      }
+      if (user.roles === "jumpCourse2024") {
+        navigate("/userJC24Profile");
+      }
+      if (user.roles === "reader") {
+        navigate("/reader");
+      }
     } else {
       navigate("/");
     }
   }, []);
-  //
+
   return (
     <LoginContext.Provider
       value={{
