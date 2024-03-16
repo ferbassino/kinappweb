@@ -66,7 +66,8 @@ const CourseForm = () => {
           {/* <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
             Sign Up
           </h2> */}
-          <form onSubmit={handleSubmit}>
+          {/* <form onSubmit={handleSubmit}> */}
+          <form>
             <div className="relative mb-4">
               <label
                 htmlFor="user_name"

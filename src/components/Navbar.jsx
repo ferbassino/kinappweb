@@ -4,15 +4,17 @@ import { NavLink } from "react-router-dom";
 import { useLogin } from "../context/LoginProvider";
 
 const btnLink =
-  "block inline-block py-1 hover:text-orange-600 cursor-pointer mr-4";
-const activeLink = "blok inline-block py-1 text-blue-800 mr-4 ";
+  "block inline-block py-1 hover:text-orange-600 cursor-pointer mr-4 md:text-lg";
+const activeLink = "blok inline-block py-1 text-blue-800 mr-4 md:text-lg";
 
 const NavBar = ({ handleLogout }) => {
   const { profile } = useLogin();
   const [rolesUrl, setRolesUrl] = useState("");
   useEffect(() => {
+    setRolesUrl("");
     if (profile.roles === "jumpCourse2024") {
-      setRolesUrl("userJC24Profile");
+      // console.log("profile.roles en navbar", rolesUrl);
+      setRolesUrl("/userJC24Profile");
     }
     if (profile.roles === "admin") {
       setRolesUrl("/profile");
@@ -33,7 +35,7 @@ const NavBar = ({ handleLogout }) => {
             <img
               src={kinAppLogo}
               alt="kinapp_logo"
-              className="w-7 h-7 ml-1"
+              className="w-10 h-10 ml-1"
             ></img>
           </NavLink>
 
@@ -44,7 +46,7 @@ const NavBar = ({ handleLogout }) => {
             kinApp
           </NavLink> */}
         </div>
-        <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+        <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center md:text-lg">
           <NavLink
             to="/about"
             className={({ isActive }) => (isActive ? activeLink : btnLink)}
@@ -56,6 +58,12 @@ const NavBar = ({ handleLogout }) => {
             className={({ isActive }) => (isActive ? activeLink : btnLink)}
           >
             Capacitaciones
+          </NavLink>
+          <NavLink
+            to="/quienes_somos"
+            className={({ isActive }) => (isActive ? activeLink : btnLink)}
+          >
+            Quienes somos
           </NavLink>
         </nav>
         {profile.userName ? (
@@ -72,7 +80,7 @@ const NavBar = ({ handleLogout }) => {
               to="/sign_up"
               className={({ isActive }) => (isActive ? activeLink : btnLink)}
             >
-              Sign up
+              Logout
             </NavLink>
           </>
         ) : (

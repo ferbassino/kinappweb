@@ -20,7 +20,7 @@ const Cursos = () => {
               <div className="rounded-lg h-64 overflow-hidden">
                 <img
                   alt="content"
-                  className="object-cover object-center  w-full"
+                  className="object-contain object-center h-full w-full"
                   src={jumpImage}
                 />
               </div>
@@ -42,11 +42,11 @@ const Cursos = () => {
               <div className="rounded-lg h-64 overflow-hidden">
                 <img
                   alt="content"
-                  className="object-cover object-center h-full w-full"
+                  className="object-contain object-center h-full w-full"
                   src={cursos}
                 />
               </div>
-              <h2 className="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">
+              <h2 className="title-font text-2xl font-medium text-gray-900  mb-3">
                 Unidades inerciales
               </h2>
               <p className="leading-relaxed text-base">

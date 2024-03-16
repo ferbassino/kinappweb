@@ -20,14 +20,18 @@ import UserJC24Profile from "./pages/UserJC24Profile";
 import Reader from "./pages/Reader";
 import JumpCourse2024Routes from "./utils/JumpCourse2024";
 import ReaderRoutes from "./utils/ReaderRoutes";
+import AvisoLegal from "./pages/mas/AvisoLegal";
+import QuienesSomos from "./pages/conocenos/QuienesSomos";
+import Program from "./pages/JumpCourse/Program";
+import JumpClases from "./pages/JumpCourse/JumpClases";
+import JumpAnalysis from "./pages/JumpCourse/JumpAnalysis";
 
 function App() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { profile, setProfile, setErrorMessage } = useLogin();
+  const { profile, setProfile, setErrorMessage, roles } = useLogin();
   const [error, setError] = useState(false);
-  const [roles, setRoles] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,8 +42,7 @@ function App() {
       });
       if (data) {
         setProfile(data);
-        setRoles(data.roles);
-        console.log(data.roles);
+
         if (data.roles === "admin") {
           navigate("/profile");
         }
@@ -92,8 +95,13 @@ function App() {
           }
         />
         <Route path="/jump_course" element={<JumpCourse />} />
-        <Route path="/jump_course" element={<JumpCourse />} />
         <Route path="/course_form" element={<CourseForm />} />
+
+        {/* mas */}
+        <Route path="/avisolegal" element={<AvisoLegal />} />
+        <Route path="/quienes_somos" element={<QuienesSomos />} />
+        <Route path="/jump_program" element={<Program />} />
+
         <Route path="*" element={<Navigate to="/"></Navigate>} />
 
         {/* protected admin routes */}
@@ -106,6 +114,8 @@ function App() {
         {/* protected reader users routes */}
         <Route element={<JumpCourse2024Routes roles={roles} />}>
           <Route path="/userJC24Profile" element={<UserJC24Profile />} />
+          <Route path="/jump_clases" element={<JumpClases />} />
+          <Route path="/jump_analysis" element={<JumpAnalysis />} />
         </Route>
         <Route element={<ReaderRoutes roles={roles} />}>
           <Route path="/reader" element={<Reader />} />

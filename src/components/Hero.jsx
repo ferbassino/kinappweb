@@ -14,9 +14,10 @@ const Hero = () => {
             <h1 className="text-4xl font-bold tracking-tight text-blue-950 sm:text-6xl">
               kinApp
             </h1>
-            <p className="mt-6 text-4xl font-bold leading-8 text-gray-600">
-              Llevemos el análisis Biomecánico al siguiente nivel
-            </p>
+            <h2 className="text-3xl mt-6 md:text-4xl  leading-8 text-gray-600">
+              Creamos herramientas sencillas para el análisis biomecánico
+            </h2>
+
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 to="/about"

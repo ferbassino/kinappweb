@@ -1,10 +1,13 @@
 import kinAppLogo from "./../assets/kinapp_logo.svg";
-
+import { Link } from "react-router-dom";
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
   return (
-    <footer className="text-gray-600 body-font">
-      <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
-        <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
+    <footer className=" text-gray-600 body-font">
+      <div className="container px-5 py-24 mx-auto flex flex-wrap flex-col md:items-center lg:items-start md:flex-row md:flex-nowrap ">
+        <div className=" flex-shrink-0 md:mx-0 mx-auto text-center md:text-left sm:w-64">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <img
               src={kinAppLogo}
@@ -14,84 +17,120 @@ export default function Footer() {
             <span className="ml-3 text-xl">kinApp</span>
           </a>
           <p className="mt-2 text-sm text-gray-500">
-            Air plant banjo lyft occupy retro adaptogen indego
+            Entorno de análsis Biomecánico
           </p>
         </div>
         <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-              CATEGORIES
+              CONÓCENOS
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a className="text-gray-600 hover:text-gray-800">First Link</a>
+                <Link
+                  to="/about"
+                  onClick={scrollToTop}
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Acerca de kinApp
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+                <Link
+                  to="/quienes_somos"
+                  onClick={scrollToTop}
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Quienes somos
+                </Link>
               </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Third Link</a>
-              </li>
-              <li>
+              {/* <li>
+                <a className="text-gray-600 hover:text-gray-800">
+                  Grupos de Estudio
+                </a>
+              </li> */}
+              {/* <li>
                 <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+              </li> */}
+            </nav>
+          </div>
+          <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+              CAPACITATE CON NOSOTROS
+            </h2>
+            <nav className="list-none mb-10">
+              <li>
+                <a className="text-gray-600 hover:text-gray-800">
+                  Capacitaciones
+                </a>
+              </li>
+              <li>
+                <a className="text-gray-600 hover:text-gray-800">
+                  Grupos de estudio
+                </a>
+              </li>
+              <li>
+                <a className="text-gray-600 hover:text-gray-800">
+                  Documentación
+                </a>
+              </li>
+              <li>
+                <a className="text-gray-600 hover:text-gray-800">Consultas</a>
               </li>
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-              CATEGORIES
+              RECURSOS KINAPP
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a className="text-gray-600 hover:text-gray-800">First Link</a>
+                <a className="text-gray-600 hover:text-gray-800">
+                  Aplicación web
+                </a>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+                <a className="text-gray-600 hover:text-gray-800">
+                  Aplicaciones móviles
+                </a>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+                <a className="text-gray-600 hover:text-gray-800">
+                  Persistencia de datos
+                </a>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                <a className="text-gray-600 hover:text-gray-800">Umico</a>
               </li>
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-              CATEGORIES
+              MÁS
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a className="text-gray-600 hover:text-gray-800">First Link</a>
+                <Link
+                  to="/avisolegal"
+                  onClick={scrollToTop}
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Términos y condiciones
+                </Link>
               </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Second Link</a>
-              </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Third Link</a>
-              </li>
-              <li>
+              {/* <li>
+                <a className="text-gray-600 hover:text-gray-800">
+                  Terminos y condiciones
+                </a>
+              </li> */}
+              {/* <li>
+                <a className="text-gray-600 hover:text-gray-800">
+                  Politica de cookies
+                </a>
+              </li> */}
+              {/* <li>
                 <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
-              </li>
-            </nav>
-          </div>
-          <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-              CATEGORIES
-            </h2>
-            <nav className="list-none mb-10">
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">First Link</a>
-              </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Second Link</a>
-              </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Third Link</a>
-              </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
-              </li>
+              </li> */}
             </nav>
           </div>
         </div>
@@ -99,18 +138,18 @@ export default function Footer() {
       <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-gray-500 text-sm text-center sm:text-left">
-            © 2020 Tailblocks —
+            © 2024 kinApp.dev —
             <a
-              href="https://twitter.com/knyttneve"
+              // href="https://twitter.com/knyttneve"
               rel="noopener noreferrer"
               className="text-gray-600 ml-1"
               target="_blank"
             >
-              @knyttneve
+              @kinapp.dev
             </a>
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
-            <a className="text-gray-500">
+            {/* <a className="text-gray-500">
               <svg
                 fill="currentColor"
                 strokeLinecap="round"
@@ -121,8 +160,8 @@ export default function Footer() {
               >
                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
               </svg>
-            </a>
-            <a className="ml-3 text-gray-500">
+            </a> */}
+            {/* <a className="ml-3 text-gray-500">
               <svg
                 fill="currentColor"
                 strokeLinecap="round"
@@ -133,8 +172,13 @@ export default function Footer() {
               >
                 <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
               </svg>
-            </a>
-            <a className="ml-3 text-gray-500">
+            </a> */}
+            <a
+              href="https://www.instagram.com/kinapp.dev?igsh=d21nYnhtaTJpdDJ0"
+              className="ml-3 text-gray-500"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -148,7 +192,7 @@ export default function Footer() {
                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
               </svg>
             </a>
-            <a className="ml-3 text-gray-500">
+            {/* <a className="ml-3 text-gray-500">
               <svg
                 fill="currentColor"
                 stroke="currentColor"
@@ -164,7 +208,7 @@ export default function Footer() {
                 ></path>
                 <circle cx="4" cy="4" r="2" stroke="none"></circle>
               </svg>
-            </a>
+            </a> */}
           </span>
         </div>
       </div>

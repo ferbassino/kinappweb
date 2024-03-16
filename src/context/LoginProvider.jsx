@@ -10,7 +10,7 @@ const LoginProvider = ({ children }) => {
   const [loginPending, setLoginPending] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
-
+  const [roles, setRoles] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,6 +18,7 @@ const LoginProvider = ({ children }) => {
     if (loggedUser) {
       const user = JSON.parse(loggedUser);
       setProfile(user);
+      setRoles(user.roles);
 
       const fetchUser = async () => {
         if (user.token !== null) {
@@ -39,7 +40,6 @@ const LoginProvider = ({ children }) => {
         }
       };
       fetchUser();
-      console.log(user.roles);
       if (user.roles === "admin") {
         navigate("/profile");
       }
@@ -66,6 +66,7 @@ const LoginProvider = ({ children }) => {
         isVerified,
         errorMessage,
         setErrorMessage,
+        roles,
       }}
     >
       {children}
