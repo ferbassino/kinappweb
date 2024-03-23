@@ -1,3 +1,4 @@
+import { useState, CSSProperties } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Profile from "./pages/Profile";
@@ -7,7 +8,6 @@ import LoginForm from "./pages/LoginForm";
 import KinApp from "./pages/KinApp";
 import Users from "./pages/Users";
 import User from "./components/User";
-import { useState } from "react";
 import NavBar from "./components/Navbar";
 import logout from "./services/logout";
 import login from "./services/login";
@@ -25,37 +25,76 @@ import QuienesSomos from "./pages/conocenos/QuienesSomos";
 import Program from "./pages/JumpCourse/Program";
 import JumpClases from "./pages/JumpCourse/JumpClases";
 import JumpAnalysis from "./pages/JumpCourse/JumpAnalysis";
-
+import HashLoader from "react-spinners/HashLoader";
+import "./App.css";
+import SuccessVerification from "./components/SuccessForgot";
+import ForgotPassword from "./components/ForgotPassword";
 function App() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { profile, setProfile, setErrorMessage, roles } = useLogin();
+  const {
+    profile,
+    setProfile,
+    setErrorMessage,
+    roles,
+    loginPending,
+    setLoginPending,
+  } = useLogin();
   const [error, setError] = useState(false);
+  let [loading, setLoading] = useState(true);
 
   const handleSubmit = async (e) => {
+    setLoginPending(true);
+    setLoading(true);
     e.preventDefault();
     try {
       const data = await login({
         email,
         password,
       });
+
       if (data) {
-        setProfile(data);
+        if (data.verified) {
+          setProfile(data);
+          if (data.roles === "admin") {
+            navigate("/profile");
+          }
+          if (data.roles === "jumpCourse2024") {
+            navigate("/userJC24Profile");
+          }
+          if (data.roles === "reader") {
+            navigate("/reader");
+          }
+          setLoginPending(false);
+          setLoading(false);
+          setPassword("");
+          setEmail("");
+        } else {
+          setError(true);
+          setErrorMessage(
+            "Perfil no verificado, por favor revise el correo con nuestro número de verificación"
+          );
+          setTimeout(() => {
+            setPassword("");
+            setEmail("");
+            setErrorMessage(false);
+          }, 5000);
 
-        if (data.roles === "admin") {
-          navigate("/profile");
+          setLoginPending(false);
+          setPassword("");
+          setEmail("");
         }
-        if (data.roles === "jumpCourse2024") {
-          navigate("/userJC24Profile");
+        if (data.notVerifiedProfile) {
+          setError(true);
+          setErrorMessage("perfil no verificado");
+          setLoading(false);
+          setPassword("");
+          setEmail("");
         }
-        if (data.roles === "reader") {
-          navigate("/reader");
-        }
-
-        setPassword("");
-        setEmail("");
       } else {
+        setLoginPending(false);
+        setLoading(false);
         setError(true);
         setErrorMessage("Email o password incorrectos");
         setTimeout(() => {
@@ -65,64 +104,94 @@ function App() {
         }, 5000);
       }
     } catch (error) {
+      setLoginPending(false);
+      setLoading(false);
       console.log(error);
     }
   };
 
   const handleLogout = () => {
+    setLoginPending(true);
+    setLoading(true);
     setProfile({});
     logout();
+    setLoginPending(false);
+    setLoading(false);
   };
 
   return (
     <Layout>
-      <NavBar handleLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<KinApp />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/cursos" element={<Cursos />} />
-        <Route
-          path="/Login_form"
-          element={
-            <LoginForm
-              error={error}
-              email={email}
-              password={password}
-              handleOnchangeEmail={(e) => setEmail(e.target.value)}
-              handleOnchangePassword={(e) => setPassword(e.target.value)}
-              handleSubmit={handleSubmit}
+      {loginPending ? (
+        <div className="spinner-Container">
+          <HashLoader
+            color={"#011a42"}
+            loading={loading}
+            cssOverride={{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "#011a42",
+            }}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      ) : (
+        <>
+          <NavBar handleLogout={handleLogout} />
+          <Routes>
+            <Route path="/" element={<KinApp />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/cursos" element={<Cursos />} />
+            <Route
+              path="/Login_form"
+              element={
+                <LoginForm
+                  error={error}
+                  email={email}
+                  password={password}
+                  handleOnchangeEmail={(e) => setEmail(e.target.value)}
+                  handleOnchangePassword={(e) => setPassword(e.target.value)}
+                  handleSubmit={handleSubmit}
+                />
+              }
             />
-          }
-        />
-        <Route path="/jump_course" element={<JumpCourse />} />
-        <Route path="/course_form" element={<CourseForm />} />
+            <Route path="/jump_course" element={<JumpCourse />} />
+            <Route path="/course_form" element={<CourseForm />} />
 
-        {/* mas */}
-        <Route path="/avisolegal" element={<AvisoLegal />} />
-        <Route path="/quienes_somos" element={<QuienesSomos />} />
-        <Route path="/jump_program" element={<Program />} />
+            {/* mas */}
+            <Route path="/avisolegal" element={<AvisoLegal />} />
+            <Route path="/quienes_somos" element={<QuienesSomos />} />
+            <Route path="/jump_program" element={<Program />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        <Route path="*" element={<Navigate to="/"></Navigate>} />
+            <Route path="*" element={<Navigate to="/"></Navigate>} />
 
-        {/* protected admin routes */}
-        <Route element={<AdminRoutes roles={roles} />}>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/user/:id" element={<User />} />
-        </Route>
+            {/* protected admin routes */}
+            <Route element={<AdminRoutes roles={profile.roles} />}>
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="/user/:id" element={<User />} />
+            </Route>
 
-        {/* protected reader users routes */}
-        <Route element={<JumpCourse2024Routes roles={roles} />}>
-          <Route path="/userJC24Profile" element={<UserJC24Profile />} />
-          <Route path="/jump_clases" element={<JumpClases />} />
-          <Route path="/jump_analysis" element={<JumpAnalysis />} />
-        </Route>
-        <Route element={<ReaderRoutes roles={roles} />}>
-          <Route path="/reader" element={<Reader />} />
-        </Route>
-      </Routes>
+            {/* protected reader users routes */}
+            <Route element={<JumpCourse2024Routes roles={profile.roles} />}>
+              <Route path="/userJC24Profile" element={<UserJC24Profile />} />
+              <Route path="/jump_clases" element={<JumpClases />} />
+              <Route path="/jump_analysis" element={<JumpAnalysis />} />
+              <Route
+                path="/success-verification"
+                element={<SuccessVerification />}
+              />
+            </Route>
+            <Route element={<ReaderRoutes roles={roles} />}>
+              <Route path="/reader" element={<Reader />} />
+            </Route>
+          </Routes>
 
-      <Footer />
+          <Footer />
+        </>
+      )}
     </Layout>
   );
 }

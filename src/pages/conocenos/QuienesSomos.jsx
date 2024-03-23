@@ -11,7 +11,7 @@ const QuienesSomos = () => {
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-2xl">
             Nos apasiona la biomecánica, estudiar su complejidad y crear
-            herramientas simples para analizarla.
+            herramientas sencillas para analizarla.
           </p>
         </div>
         <div className="flex flex-wrap -m-4">

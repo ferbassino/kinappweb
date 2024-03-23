@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLogin } from "../context/LoginProvider";
+import { Link } from "react-router-dom";
 
 const LoginForm = ({
   error,
@@ -10,21 +11,19 @@ const LoginForm = ({
   handleSubmit,
 }) => {
   const { errorMessage } = useLogin();
+
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
         <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
           <h1 className="title-font font-medium text-3xl text-gray-900">
-            Slow-carb next level shoindcgoitch ethical authentic, poko scenester
+            Lleva tu análisis biomecánico al siguiente nivel con kinApp
           </h1>
-          <p className="leading-relaxed mt-4">
-            Poke slow-carb mixtape knausgaard, typewriter street art gentrify
-            hammock starladder roathse. Craies vegan tousled etsy austin.
-          </p>
+          <p className="leading-relaxed mt-4">comencemos...</p>
         </div>
         <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
           <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
-            Sign Up
+            Login
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="relative mb-4">
@@ -37,6 +36,7 @@ const LoginForm = ({
                 Email
               </label>
               <input
+                required
                 onChange={handleOnchangeEmail}
                 value={email}
                 type="email"
@@ -55,6 +55,7 @@ const LoginForm = ({
                 Password
               </label>
               <input
+                required
                 onChange={handleOnchangePassword}
                 value={password}
                 type="text"
@@ -67,6 +68,9 @@ const LoginForm = ({
               Send
             </button>
           </form>
+          <Link to={"/forgot-password"} className="text-sm text-blue-600 mt-3">
+            ¡olvidó la contraseña?
+          </Link>
           {error ? (
             <p className="text-sm text-red-600 mt-3">{errorMessage}</p>
           ) : null}

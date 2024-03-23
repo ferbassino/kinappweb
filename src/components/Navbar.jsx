@@ -10,10 +10,10 @@ const activeLink = "blok inline-block py-1 text-blue-800 mr-4 md:text-lg";
 const NavBar = ({ handleLogout }) => {
   const { profile } = useLogin();
   const [rolesUrl, setRolesUrl] = useState("");
+
   useEffect(() => {
     setRolesUrl("");
     if (profile.roles === "jumpCourse2024") {
-      // console.log("profile.roles en navbar", rolesUrl);
       setRolesUrl("/userJC24Profile");
     }
     if (profile.roles === "admin") {

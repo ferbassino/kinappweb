@@ -187,7 +187,7 @@ const JumpAnalysis = () => {
             Math.PI
         );
       });
-      console.log(ankleAngle);
+
       setKneeAngle(kneeAngle);
       setAnkleAngle(ankleAngle);
       setTrocanterArray(trocanter);

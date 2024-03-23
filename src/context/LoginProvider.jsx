@@ -27,6 +27,7 @@ const LoginProvider = ({ children }) => {
               Authorization: `JWT ${user.token}`,
             },
           });
+
           if (!res.data.verified) {
             setErrorMessage("perfil no verificado");
             setTimeout(() => {
@@ -34,23 +35,25 @@ const LoginProvider = ({ children }) => {
             }, 5000);
             return;
           }
+          console.log(res.data.success);
           if (res.data.success) {
             setProfile(res.data);
+            if (user.roles === "admin") {
+              navigate("/profile");
+            }
+            if (user.roles === "jumpCourse2024") {
+              navigate("/userJC24Profile");
+            }
+            if (user.roles === "reader") {
+              navigate("/reader");
+            }
+          } else {
+            setProfile({});
+            navigate("/");
           }
         }
       };
       fetchUser();
-      if (user.roles === "admin") {
-        navigate("/profile");
-      }
-      if (user.roles === "jumpCourse2024") {
-        navigate("/userJC24Profile");
-      }
-      if (user.roles === "reader") {
-        navigate("/reader");
-      }
-    } else {
-      navigate("/");
     }
   }, []);
 

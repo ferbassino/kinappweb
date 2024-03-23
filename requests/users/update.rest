@@ -1,0 +1,16 @@
+POST http://localhost:3001/create-user
+Content-Type: application/json
+
+{
+    "userName": "oeste",
+    "email": "oestebiomecanica@gmail.com",
+    "password": "12345678",
+    "confirmPassword": "12345678"
+}
+###
+PUT  http://localhost:3001/user/65fdffd5ab97bfad15b9c95e
+Content-Type: application/json
+
+{
+    "verified": true
+}

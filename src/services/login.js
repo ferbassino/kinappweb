@@ -7,8 +7,11 @@ const login = async (credentials) => {
       email,
       password,
     });
+    if (!data.user.verified) {
+      return { success: true, verified: false };
+    }
 
-    if (data.success) {
+    if (data.user.verified) {
       const { user } = data;
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("session_date", Date.now());
@@ -20,42 +23,11 @@ const login = async (credentials) => {
       return error.response.data;
     }
     console.log(`signIn method error: ${error}`);
-    return { success: false, error: error.message };
+    return {
+      success: false,
+      error: error.message,
+    };
   }
 };
 
 export default login;
-
-// const login = async (credentials) => {
-//
-//   try {
-//     const { email, password } = credentials;
-
-//     const { data } = await client.post("/sign-in", {
-//       email,
-//       password,
-//     });
-
-//     if (data.success) {
-//       return data.user;
-//     } else {
-//       const res = await client.post("/api/client", {
-//         email,
-//         password,
-//       });
-
-//       if (res.data.success) {
-//         const obj = res.data.client;
-//         return obj;
-//       } else {
-//         return data.messagge;
-//       }
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-
-//   //
-// };
-
-// export default login;
