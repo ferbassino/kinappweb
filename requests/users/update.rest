@@ -1,4 +1,4 @@
-POST http://localhost:3001/create-user
+POST https://kinapp-api.vercel.app/verify-email
 Content-Type: application/json
 
 {
@@ -6,6 +6,14 @@ Content-Type: application/json
     "email": "oestebiomecanica@gmail.com",
     "password": "12345678",
     "confirmPassword": "12345678"
+}
+###
+POST https://kinapp-api.vercel.app/verify-email
+Content-Type: application/json
+
+{
+    "userId":"65ff35c91b7ae905e85e7aef",
+    "otp":"2865"
 }
 ###
 PUT  http://localhost:3001/user/65fdffd5ab97bfad15b9c95e

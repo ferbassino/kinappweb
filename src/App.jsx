@@ -29,6 +29,8 @@ import HashLoader from "react-spinners/HashLoader";
 import "./App.css";
 import SuccessVerification from "./components/SuccessForgot";
 import ForgotPassword from "./components/ForgotPassword";
+import NotVerifiedProfile from "./pages/NotVerifiedProfile";
+
 function App() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -55,8 +57,9 @@ function App() {
       });
 
       if (data) {
+        setProfile(data);
+
         if (data.verified) {
-          setProfile(data);
           if (data.roles === "admin") {
             navigate("/profile");
           }
@@ -70,38 +73,21 @@ function App() {
           setLoading(false);
           setPassword("");
           setEmail("");
+        }
+        if (!data.verified && email === data.email) {
+          setLoginPending(false);
+          navigate("/not-verified-profile");
         } else {
+          setLoginPending(false);
+          setLoading(false);
           setError(true);
-          setErrorMessage(
-            "Perfil no verificado, por favor revise el correo con nuestro número de verificación"
-          );
+          setErrorMessage("Email o password incorrectos");
           setTimeout(() => {
             setPassword("");
             setEmail("");
             setErrorMessage(false);
           }, 5000);
-
-          setLoginPending(false);
-          setPassword("");
-          setEmail("");
         }
-        if (data.notVerifiedProfile) {
-          setError(true);
-          setErrorMessage("perfil no verificado");
-          setLoading(false);
-          setPassword("");
-          setEmail("");
-        }
-      } else {
-        setLoginPending(false);
-        setLoading(false);
-        setError(true);
-        setErrorMessage("Email o password incorrectos");
-        setTimeout(() => {
-          setPassword("");
-          setEmail("");
-          setErrorMessage(false);
-        }, 5000);
       }
     } catch (error) {
       setLoginPending(false);
@@ -158,12 +144,16 @@ function App() {
             />
             <Route path="/jump_course" element={<JumpCourse />} />
             <Route path="/course_form" element={<CourseForm />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route
+              path="/not-verified-profile"
+              element={<NotVerifiedProfile profile={profile} />}
+            />
 
             {/* mas */}
             <Route path="/avisolegal" element={<AvisoLegal />} />
             <Route path="/quienes_somos" element={<QuienesSomos />} />
             <Route path="/jump_program" element={<Program />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
 
             <Route path="*" element={<Navigate to="/"></Navigate>} />
 

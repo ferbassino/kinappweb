@@ -35,7 +35,7 @@ const LoginProvider = ({ children }) => {
             }, 5000);
             return;
           }
-          console.log(res.data.success);
+
           if (res.data.success) {
             setProfile(res.data);
             if (user.roles === "admin") {

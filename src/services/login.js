@@ -7,9 +7,6 @@ const login = async (credentials) => {
       email,
       password,
     });
-    if (!data.user.verified) {
-      return { success: true, verified: false };
-    }
 
     if (data.user.verified) {
       const { user } = data;

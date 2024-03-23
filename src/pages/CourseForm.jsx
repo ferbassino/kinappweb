@@ -18,6 +18,7 @@ const CourseForm = () => {
   const [userToVerified, setUserToVerified] = useState({});
   const [loginPending, setLoginPending] = useState(false);
   const [successVerification, setSuccessVerification] = useState(false);
+  const [verificationNumber, setVerificationNumber] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoginPending(true);
@@ -76,31 +77,54 @@ const CourseForm = () => {
   };
   const handleVerification = async (e) => {
     e.preventDefault();
+    console.log(verificationNumber);
+    setLoginPending(true);
+
     try {
-      setLoginPending(true);
+      const response = await client.post("/verify-email", {
+        userId: userToVerified.id,
+        otp: verificationNumber,
+      });
 
-      const result = await client.put(
-        `user/${userToVerified.id}`,
-        {
-          verified: true,
-        },
-        { new: true }
-      );
+      if (response.data.success) {
+        const result = await client.put(
+          `user/${userToVerified.id}`,
+          {
+            verified: true,
+          },
+          { new: true }
+        );
 
-      if (result.data.success) {
-        setLoginPending(false);
-        setSuccessVerification(true);
-        setTimeout(() => {
-          SuccessVerification(false);
-          navigate("/");
-        }, 6000);
-      } else {
-        setLoginPending(false);
-        alert("tu verificación no pudo realizarse");
+        if (result.data.success) {
+          setLoginPending(false);
+          setSuccessVerification(true);
+          setTimeout(() => {
+            SuccessVerification(false);
+            navigate("/");
+          }, 6000);
+        } else {
+          setLoginPending(false);
+          alert("tu verificación no pudo realizarse");
+        }
       }
+      console.log(response.response.data);
+      if (!response.data.success) {
+        setError(true);
+        setErrorMessage(
+          "El código de 4 dígitos no es válido, vuelva a intentarlo"
+        );
+      }
+      console.log(response.response.data.success);
     } catch (error) {
       setLoginPending(false);
       console.log(error);
+      setError(true);
+      setErrorMessage(error.response.data.message);
+      setTimeout(() => {
+        setVerificationNumber("");
+        setError(false);
+        setErrorMessage("");
+      }, 5000);
     }
   };
 
@@ -161,11 +185,13 @@ const CourseForm = () => {
                           </label>
                           <input
                             // disabled
-                            onChange={(e) => setUserName(e.target.value)}
-                            value={userName}
-                            type="userName"
-                            id="userName"
-                            name="userName"
+                            onChange={(e) =>
+                              setVerificationNumber(e.target.value)
+                            }
+                            value={verificationNumber}
+                            type="setVerificationNumber"
+                            id="setVerificationNumber"
+                            name="setVerificationNumber"
                             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                           />
                         </div>
