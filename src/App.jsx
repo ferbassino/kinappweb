@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Profile from "./pages/Profile";
 import Footer from "./components/Footer";
-import Cursos from "./pages/Cursos";
+import Cursos from "./pages/capacitaciones/Cursos";
 import LoginForm from "./pages/LoginForm";
 import KinApp from "./pages/KinApp";
 import Users from "./pages/Users";

@@ -60,11 +60,15 @@ export default function Footer() {
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a className="text-gray-600 hover:text-gray-800">
+                <Link
+                  to={"/cursos"}
+                  onClick={scrollToTop}
+                  className="text-gray-600 hover:text-gray-800"
+                >
                   Capacitaciones
-                </a>
+                </Link>
               </li>
-              <li>
+              {/* <li>
                 <a className="text-gray-600 hover:text-gray-800">
                   Grupos de estudio
                 </a>
@@ -76,7 +80,7 @@ export default function Footer() {
               </li>
               <li>
                 <a className="text-gray-600 hover:text-gray-800">Consultas</a>
-              </li>
+              </li> */}
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">

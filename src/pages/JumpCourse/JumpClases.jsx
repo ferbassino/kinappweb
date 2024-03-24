@@ -16,6 +16,7 @@ const JumpClases = () => {
             controls
             width="100%"
             height="100%"
+            // light="https zaraza" para la prieview
           />
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React from "react";
-import fer from "../../assets/fer.jpeg";
-import juan from "../../assets/juan.jpeg";
+
 const QuienesSomos = () => {
   return (
     <section className="text-gray-600 body-font">
