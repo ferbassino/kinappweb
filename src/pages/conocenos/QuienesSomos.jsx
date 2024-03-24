@@ -20,7 +20,7 @@ const QuienesSomos = () => {
               <img
                 alt="team"
                 className="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
-                src={fer}
+                src="https://storage.cloud.google.com/kinapp-web/kinapp-web/quienes-somos/fer.jpeg"
               />
               <div className="flex-grow sm:pl-8">
                 <h2 className="title-font font-medium text-lg text-gray-900">
@@ -83,7 +83,7 @@ const QuienesSomos = () => {
               <img
                 alt="team"
                 className="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
-                src={juan}
+                src="https://storage.cloud.google.com/kinapp-web/kinapp-web/quienes-somos/juan.jpeg"
               />
               <div className="flex-grow sm:pl-8">
                 <h2 className="title-font font-medium text-lg text-gray-900">

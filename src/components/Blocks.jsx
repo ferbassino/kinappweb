@@ -1,9 +1,3 @@
-import jump from "../assets/jump.png";
-import time from "../assets/time.jpg";
-import easy from "../assets/easy.jpeg";
-import storage from "../assets/storage.jpg";
-import enviroment from "../assets/enviroment.jpeg";
-
 const Blocks = () => {
   return (
     <>
@@ -19,7 +13,7 @@ const Blocks = () => {
             </p>
           </div>
           <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-            <img src={easy} />
+            <img src="https://storage.cloud.google.com/kinapp-web/kinapp-web/landing/easy.jpeg" />
           </div>
         </div>
       </section>
@@ -27,7 +21,7 @@ const Blocks = () => {
       <section className="text-gray-600 body-font ">
         <div className="container px-5 py-24 mx-auto flex flex-wrap-reverse items-center">
           <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col  w-full mt-10 md:mt-0">
-            <img src={time} />
+            <img src="https://storage.cloud.google.com/kinapp-web/kinapp-web/landing/time.jpg" />
           </div>
           <div className="lg:w-3/5 md:w-1/2 md:pl-16 lg:pr-0 pr-0 mt-8">
             <h1 className="title-font font-medium text-3xl text-gray-900 lg:text-5xl">
@@ -53,7 +47,7 @@ const Blocks = () => {
             </p>
           </div>
           <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-            <img src={storage} />
+            <img src="https://storage.cloud.google.com/kinapp-web/kinapp-web/landing/storage.jpg" />
           </div>
         </div>
       </section>
@@ -61,7 +55,7 @@ const Blocks = () => {
       <section className="text-gray-600 body-font ">
         <div className="container px-5 py-24 mx-auto flex flex-wrap-reverse items-center  ">
           <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex w-full mt-10 md:mt-0">
-            <img src={enviroment} />
+            <img src="https://storage.cloud.google.com/kinapp-web/kinapp-web/landing/storage.jpg" />
           </div>
           <div className="lg:w-3/5 md:w-1/2 md:pl-16 lg:pr-0 pr-0 mt-8 ">
             <h1 className="title-font font-medium text-3xl text-gray-900 lg:text-5xl">

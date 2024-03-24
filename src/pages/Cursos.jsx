@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import jumpImage from "../assets/jump.png";
-import cursos from "../assets/cursos.jpeg";
+
 const Cursos = () => {
   return (
     <div>
@@ -21,7 +20,7 @@ const Cursos = () => {
                 <img
                   alt="content"
                   className="object-contain object-center h-full w-full"
-                  src={jumpImage}
+                  src="https://storage.cloud.google.com/kinapp-web/kinapp-web/cursos/jump.png"
                 />
               </div>
               <h2 className="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">
@@ -43,7 +42,7 @@ const Cursos = () => {
                 <img
                   alt="content"
                   className="object-contain object-center h-full w-full"
-                  src={cursos}
+                  src="https://storage.cloud.google.com/kinapp-web/kinapp-web/cursos/cursos.jpeg"
                 />
               </div>
               <h2 className="title-font text-2xl font-medium text-gray-900  mb-3">
