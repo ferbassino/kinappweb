@@ -30,6 +30,7 @@ import "./App.css";
 import SuccessVerification from "./components/SuccessForgot";
 import ForgotPassword from "./components/ForgotPassword";
 import NotVerifiedProfile from "./pages/NotVerifiedProfile";
+import WebApplication from "./pages/recursos-kinapp/WebApplication";
 
 function App() {
   const navigate = useNavigate();
@@ -149,6 +150,7 @@ function App() {
               path="/not-verified-profile"
               element={<NotVerifiedProfile profile={profile} />}
             />
+            <Route path="/web-application" element={<WebApplication />} />
 
             {/* mas */}
             <Route path="/avisolegal" element={<AvisoLegal />} />
