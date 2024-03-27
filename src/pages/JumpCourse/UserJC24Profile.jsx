@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { SiReadthedocs } from "react-icons/si";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { FaChartLine } from "react-icons/fa6";
-import { useLogin } from "../context/LoginProvider";
+import { useLogin } from "../../context/LoginProvider";
 import { useNavigate } from "react-router-dom";
-import client from "../api/client";
+import client from "../../api/client";
 import { useState } from "react";
-import SuccessUnsuscribed from "../components/SuccessUnsuscribed";
+import SuccessUnsuscribed from "../../components/logins/SuccessUnsuscribed";
 import HashLoader from "react-spinners/HashLoader";
 const UserJC24Profile = () => {
   const [succesfullyUnsuscribed, setSuccesfullyUnsuscribed] = useState(false);

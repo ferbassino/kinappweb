@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import kinAppLogo from "./../assets/kinapp_logo.svg";
+import kinAppLogo from "../../assets/kinapp_logo.svg";
 import "./Hero.css";
 const Hero = () => {
   return (

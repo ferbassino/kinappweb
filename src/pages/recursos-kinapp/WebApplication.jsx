@@ -1,6 +1,11 @@
 import React from "react";
 import { CgWebsite } from "react-icons/cg";
+import Parrafo from "../../components/otros/Parrafo";
 const WebApplication = () => {
+  //   Análisis
+
+  // Aplicación de análisis biomecánico
+  // En la aplicación web vas a poder realizar análisis biomecánico registrando las evaluaciones con los dispositivos que ofrece kinApp y de algunos otros dispositivos fuera de nuestro entorno, como por ejemplo el registro por video, archivos generados por unidades inerciales genéricas como las que se encuentran en algunas aplicaciones móviles o en otros métodos de análisis. Para poder utilizar esta herramienta debés estar suscripto al sitio.
   return (
     <>
       <section className="container px-5 pt-10 mx-auto">
@@ -8,11 +13,11 @@ const WebApplication = () => {
           <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-blue-950 flex-shrink-0">
             <CgWebsite className="sm:w-20 sm:h-20 h-10 w-10" />
           </div>
-          <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-            <h2 className="text-xl text-blue-900 text- md:text-4xl title-font font-medium mb-2">
+          <div className="flex-grow sm:text-left  mt-6 sm:mt-0">
+            <h2 className="text-xl text-center text-blue-900 text- md:text-4xl title-font font-medium mb-2">
               Aplicación web
             </h2>
-            <p className="leading-relaxed text-base">
+            <p className="leading-relaxed text-base text-justify">
               La aplicación web permite ver los datos registrados por los
               dispositivos del ecosistema kinApp, cargar datos de otros
               dispositivos, interactuar de manera dinámica para el análisis y
@@ -26,115 +31,33 @@ const WebApplication = () => {
         </div>
       </section>
       <section className="text-blue-600 body-font overflow-hidden">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-1 py-24 mx-auto">
           <div className="-my-8 divide-y-2 divide-gray-100">
             {/* ----------------------------------------- */}
-            <div className="py-8 flex flex-wrap md:flex-nowrap">
-              <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0">
-                <p className="text-2xl font-semibold title-font text-blue-700">
-                  Análisis
-                </p>
-              </div>
-              <div className="md:flex-grow">
-                <h2 className="text-justify text-sm md:text-2xl font-medium text-blue-900 title-font mb-2">
-                  Aplicación de análisis biomecánico
-                </h2>
-                <p className="text-sm text-justify leading-relaxed">
-                  En la aplicación web vas a poder realizar análisis biomecánico
-                  registrando las evaluaciones con los dispositivos que ofrece
-                  kinApp y de algunos otros dispositivos fuera de nuestro
-                  entorno, como por ejemplo el registro por video, archivos
-                  generados por unidades inerciales genéricas como las que se
-                  encuentran en algunas aplicaciones móviles o en otros métodos
-                  de análisis. Para poder utilizar esta herramienta debés estar
-                  suscripto al sitio.
-                </p>
-                <a className="text-indigo-500 inline-flex items-center mt-4">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
+            <Parrafo
+              title="Análisis"
+              subtitle="Aplicación de análisis biomecánico"
+              text="En la aplicación web vas a poder realizar análisis biomecánico registrando las evaluaciones con los dispositivos que ofrece kinApp y de algunos otros dispositivos fuera de nuestro entorno, como por ejemplo el registro por video, archivos generados por unidades inerciales genéricas como las que se encuentran en algunas aplicaciones móviles o en otros métodos de análisis. Para poder utilizar esta herramienta debés estar suscripto al sitio."
+            />
             {/* -------------------------------------- */}
-            <div className="py-8 flex flex-wrap md:flex-nowrap">
-              <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                <span className="font-semibold title-font text-blue-700">
-                  CATEGORY
-                </span>
-                <span className="mt-1 text-blue-500 text-sm">12 Jun 2019</span>
-              </div>
-              <div className="md:flex-grow">
-                <h2 className="text-2xl font-medium text-blue-900 title-font mb-2">
-                  Meditation bushwick direct trade taxidermy shaman
-                </h2>
-                <p className="leading-relaxed">
-                  Glossier echo park pug, church-key sartorial biodiesel
-                  vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf
-                  moon party messenger bag selfies, poke vaporware kombucha
-                  lumbersexual pork belly polaroid hoodie portland craft beer.
-                </p>
-                <a className="text-indigo-500 inline-flex items-center mt-4">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div className="py-8 flex flex-wrap md:flex-nowrap">
-              <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                <span className="font-semibold title-font text-blue-700">
-                  CATEGORY
-                </span>
-                <span className="text-sm text-blue-500">12 Jun 2019</span>
-              </div>
-              <div className="md:flex-grow">
-                <h2 className="text-2xl font-medium text-blue-900 title-font mb-2">
-                  Woke master cleanse drinking vinegar salvia
-                </h2>
-                <p className="leading-relaxed">
-                  Glossier echo park pug, church-key sartorial biodiesel
-                  vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf
-                  moon party messenger bag selfies, poke vaporware kombucha
-                  lumbersexual pork belly polaroid hoodie portland craft beer.
-                </p>
-                <a className="text-indigo-500 inline-flex items-center mt-4">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
+            <Parrafo
+              title="Documentación"
+              subtitle="Contenido específico en biomecánica"
+              text="En la documntación se explica paso a paso el funcionamiento de la aplicación,la utilización de las aplicaciones móviles y todo el contenido relacionado con en análisis biomecánico. "
+            />
+            {/* -------------------------------------- */}
+            <Parrafo
+              title="Aplicaciones móviles"
+              subtitle="Captura de movimiento"
+              text="El ecosistema kinApp incluye aplicaciones móviles que registran distintas variables cinemáticas cuando el dispositivo se coloca en los segmentos corporales o en algún otro elemento desplazado por este. Las aplicaciones capturan los movimientos de traslación y estos se pueden visualizar en la interfaz del dispositovo. Se pueden registrar rotaciones de los segmentos para evaluar la movilidad articular o los movimientos de traslación de los segmentos para evaluar la aceleración, la velocidad y la distancia"
+            />
+            {/* -------------------------------------- */}
+            <Parrafo
+              title="Consulta de evaluaciones"
+              subtitle="Persistencia de los datos"
+              text="Todos los movimientos registrados se pueden guardar para consultarlos en cualquier momento. Las evaluaciones se asocian a un usuario al cual se le genera un perfil con los datos de la evaluacion para poder obtener estadísticas y generar un informe. "
+            />
+            {/* -------------------------------------- */}
           </div>
         </div>
       </section>

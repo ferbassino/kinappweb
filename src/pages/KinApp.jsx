@@ -1,5 +1,5 @@
-import Hero from "../components/Hero";
-import Blocks from "../components/Blocks";
+import Hero from "../components/general/Hero";
+import Blocks from "../components/otros/Blocks";
 import CookieConsent from "react-cookie-consent";
 const KinApp = () => {
   return (

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLogin } from "../context/LoginProvider";
-import client from "../api/client";
+import { useLogin } from "../../context/LoginProvider";
+import client from "../../api/client";
 import HashLoader from "react-spinners/HashLoader";
-import SuccessVerification from "../components/SuccessVerification";
+import SuccessVerification from "../../components/logins/SuccessVerification";
 import("./CourseForm.css");
 const CourseForm = () => {
   const navigate = useNavigate();

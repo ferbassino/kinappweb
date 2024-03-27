@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getUser } from "../requests/getUser";
-import client from "../api/client";
+import { getUser } from "../../requests/getUser";
+import client from "../../api/client";
 import { useNavigate } from "react-router-dom";
 
 const User = () => {

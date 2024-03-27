@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import kinAppLogo from "./../assets/kinapp_logo.svg";
-import client from "../api/client";
+import kinAppLogo from "../../assets/kinapp_logo.svg";
+import client from "../../api/client";
 import SuccessForgot from "./SuccessForgot";
 import { useNavigate } from "react-router-dom";
 import HashLoader from "react-spinners/HashLoader";

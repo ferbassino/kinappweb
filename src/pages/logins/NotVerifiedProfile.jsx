@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import kinAppLogo from "./../assets/kinapp_logo.svg";
-import client from "../api/client";
+import kinAppLogo from "../../assets/kinapp_logo.svg";
+import client from "../../api/client";
 import HashLoader from "react-spinners/HashLoader";
-import SuccessVerification from "../components/SuccessVerification";
+import SuccessVerification from "../../components/logins/SuccessVerification";
 import { useNavigate } from "react-router-dom";
 const NotVerifiedProfile = (props) => {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import kinAppLogo from "./../assets/kinapp_logo.svg";
+import kinAppLogo from "./../../assets/kinapp_logo.svg";
 import { Link } from "react-router-dom";
 export default function Footer() {
   const scrollToTop = () => {
@@ -97,7 +97,7 @@ export default function Footer() {
                   Aplicación web
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <a className="text-gray-600 hover:text-gray-800">
                   Aplicaciones móviles
                 </a>
@@ -109,7 +109,7 @@ export default function Footer() {
               </li>
               <li>
                 <a className="text-gray-600 hover:text-gray-800">Umico</a>
-              </li>
+              </li> */}
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">

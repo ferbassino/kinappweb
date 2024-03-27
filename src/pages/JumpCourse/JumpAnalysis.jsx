@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactFileReader from "react-file-reader";
-import Chart from "../../components/Chart";
+import Chart from "../../components/otros/Chart";
+
 const JumpAnalysis = () => {
   const [verticalTimeArray, setVerticalTimeArray] = useState([]);
   const [verticalTrocanterArray, setVerticalTrocanterArray] = useState([]);

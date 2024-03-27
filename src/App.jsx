@@ -1,23 +1,23 @@
-import { useState, CSSProperties } from "react";
+import { useState } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import Layout from "./components/Layout";
-import Profile from "./pages/Profile";
-import Footer from "./components/Footer";
+import Layout from "./components/general/Layout";
+import Profile from "./pages/admin/Profile";
+import Footer from "./components/general/Footer";
 import Cursos from "./pages/capacitaciones/Cursos";
-import LoginForm from "./pages/LoginForm";
+import LoginForm from "./pages/logins/LoginForm";
 import KinApp from "./pages/KinApp";
-import Users from "./pages/Users";
-import User from "./components/User";
-import NavBar from "./components/Navbar";
+import Users from "./pages/user/Users";
+import User from "./components/user/User";
+import NavBar from "./components/general/Navbar";
 import logout from "./services/logout";
 import login from "./services/login";
 import { useLogin } from "./context/LoginProvider";
 import About from "./pages/About";
-import JumpCourse from "./pages/JumpCourse";
-import CourseForm from "./pages/CourseForm";
+import JumpCourse from "./pages/JumpCourse/JumpCourse";
+import CourseForm from "./pages/JumpCourse/CourseForm";
 import AdminRoutes from "./utils/AdminRoutes";
-import UserJC24Profile from "./pages/UserJC24Profile";
-import Reader from "./pages/Reader";
+import UserJC24Profile from "./pages/JumpCourse/UserJC24Profile";
+import Reader from "./pages/reader/Reader";
 import JumpCourse2024Routes from "./utils/JumpCourse2024";
 import ReaderRoutes from "./utils/ReaderRoutes";
 import AvisoLegal from "./pages/mas/AvisoLegal";
@@ -27,10 +27,11 @@ import JumpClases from "./pages/JumpCourse/JumpClases";
 import JumpAnalysis from "./pages/JumpCourse/JumpAnalysis";
 import HashLoader from "react-spinners/HashLoader";
 import "./App.css";
-import SuccessVerification from "./components/SuccessForgot";
-import ForgotPassword from "./components/ForgotPassword";
-import NotVerifiedProfile from "./pages/NotVerifiedProfile";
+import SuccessVerification from "./components/logins/SuccessVerification";
+import ForgotPassword from "./components/logins/ForgotPassword";
+import NotVerifiedProfile from "./pages/logins/NotVerifiedProfile";
 import WebApplication from "./pages/recursos-kinapp/WebApplication";
+import Tests from "./pages/reader/reader_pages/Tests";
 
 function App() {
   const navigate = useNavigate();
@@ -165,6 +166,13 @@ function App() {
               <Route path="/users" element={<Users />} />
               <Route path="/user/:id" element={<User />} />
             </Route>
+            {/* protected reader routes */}
+            <Route element={<ReaderRoutes roles={profile.roles} />}>
+              <Route path="/reader" element={<Reader />} />
+              <Route path="/tests" element={<Tests />} />
+              <Route path="/clients" element={<Users />} />
+              <Route path="/client/:id" element={<User />} />
+            </Route>
 
             {/* protected reader users routes */}
             <Route element={<JumpCourse2024Routes roles={profile.roles} />}>
@@ -175,9 +183,6 @@ function App() {
                 path="/success-verification"
                 element={<SuccessVerification />}
               />
-            </Route>
-            <Route element={<ReaderRoutes roles={roles} />}>
-              <Route path="/reader" element={<Reader />} />
             </Route>
           </Routes>
 

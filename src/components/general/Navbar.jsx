@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import kinAppLogo from "./../assets/kinapp_logo.svg";
+import kinAppLogo from "../../assets/kinapp_logo.svg";
 import { NavLink } from "react-router-dom";
-import { useLogin } from "../context/LoginProvider";
+import { useLogin } from "../../context/LoginProvider";
 
 const btnLink =
   "block inline-block py-1 hover:text-orange-600 cursor-pointer mr-4 md:text-lg";
