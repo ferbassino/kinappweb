@@ -20,7 +20,7 @@ const Cursos = () => {
                 <img
                   alt="content"
                   className="object-contain object-center h-full w-full"
-                  src="https://storage.cloud.google.com/kinapp-web/kinapp-web/cursos/jump.png"
+                  src="https://storage.googleapis.com/kinapp-web/kinapp-web/cursos/jump.png"
                 />
               </div>
               <h2 className="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">
@@ -42,7 +42,7 @@ const Cursos = () => {
                 <img
                   alt="content"
                   className="object-contain object-center h-full w-full"
-                  src="https://storage.cloud.google.com/kinapp-web/kinapp-web/cursos/cursos.jpeg"
+                  src="https://storage.googleapis.com/kinapp-web/kinapp-web/cursos/cursos.jpeg"
                 />
               </div>
               <h2 className="title-font text-2xl font-medium text-gray-900  mb-3">
