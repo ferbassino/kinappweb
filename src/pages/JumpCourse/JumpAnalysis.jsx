@@ -3,9 +3,7 @@ import ReactFileReader from "react-file-reader";
 import { useNavigate } from "react-router-dom";
 import Chart from "../../components/otros/Chart";
 import InputForm from "../../components/VideoAnalysis.jsx/InputForm";
-import verticalAnalysis from "../../auxiliaries/videoJumpAnalysis.jsx/verticalAnalysis";
-import horizontalAnalysis from "../../auxiliaries/videoJumpAnalysis.jsx/horizontalAnalysis";
-import verticalHorizontalAnalysis from "./../../auxiliaries/videoJumpAnalysis.jsx/verticalHorizontalAnalysis";
+
 import { useEffect } from "react";
 import { useLogin } from "../../context/LoginProvider";
 import getUserClients from "./../../requests/clients/getUserClients";
@@ -15,7 +13,7 @@ import OldClientDataInput from "../../components/VideoAnalysis.jsx/OldClientData
 import generatePassword from "../../auxiliaries/generatePassword";
 import client from "../../api/client";
 import("./CourseForm.css");
-
+import jumpVideoCSVAnalysis from "../../auxiliaries/videoJumpAnalysis.jsx/jumpVideoCSVAnalysis";
 import Message from "../../components/general/Message";
 const JumpAnalysis = () => {
   const navigate = useNavigate();
@@ -23,17 +21,6 @@ const JumpAnalysis = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   const [verticalTimeArray, setVerticalTimeArray] = useState([]);
-  const [verticalTrocanterArray, setVerticalTrocanterArray] = useState([]);
-  const [verticalCondiloArray, setVerticalCondiloArray] = useState([]);
-  const [verticalMaleoloArray, setVerticalMaleoloArray] = useState([]);
-  const [verticalCalcaneoArray, setVerticalCalcaneoArray] = useState([]);
-  const [verticalQuintoMArray, setVerticalQuintoMArray] = useState([]);
-  const [horizontalTimeArray, setHorizontalTimeArray] = useState([]);
-  const [horizontalTrocanterArray, setHorizontalTrocanterArray] = useState([]);
-  const [horizontalCondiloArray, setHorizontalCondiloArray] = useState([]);
-  const [horizontalMaleoloArray, setHorizontalMaleoloArray] = useState([]);
-  const [horizontalCalcaneoArray, setHorizontalCalcaneoArray] = useState([]);
-  const [horizontalQuintoMArray, setHorizontalQuintoMArray] = useState([]);
 
   const [kneeAngle, setKneeAngle] = useState([]);
   const [ankleAngle, setAnkleAngle] = useState([]);
@@ -55,8 +42,8 @@ const JumpAnalysis = () => {
   const [verticalButtonVisible, setVerticalButtonVisible] = useState(false);
   const [horizontalButtonVisible, setHorizontalButtonVisible] = useState(false);
   const [analysisVisible, setAnalysisVisible] = useState(false);
-
   const [resetearVisible, setResetearVisible] = useState(false);
+  const [analizarVisible, setAnalizarVisible] = useState(false);
 
   const { profile } = useLogin();
 
@@ -87,60 +74,30 @@ const JumpAnalysis = () => {
       setHorizontalButtonVisible(true);
       const rawData = read.result;
       setVerticalString(rawData);
-      const {
-        verticalTime,
-        verticalTrocanter,
-        verticalCondilo,
-        verticalMaleolo,
-        verticalCalcaneo,
-        verticalQuintoM,
-      } = verticalAnalysis(rawData);
-
-      setVerticalTimeArray(verticalTime);
-      setVerticalTrocanterArray(verticalTrocanter);
-      setVerticalCondiloArray(verticalCondilo);
-      setVerticalMaleoloArray(verticalMaleolo);
-      setVerticalCalcaneoArray(verticalCalcaneo);
-      setVerticalQuintoMArray(verticalQuintoM);
     };
-
     read.readAsText(file[0]);
   };
+
   const uploadHorizontalFile = (file) => {
     let read = new FileReader();
     read.onload = function (e) {
       setHorizontalButtonVisible(false);
-      setAnalysisVisible(true);
+      setAnalizarVisible(true);
       const rawData = read.result;
       setHorizontalString(rawData);
-      const { time, trocanter, condilo, maleolo, calcaneo, quintoM } =
-        horizontalAnalysis(rawData);
-
-      setHorizontalTimeArray(time);
-      setHorizontalTrocanterArray(trocanter);
-      setHorizontalCondiloArray(condilo);
-      setHorizontalMaleoloArray(maleolo);
-      setHorizontalCalcaneoArray(calcaneo);
-      setHorizontalQuintoMArray(quintoM);
-
-      const { kneeAngle, ankleAngle } = verticalHorizontalAnalysis(
-        verticalTrocanterArray,
-        trocanter,
-        verticalCondiloArray,
-        condilo,
-        verticalMaleoloArray,
-        maleolo,
-        verticalCalcaneoArray,
-        calcaneo,
-        verticalQuintoMArray,
-        quintoM
-      );
-
-      setKneeAngle(kneeAngle);
-      setAnkleAngle(ankleAngle);
     };
-
     read.readAsText(file[0]);
+  };
+
+  const jumpVideoCSVAnalysisFunction = () => {
+    const { kneeAngleArr, ankleAngleArr, verticalTimeArr } =
+      jumpVideoCSVAnalysis(verticalString, horizontalString);
+
+    setKneeAngle(kneeAngleArr);
+    setAnkleAngle(ankleAngleArr);
+    setVerticalTimeArray(verticalTimeArr);
+    setAnalizarVisible(false);
+    setAnalysisVisible(true);
   };
 
   const getCurrentUserClient = async () => {
@@ -230,11 +187,7 @@ const JumpAnalysis = () => {
     setVerticalCalcaneoArray([]);
     setVerticalQuintoMArray([]);
     setHorizontalTimeArray([]);
-    setHorizontalTrocanterArray([]);
-    setHorizontalCondiloArray([]);
-    setHorizontalMaleoloArray([]);
-    setHorizontalCalcaneoArray([]);
-    setHorizontalQuintoMArray([]);
+
     setKneeAngle([]);
     setAnkleAngle([]);
     setNewClientFormVisible(false);
@@ -399,6 +352,7 @@ const JumpAnalysis = () => {
                     archivos csv, primero el de datos verticales y luego el de
                     datos horizontales
                   </p>
+
                   {!resetearVisible ? (
                     <>
                       <p className=" mt-10 lg:w-2/3 mx-auto leading-relaxed text-base">
@@ -457,6 +411,19 @@ const JumpAnalysis = () => {
                     Horizontal
                   </button>
                 </ReactFileReader>
+              </>
+            ) : null}
+            {analizarVisible ? (
+              <>
+                <p className=" mt-10 lg:w-2/3 mx-auto leading-relaxed text-base">
+                  Click en analizar para enviar datos y ver análisis
+                </p>
+                <button
+                  onClick={jumpVideoCSVAnalysisFunction}
+                  className="flex mx-auto mt-10 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg"
+                >
+                  Analizar
+                </button>
               </>
             ) : null}
             {analysisVisible ? (

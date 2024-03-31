@@ -20,7 +20,7 @@ const About = () => {
             </p>
           </div>
           <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
-            <div className="p-2 sm:w-1/2 w-full">
+            <a href="#web-application" className="p-2 sm:w-1/2 w-full">
               <div className="bg-blue-950 rounded flex p-4 h-full items-center">
                 <svg
                   fill="none"
@@ -38,8 +38,8 @@ const About = () => {
                   Aplicación web
                 </span>
               </div>
-            </div>
-            <div className="p-2 sm:w-1/2 w-full">
+            </a>
+            <a href="#mobile" className="p-2 sm:w-1/2 w-full">
               <div className="bg-blue-950 rounded flex p-4 h-full items-center">
                 <svg
                   fill="none"
@@ -57,8 +57,8 @@ const About = () => {
                   Aplicaciones móviles
                 </span>
               </div>
-            </div>
-            <div className="p-2 sm:w-1/2 w-full">
+            </a>
+            <a href="#inerciales" className="p-2 sm:w-1/2 w-full">
               <div className="bg-blue-950 rounded flex p-4 h-full items-center">
                 <svg
                   fill="none"
@@ -76,8 +76,8 @@ const About = () => {
                   Dispositivos inerciales
                 </span>
               </div>
-            </div>
-            <div className="p-2 sm:w-1/2 w-full">
+            </a>
+            <a href="#nube" className="p-2 sm:w-1/2 w-full">
               <div className="bg-blue-950 rounded flex p-4 h-full items-center">
                 <svg
                   fill="none"
@@ -95,8 +95,8 @@ const About = () => {
                   Almacenamiento el la nube
                 </span>
               </div>
-            </div>
-            <div className="p-2 sm:w-1/2 w-full">
+            </a>
+            <a href="#docs" className="p-2 sm:w-1/2 w-full">
               <div className="bg-blue-950 rounded flex p-4 h-full items-center">
                 <svg
                   fill="none"
@@ -114,8 +114,8 @@ const About = () => {
                   Documentación
                 </span>
               </div>
-            </div>
-            <div className="p-2 sm:w-1/2 w-full">
+            </a>
+            <a href="#capacitacion" className="p-2 sm:w-1/2 w-full">
               <div className="bg-blue-950 rounded flex p-4 h-full items-center">
                 <svg
                   fill="none"
@@ -133,7 +133,7 @@ const About = () => {
                   Capacitación
                 </span>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -145,7 +145,10 @@ const About = () => {
               <CgWebsite className="sm:w-20 sm:h-20 h-10 w-10" />
             </div>
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
+              <h2
+                id="web-application"
+                className="text-gray-900 text-lg title-font font-medium mb-2"
+              >
                 Aplicación web
               </h2>
               <p className="leading-relaxed text-base">
@@ -154,26 +157,15 @@ const About = () => {
                 dispositivos, interactuar de manera dinámica para el análisis y
                 gestionar el perfil del evaluador.
               </p>
-              {/* <a className="mt-3 text-indigo-500 inline-flex items-center">
-                Learn More
-                <svg
-                  fill="none"
-                  stroke="#020617"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </a> */}
             </div>
           </div>
           {/* ----------------------mobile--------------------------- */}
           <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
+              <h2
+                id="mobile"
+                className="text-gray-900 text-lg title-font font-medium mb-2"
+              >
                 Aplicaciones móviles
               </h2>
               <p className="leading-relaxed text-base">
@@ -183,20 +175,6 @@ const About = () => {
                 almacenan en una base de datos y pueden ser consultados en
                 cualquier momento.
               </p>
-              {/* <a className="mt-3 text-indigo-500 inline-flex items-center">
-                Learn More
-                <svg
-                  fill="none"
-                  stroke="#020617"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </a> */}
             </div>
             <div className="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-blue-950 flex-shrink-0">
               <FaMobileScreen className="sm:w-20 sm:h-20 h-10 w-10" />
@@ -209,7 +187,10 @@ const About = () => {
               <MdOutlineMemory className="sm:w-20 sm:h-20 h-10 w-10" />
             </div>
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
+              <h2
+                id="inerciales"
+                className="text-gray-900 text-lg title-font font-medium mb-2"
+              >
                 Dispositivos inerciales
               </h2>
               <p className="leading-relaxed text-base">
@@ -218,26 +199,15 @@ const About = () => {
                 en cualquier segmento corporal y con conexión bluetooth a la pc
                 para la visualización del registro en una interfaz propia.
               </p>
-              {/* <a className="mt-3 text-indigo-500 inline-flex items-center">
-                Learn More
-                <svg
-                  fill="none"
-                  stroke="#020617"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </a> */}
             </div>
           </div>
           {/* ------------------------almacenamiento------------------- */}
           <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
+              <h2
+                id="nube"
+                className="text-gray-900 text-lg title-font font-medium mb-2"
+              >
                 Almacenamiento en la nube
               </h2>
               <p className="leading-relaxed text-base">
@@ -246,20 +216,6 @@ const About = () => {
                 y eliminarlos en cualquier momento y desde cualquier
                 dispositivo.
               </p>
-              {/* <a className="mt-3 text-indigo-500 inline-flex items-center">
-                Learn More
-                <svg
-                  fill="none"
-                  stroke="#020617"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </a> */}
             </div>
             <div className="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-blue-950 flex-shrink-0">
               <FaDatabase className="sm:w-20 sm:h-20 h-10 w-10" />
@@ -272,33 +228,25 @@ const About = () => {
               <SiBookstack className="sm:w-20 sm:h-20 h-10 w-10" />
             </div>
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
+              <h2
+                id="docs"
+                className="text-gray-900 text-lg title-font font-medium mb-2"
+              >
                 Documentación
               </h2>
               <p className="leading-relaxed text-base">
                 Documentación disponible con bibliografía, artículos, uso del
                 ecosistema y navegación en la aplicacion web.
               </p>
-              {/* <a className="mt-3 text-indigo-500 inline-flex items-center">
-                Learn More
-                <svg
-                  fill="none"
-                  stroke="#020617"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </a> */}
             </div>
           </div>
           {/* ------------------------capacitacion------------------- */}
           <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
+              <h2
+                id="capacitacion"
+                className="text-gray-900 text-lg title-font font-medium mb-2"
+              >
                 Capacitación
               </h2>
               <p className="leading-relaxed text-base">
@@ -306,28 +254,11 @@ const About = () => {
                 tecnologia accesible para el registro de las variables generadas
                 a partir del movimiento corporal.
               </p>
-              {/* <a className="mt-3 text-indigo-500 inline-flex items-center">
-                Learn More
-                <svg
-                  fill="none"
-                  stroke="#020617"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </a> */}
             </div>
             <div className="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-blue-950 flex-shrink-0">
               <FaChalkboardTeacher className="sm:w-20 sm:h-20 h-10 w-10" />
             </div>
           </div>
-          {/* <button className="flex mx-auto mt-20 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-            Button
-          </button> */}
         </div>
       </section>
     </div>

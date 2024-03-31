@@ -1,10 +1,74 @@
 import React from "react";
+import ProgramBlocks from "./ProgramBlocks";
 
 const Program = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   scrollToTop();
+
+  const videoArray1 = [
+    " Quienes somos y qué es KinApp",
+    "Qué herramientas y aplicaciones se utilizarán en este curso",
+    "Objetivos del curso",
+    "Plataforma del curso",
+  ];
+  const sincronicoArray1 = [
+    "Jueves 16/05/2024 19hs",
+    "Presentación y demostración del entorno kinApp",
+  ];
+
+  const videoArray2 = [
+    "Tipos de Salto y baterías de evaluación",
+    "El salto en el deporte y el rendimiento",
+    "Métodos de evaluación ",
+    "IMU (unidad de movimiento inercial)",
+  ];
+  const sincronicoArray2 = [
+    "Jueves 23/05/2024 19hs",
+    "Demostración del App Jump",
+    "Carga de datos a la pagina y visualización de información",
+  ];
+
+  const videoArray3 = [
+    "SJ:",
+    "- Aplicación del sistema de referencia",
+    "- Leyes dinámicas",
+    "- Análisis cinemático segmentario y puntual del SJ",
+    "CMJ:",
+    "- Leyes dinámicas",
+    "- Análisis cinemático segmentario y puntual en CMJ",
+    "Variables de interés y aplicación de herramientas de evaluación (IMU y video)",
+  ];
+  const sincronicoArray3 = [
+    "Jueves 30/05/2024 19hs",
+    "Análisis en conjunto de un caso",
+    "Integración de datos por video y acelerometría y discusión del caso",
+  ];
+
+  const videoArray4 = [
+    "Aterrizaje, impulso y cantidad de movimiento",
+    "Dinámica del aterrizaje",
+    "Energía potencial elástica y Stiffness",
+    "Variables de interés y aplicación de herramientas de evaluación",
+  ];
+  const sincronicoArray4 = [
+    "Jueves 06/06/2024 19hs",
+    "Integración de datos por video y acelerometría",
+    "Comportamiento del resorte y discusión del caso",
+  ];
+
+  const videoArray5 = [
+    "Resumen del curso y herramientas a disposición",
+    "Encuesta final del curso",
+  ];
+  const sincronicoArray5 = [
+    "Jueves 13/06/2024 19hs",
+    "Demostración del App Jump",
+    "Carga de datos a la pagina y visualización de información",
+    "Despejar dudas IMU",
+  ];
+
   return (
     <div>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -18,241 +82,41 @@ const Program = () => {
             </h1>
           </div>
           <div className="-my-8 divide-y-2 divide-gray-100">
-            <div className="py-8 flex flex-wrap md:flex-nowrap">
-              <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                <span className="font-semibold title-font text-gray-700">
-                  SEMANA 1
-                </span>
-                <span className="mt-1 text-gray-500 text-sm">
-                  fecha a confirmar
-                </span>
-              </div>
-              <div className="md:flex-grow">
-                <h2 className="text-xl font-medium text-gray-900 title-font mb-2">
-                  MODULO DE INTRODUCCION AL ENTORNO KINAPP Y PRESENTACION DEL
-                  CURSO”
-                </h2>
-                <ul>
-                  <li className="leading-relaxed">
-                    Quienes somos y qué es KinApp
-                  </li>
-                  <li className="leading-relaxed">
-                    Qué herramientas y aplicaciones se utilizarán en este curso
-                  </li>
-                  <li className="leading-relaxed">Objetivos del curso</li>
-                  <li className="leading-relaxed">Plataforma del curso</li>
-                </ul>
-
-                <div className=" md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                  <span className="mt-5 font-semibold title-font text-gray-700">
-                    ENCUENTRO SINCRONICO
-                  </span>
-                  <ul>
-                    <li>Presentación y demostración del entorno kinApp</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="py-8 flex flex-wrap md:flex-nowrap">
-              <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                <span className="font-semibold title-font text-gray-700">
-                  SEMANA 2
-                </span>
-                <span className="mt-1 text-gray-500 text-sm">
-                  fecha a confirmar
-                </span>
-              </div>
-              <div className="md:flex-grow">
-                <h2 className="text-xl font-medium text-gray-900 title-font mb-2">
-                  MODULO DE INTRODUCCIÓN AL SALTO
-                </h2>
-                <ul>
-                  <li className="leading-relaxed">
-                    Tipos de Salto y baterías de evaluación
-                  </li>
-                  <li className="leading-relaxed">
-                    El salto en el deporte y el rendimiento
-                  </li>
-                  <li className="leading-relaxed">Métodos de evaluación </li>
-                  <li className="leading-relaxed">
-                    IMU (unidad de movimiento inercial)
-                  </li>
-                </ul>
-
-                <div className=" md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                  <span className="mt-5 font-semibold title-font text-gray-700">
-                    ENCUENTRO SINCRONICO
-                  </span>
-                  <ul>
-                    <li>Demostración del App Jump</li>
-                    <li>
-                      Carga de datos a la pagina y visualización de información
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="py-8 flex flex-wrap md:flex-nowrap">
-              <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                <span className="font-semibold title-font text-gray-700">
-                  SEMANA 3
-                </span>
-                <span className="text-sm text-gray-500">fecha a confirmar</span>
-              </div>
-              <div className="md:flex-grow">
-                <h2 className="text-xl font-medium text-gray-900 title-font mb-2">
-                  BIOMECANICA Y EVALUACION DEL SJ Y CMJ
-                </h2>
-                <ul>
-                  <li className="leading-relaxed">SJ:</li>
-                  <li className="leading-relaxed">
-                    - Aplicación del sistema de referencia
-                  </li>
-                  <li className="leading-relaxed">- Leyes dinámicas</li>
-                  <li className="leading-relaxed">
-                    - Análisis cinemático segmentario y puntual del SJ
-                  </li>
-                  <li className="leading-relaxed">CMJ:</li>
-                  <li className="leading-relaxed">- Leyes dinámicas</li>
-                  <li className="leading-relaxed">
-                    - Análisis cinemático segmentario y puntual en CMJ
-                  </li>
-                  <li className="leading-relaxed">
-                    Variables de interés y aplicación de herramientas de
-                    evaluación (IMU y video).
-                  </li>
-                </ul>
-
-                {/* <a className="text-blue-900 inline-flex items-center mt-4">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a> */}
-                <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                  <span className="mt-5 font-semibold title-font text-gray-700">
-                    ENCUENTRO SINCRONICO
-                  </span>
-                  <ul>
-                    <li>Análisis en conjunto de un caso</li>
-                    <li>
-                      ntegración de datos por video y acelerometría y discusión
-                      del caso
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="py-8 flex flex-wrap md:flex-nowrap">
-              <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                <span className="font-semibold title-font text-gray-700">
-                  SEMANA 4
-                </span>
-                <span className="text-sm text-gray-500">fecha a confirmar</span>
-              </div>
-              <div className="md:flex-grow">
-                <h2 className="text-xl font-medium text-gray-900 title-font mb-2">
-                  BIOMECANICA Y EVALUACION DEL DROP JUMP Y STIFFNESS”
-                </h2>
-                <ul>
-                  <li className="leading-relaxed">
-                    Aterrizaje, impulso y cantidad de movimiento.
-                  </li>
-                  <li className="leading-relaxed">Dinámica del aterrizaje</li>
-                  <li className="leading-relaxed">
-                    Energía potencial elástica y Stiffness
-                  </li>
-                  <li className="leading-relaxed">
-                    Variables de interés y aplicación de herramientas de
-                    evaluación
-                  </li>
-                </ul>
-
-                {/* <a className="text-blue-900 inline-flex items-center mt-4">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a> */}
-                <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                  <span className="mt-5 font-semibold title-font text-gray-700">
-                    ENCUENTRO SINCRONICO
-                  </span>
-                  <ul>
-                    <li>Integración de datos por video y acelerometría</li>
-                    <li>Comportamiento del resorte y discusión del caso</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="py-8 flex flex-wrap md:flex-nowrap">
-              <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                <span className="font-semibold title-font text-gray-700">
-                  SEMANA 5
-                </span>
-                <span className="text-sm text-gray-500">
-                  {" "}
-                  fecha a confirmar
-                </span>
-              </div>
-              <div className="md:flex-grow">
-                <h2 className="text-xl font-medium text-gray-900 title-font mb-2">
-                  CIERRE Y ENCUESTA
-                </h2>
-                <ul>
-                  <li className="leading-relaxed">
-                    Resumen del curso y herramientas a disposición
-                  </li>
-                  <li className="leading-relaxed">Encuesta final del curso</li>
-                </ul>
-
-                {/* <a className="text-blue-900 inline-flex items-center mt-4">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a> */}
-                <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                  <span className="mt-5 font-semibold title-font text-gray-700">
-                    ENCUENTRO SINCRONICO
-                  </span>
-                  <ul>
-                    <li>Demostración del App Jump</li>
-                    <li>
-                      Carga de datos a la pagina y visualización de información
-                    </li>
-                    <li>Despejar dudas IMU</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <ProgramBlocks
+              semana="SEMANA 1"
+              fechaSemana="13/05/2024"
+              title="MODULO DE INTRODUCCION AL ENTORNO KINAPP Y PRESENTACION DELCURSO"
+              videoArray={videoArray1}
+              sincronicoArray={sincronicoArray1}
+            />
+            <ProgramBlocks
+              semana="SEMANA 2"
+              fechaSemana="20/05/2024"
+              title="MODULO DE INTRODUCCIÓN AL SALTO"
+              videoArray={videoArray2}
+              sincronicoArray={sincronicoArray2}
+            />
+            <ProgramBlocks
+              semana="SEMANA 3"
+              fechaSemana="27/05/2024"
+              title="BIOMECANICA Y EVALUACION DEL SJ Y CMJ"
+              videoArray={videoArray3}
+              sincronicoArray={sincronicoArray3}
+            />
+            <ProgramBlocks
+              semana="SEMANA 4"
+              fechaSemana="03/06/2024"
+              title="BIOMECANICA Y EVALUACION DEL DROP JUMP Y STIFFNESS”"
+              videoArray={videoArray4}
+              sincronicoArray={sincronicoArray4}
+            />
+            <ProgramBlocks
+              semana="SEMANA 5"
+              fechaSemana="10/06/2024"
+              title="BIOMECANICA Y EVALUACION DEL SJ Y CMJ"
+              videoArray={videoArray5}
+              sincronicoArray={sincronicoArray5}
+            />
           </div>
         </div>
       </section>
