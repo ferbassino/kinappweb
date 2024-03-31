@@ -1,8 +1,27 @@
 import React, { useState } from "react";
 import ReactFileReader from "react-file-reader";
+import { useNavigate } from "react-router-dom";
 import Chart from "../../components/otros/Chart";
+import InputForm from "../../components/VideoAnalysis.jsx/InputForm";
+import verticalAnalysis from "../../auxiliaries/videoJumpAnalysis.jsx/verticalAnalysis";
+import horizontalAnalysis from "../../auxiliaries/videoJumpAnalysis.jsx/horizontalAnalysis";
+import verticalHorizontalAnalysis from "./../../auxiliaries/videoJumpAnalysis.jsx/verticalHorizontalAnalysis";
+import { useEffect } from "react";
+import { useLogin } from "../../context/LoginProvider";
+import getUserClients from "./../../requests/clients/getUserClients";
+import HashLoader from "react-spinners/HashLoader";
+import ClientDataInput from "../../components/VideoAnalysis.jsx/ClientDataInput";
+import OldClientDataInput from "../../components/VideoAnalysis.jsx/OldClientDataInput";
+import generatePassword from "../../auxiliaries/generatePassword";
+import client from "../../api/client";
+import("./CourseForm.css");
 
+import Message from "../../components/general/Message";
 const JumpAnalysis = () => {
+  const navigate = useNavigate();
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
   const [verticalTimeArray, setVerticalTimeArray] = useState([]);
   const [verticalTrocanterArray, setVerticalTrocanterArray] = useState([]);
   const [verticalCondiloArray, setVerticalCondiloArray] = useState([]);
@@ -15,75 +34,88 @@ const JumpAnalysis = () => {
   const [horizontalMaleoloArray, setHorizontalMaleoloArray] = useState([]);
   const [horizontalCalcaneoArray, setHorizontalCalcaneoArray] = useState([]);
   const [horizontalQuintoMArray, setHorizontalQuintoMArray] = useState([]);
-  const [trocanterArray, setTrocanterArray] = useState([]);
-  const [condiloArray, setCondiloArray] = useState([]);
-  const [maleoloArray, setMaleoloArray] = useState([]);
-  const [calcaneoArray, setCalcaneoArray] = useState([]);
-  const [quintoMArray, setQuintoMArray] = useState([]);
+
   const [kneeAngle, setKneeAngle] = useState([]);
   const [ankleAngle, setAnkleAngle] = useState([]);
 
+  const [inputFormVisible, setInputFormVisible] = useState(false);
+  const [newClientFormVisible, setNewClientFormVisible] = useState(false);
+  const [newClientArray, setNewClientArray] = useState(false);
+  const [oldClientFormVisible, setOldClientFormVisible] = useState(false);
+  const [oldClientArray, setOldClientArray] = useState(false);
+  const [email, setEmail] = useState("");
+  const [currentClient, setCurrentClient] = useState([]);
+
+  const [clientDataInputVisible, setClientDataInputVisible] = useState(false);
+  const [oldClientDataInputVisible, setOldClientDataInputVisible] =
+    useState(false);
+
+  const [loading, setLoading] = useState(false);
+
+  const [verticalButtonVisible, setVerticalButtonVisible] = useState(false);
+  const [horizontalButtonVisible, setHorizontalButtonVisible] = useState(false);
+  const [analysisVisible, setAnalysisVisible] = useState(false);
+
+  const [resetearVisible, setResetearVisible] = useState(false);
+
+  const { profile } = useLogin();
+
+  const [birthDate, setbirthDaste] = useState(new Date());
+  const [size, setSize] = useState(new Date());
+  const [weight, setWeight] = useState(0);
+  const [gender, setGender] = useState("");
+  const [pALevel, setPALevel] = useState("");
+  const [mFComponents, setMFComponents] = useState("");
+  const [mPActivity, setMPActivity] = useState("");
+  const [pAType, setPAType] = useState("");
+  const [roles, setRoles] = useState("");
+  const [userId, setUserId] = useState("");
+  const [verticalString, setVerticalString] = useState("");
+  const [horizontalString, setHorizontalString] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [messageVisible, setMessageVisible] = useState(false);
+
+  const [title, setTitle] = useState("");
+  const [error, setError] = useState("");
+  const [subTitle, setSubTitle] = useState("");
+
   const uploadVerticalFile = (file) => {
-    // leemos el archivo csv que viene en un string con saltos de linea, primero estan los titulos, en este caso son 6, el tiempo y cinco trayectorias, cada fila está separada por ";"
     let read = new FileReader();
     read.onload = function (e) {
+      setVerticalButtonVisible(false);
+      setHorizontalButtonVisible(true);
       const rawData = read.result;
+      setVerticalString(rawData);
+      const {
+        verticalTime,
+        verticalTrocanter,
+        verticalCondilo,
+        verticalMaleolo,
+        verticalCalcaneo,
+        verticalQuintoM,
+      } = verticalAnalysis(rawData);
 
-      //generamos un array separando por saltos de linea y eliminamos la primera hilera
-      const data = rawData.split("\n").slice(1);
-      // obtenemos cada columna separando por ";", [0]: tiempo, [1]: trocanter, [2]:condilo, [3]:maleolo,[4]:calcaneo,[5]:quinto metatarsiano
-      const rows = data.map((el) => el.split(";"));
-      // eliminamos el ultimo elemento que está vacio y nos da error
-      rows.pop();
-      // generamos los arrays de cada marcador, y reemplazamos las comas por los puntos
-      const time = [];
-      const trocanter = [];
-      const condilo = [];
-      const maleolo = [];
-      const calcaneo = [];
-      const quintoM = [];
-
-      rows.map((el) => {
-        time.push(Number(el[0]));
-        trocanter.push(Number(el[1].replace(",", ".")));
-        condilo.push(Number(el[2].replace(",", ".")));
-        maleolo.push(Number(el[3].replace(",", ".")));
-        calcaneo.push(Number(el[4].replace(",", ".")));
-        quintoM.push(Number(el[5].replace(",", ".")));
-      });
-      // seteamos las variables
-      setVerticalTimeArray(time);
-      setVerticalTrocanterArray(trocanter);
-      setVerticalCondiloArray(condilo);
-      setVerticalMaleoloArray(maleolo);
-      setVerticalCalcaneoArray(calcaneo);
-      setVerticalQuintoMArray(quintoM);
+      setVerticalTimeArray(verticalTime);
+      setVerticalTrocanterArray(verticalTrocanter);
+      setVerticalCondiloArray(verticalCondilo);
+      setVerticalMaleoloArray(verticalMaleolo);
+      setVerticalCalcaneoArray(verticalCalcaneo);
+      setVerticalQuintoMArray(verticalQuintoM);
     };
+
     read.readAsText(file[0]);
   };
   const uploadHorizontalFile = (file) => {
-    // comenzamos igual que el vertical
     let read = new FileReader();
     read.onload = function (e) {
+      setHorizontalButtonVisible(false);
+      setAnalysisVisible(true);
       const rawData = read.result;
-      const data = rawData.split("\n").slice(1);
-      const rows = data.map((el) => el.split(";"));
-      rows.pop();
+      setHorizontalString(rawData);
+      const { time, trocanter, condilo, maleolo, calcaneo, quintoM } =
+        horizontalAnalysis(rawData);
 
-      const time = [];
-      const trocanter = [];
-      const condilo = [];
-      const maleolo = [];
-      const calcaneo = [];
-      const quintoM = [];
-      rows.map((el) => {
-        time.push(Number(el[0]));
-        trocanter.push(Number(el[1].replace(",", ".")));
-        condilo.push(Number(el[2].replace(",", ".")));
-        maleolo.push(Number(el[3].replace(",", ".")));
-        calcaneo.push(Number(el[4].replace(",", ".")));
-        quintoM.push(Number(el[5].replace(",", ".")));
-      });
       setHorizontalTimeArray(time);
       setHorizontalTrocanterArray(trocanter);
       setHorizontalCondiloArray(condilo);
@@ -91,138 +123,455 @@ const JumpAnalysis = () => {
       setHorizontalCalcaneoArray(calcaneo);
       setHorizontalQuintoMArray(quintoM);
 
-      // generamos arrais para cada marcador con las dos coordenadas
-      const trocanterArr = [];
-      const condiloArr = [];
-      const maleoloArr = [];
-      const calcaneoArr = [];
-      const quintoMArr = [];
-      verticalTrocanterArray.map((el, index) => {
-        trocanterArr.push([verticalTrocanterArray[index], trocanter[index]]);
-        condiloArr.push([verticalCondiloArray[index], condilo[index]]);
-        maleoloArr.push([verticalMaleoloArray[index], maleolo[index]]);
-        calcaneoArr.push([verticalCalcaneoArray[index], calcaneo[index]]);
-        quintoMArr.push([verticalQuintoMArray[index], quintoM[index]]);
-      });
-
-      // declaramos 3 arrays de  vectores, t para muslo, l para pierna y f para pie
-
-      const tArray = [];
-      const lArray = [];
-      const fArray = [];
-
-      // t se forma con los puntos de trocanter y condilo
-      // l se forma con el de condilo y maleolo
-      // f se forma con el de maleolo y pie
-      trocanterArr.map((el, index) => {
-        tArray.push([
-          condiloArr[index][1] - trocanterArr[index][1],
-          condiloArr[index][0] - trocanterArr[index][0],
-        ]);
-
-        lArray.push([
-          condiloArr[index][1] - maleoloArr[index][1],
-          condiloArr[index][0] - maleoloArr[index][0],
-        ]);
-        fArray.push([
-          quintoMArr[index][1] - maleoloArr[index][1],
-          quintoMArr[index][0] - maleoloArr[index][0],
-        ]);
-      });
-
-      // producto vectorial
-      const dotProductTL = [];
-      const dotProductLF = [];
-
-      tArray.map((el, index) => {
-        dotProductTL.push(
-          tArray[index][0] * lArray[index][0] +
-            tArray[index][1] * lArray[index][1]
-        );
-        dotProductLF.push(
-          lArray[index][0] * fArray[index][0] +
-            lArray[index][1] * fArray[index][1]
-        );
-      });
-
-      //producto de los modulos
-      const tModule = [];
-      const lModule = [];
-      const fModule = [];
-      tArray.map((el, index) => {
-        tModule.push(
-          Math.sqrt(
-            Math.pow(tArray[index][0], 2) + Math.pow(tArray[index][1], 2)
-          )
-        );
-
-        lModule.push(
-          Math.sqrt(
-            Math.pow(lArray[index][0], 2) + Math.pow(lArray[index][1], 2)
-          )
-        );
-        fModule.push(
-          Math.sqrt(
-            Math.pow(fArray[index][0], 2) + Math.pow(fArray[index][1], 2)
-          )
-        );
-      });
-
-      const moduleTLProduct = [];
-      const moduleLFProduct = [];
-      tModule.map((el, index) => {
-        moduleTLProduct.push(tModule[index] * lModule[index]);
-        moduleLFProduct.push(lModule[index] * fModule[index]);
-      });
-
-      const kneeAngle = [];
-      const ankleAngle = [];
-
-      moduleTLProduct.map((el, index) => {
-        kneeAngle.push(
-          (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180) /
-            Math.PI
-        );
-        ankleAngle.push(
-          (Math.acos(dotProductLF[index] / moduleLFProduct[index]) * 180) /
-            Math.PI
-        );
-      });
+      const { kneeAngle, ankleAngle } = verticalHorizontalAnalysis(
+        verticalTrocanterArray,
+        trocanter,
+        verticalCondiloArray,
+        condilo,
+        verticalMaleoloArray,
+        maleolo,
+        verticalCalcaneoArray,
+        calcaneo,
+        verticalQuintoMArray,
+        quintoM
+      );
 
       setKneeAngle(kneeAngle);
       setAnkleAngle(ankleAngle);
-      setTrocanterArray(trocanter);
-      setCondiloArray(condiloArr);
-      setMaleoloArray(maleolo);
-      setCalcaneoArray(calcaneo);
-      setQuintoMArray(quintoM);
     };
+
     read.readAsText(file[0]);
   };
+
+  const getCurrentUserClient = async () => {
+    setLoading(true);
+    try {
+      const response = await getUserClients(profile.id);
+      console.log("response.currenticlients", response.currentUserClients);
+      if (response.success) {
+        if (response.currentUserClients.length > 0) {
+          console.log("email", email);
+          const currClient = response.currentUserClients.filter(
+            (client) => client.email === email
+          );
+          if (currClient.length > 0) {
+            setCurrentClient(currClient);
+            setLoading(false);
+          } else if (currClient.length === 0) {
+            setClientDataInputVisible(true);
+            setLoading(false);
+          } else {
+            setMessageVisible(true);
+            scrollToTop();
+            setTitle("Ocurrió un error");
+            setSubTitle("vuelva a ingresar el email");
+            setTimeout(() => {
+              setMessageVisible(false);
+              setTitle("");
+              setSubTitle("");
+              setEmail("");
+              navigate("/userJC24Profile");
+            }, 5000);
+          }
+        } else {
+          alert("no se encontraron registros para ese paciente");
+        }
+      } else {
+        setLoading(false);
+        scrollToTop();
+        setMessageVisible(true);
+        setTitle("Ocurrió un error");
+        setSubTitle("vuelva a ingresar el email");
+        setTimeout(() => {
+          setMessageVisible(false);
+          setTitle("");
+          setSubTitle("");
+          setEmail("");
+          navigate("/userJC24Profile");
+        }, 5000);
+      }
+    } catch (error) {
+      setLoading(false);
+      scrollToTop();
+      console.log(error);
+      setMessageVisible(true);
+      setTitle("Ocurrió un error");
+      setSubTitle("vuelva a intentarlo mas tarde");
+      setTimeout(() => {
+        setMessageVisible(false);
+        setTitle("");
+        setSubTitle("");
+        setEmail("");
+        navigate("/userJC24Profile");
+      }, 5000);
+    }
+  };
+
+  const handleSubmit = () => {
+    getCurrentUserClient();
+  };
+
+  const handleInnit = () => {
+    setResetearVisible(true);
+    setVerticalButtonVisible(true);
+  };
+  const handleReset = () => {
+    scrollToTop();
+    setResetearVisible(false);
+    setVerticalButtonVisible(false);
+    setHorizontalButtonVisible(false);
+    setAnalysisVisible(false);
+    setInputFormVisible(false);
+    setClientDataInputVisible(false);
+    setVerticalTimeArray([]);
+    setVerticalTrocanterArray([]);
+    setVerticalCondiloArray([]);
+    setVerticalMaleoloArray([]);
+    setVerticalCalcaneoArray([]);
+    setVerticalQuintoMArray([]);
+    setHorizontalTimeArray([]);
+    setHorizontalTrocanterArray([]);
+    setHorizontalCondiloArray([]);
+    setHorizontalMaleoloArray([]);
+    setHorizontalCalcaneoArray([]);
+    setHorizontalQuintoMArray([]);
+    setKneeAngle([]);
+    setAnkleAngle([]);
+    setNewClientFormVisible(false);
+    setNewClientArray(false);
+    setOldClientArray(false);
+    setEmail("");
+    setCurrentClient([]);
+    setOldClientFormVisible(false);
+    setOldClientDataInputVisible(false);
+    setSize(0);
+    setWeight(0);
+    setGender("");
+    setPALevel("");
+    setMFComponents("");
+    setMPActivity("");
+    setPAType("");
+    setRoles("");
+
+    setVerticalString("");
+    setHorizontalString("");
+    setPassword("");
+    setMessageVisible(false);
+    setTitle("");
+    setError("");
+    setSubTitle("");
+  };
+
+  useEffect(() => {
+    const pass = generatePassword();
+    setPassword(pass);
+    setUserId(profile.id);
+  }, []);
+
+  const dataObj = {
+    kinoveaData: [verticalString, horizontalString],
+    testTime: 0,
+    videoFrameRate: 240,
+    motionType: "kinoveaJump",
+    weight,
+  };
+
+  const dataClientObj = {
+    email,
+    password,
+    birthDate,
+    size,
+    gender: gender,
+    userId,
+  };
+  const handleDataInputSubmit = async () => {
+    try {
+      setLoading(true);
+      const response = await client.post("/api/client/create", dataClientObj);
+      if (response.data.success) {
+        const dataMovObj = {
+          email,
+          motionType: dataObj.motionType,
+          kinoveaData: dataObj.kinoveaData,
+          videoFrameRate: dataObj.videoFrameRate,
+          weight: dataObj.weight,
+          size: response.data.savedClient.size,
+          gender: response.data.savedClient.gender,
+          pALevel: pALevel,
+          mPActivity: mPActivity,
+          mFComponents: mFComponents,
+          age: 51,
+          userId: userId,
+          clientId: response.data.savedClient._id,
+        };
+
+        if (dataMovObj) {
+          const res = await client.post("/api/motion/create", dataMovObj);
+          if (res.data.success) {
+            scrollToTop();
+            setMessageVisible(true);
+            setTitle("¡Los datos se guardaron con éxito!");
+            setSubTitle("Podran ser visualizados en el panel de evaluaciones");
+            setTimeout(() => {
+              setMessageVisible(false);
+              setTitle("");
+              setSubTitle("");
+              setEmail("");
+              handleReset();
+              navigate("/userJC24Profile");
+            }, 5000);
+            setLoading(false);
+          } else {
+            scrollToTop();
+            setMessageVisible(true);
+            setTitle("Ocurrió un error guardando los datos");
+            setSubTitle("vuelva a intentarlo mas tarde");
+            setTimeout(() => {
+              setMessageVisible(false);
+              setTitle("");
+              setSubTitle("");
+              setEmail("");
+              navigate("/userJC24Profile");
+            }, 5000);
+          }
+        } else {
+          scrollToTop();
+          setLoading(false);
+          setMessageVisible(true);
+          setTitle("Ocurrió un error guardando los datos");
+          setSubTitle("vuelva a intentarlo mas tarde");
+          setTimeout(() => {
+            setMessageVisible(false);
+            setTitle("");
+            setSubTitle("");
+            setEmail("");
+            navigate("/userJC24Profile");
+          }, 5000);
+        }
+      } else {
+        scrollToTop();
+        setLoading(false);
+        setMessageVisible(true);
+        setTitle("Ocurrió un error guardando los datos");
+        setSubTitle("vuelva a intentarlo mas tarde");
+        setTimeout(() => {
+          setMessageVisible(false);
+          setTitle("");
+          setSubTitle("");
+          setEmail("");
+          navigate("/userJC24Profile");
+        }, 5000);
+      }
+    } catch (error) {
+      scrollToTop();
+      setLoading(false);
+      console.log(error);
+      setMessageVisible(true);
+      setTitle("Ocurrió un error guardando los datos");
+      setSubTitle("vuelva a intentarlo mas tarde");
+      setTimeout(() => {
+        setMessageVisible(false);
+        setTitle("");
+        setSubTitle("");
+        setEmail("");
+        navigate("/userJC24Profile");
+      }, 5000);
+    }
+  };
+
   return (
     <div>
-      <ReactFileReader handleFiles={uploadVerticalFile} fileTypes={".csv"}>
-        <button className="flex mx-auto mt-10 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg">
-          Vertical
-        </button>
-      </ReactFileReader>
-      <ReactFileReader handleFiles={uploadHorizontalFile} fileTypes={".csv"}>
-        <button className="flex mx-auto mt-10 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg">
-          Horizontal
-        </button>
-      </ReactFileReader>
-      <Chart
-        x={kneeAngle}
-        xName="Angulo de rodilla"
-        xColor="red"
-        y={ankleAngle}
-        yName="Angulo de tobillo"
-        yColor="blue"
-        // z={verticalWristArray}
-        // zName="Wrist"
-        // zColor="green"
-        t={verticalTimeArray}
-      />
+      {messageVisible ? (
+        <>
+          <Message title={title} error={error} subTitle={subTitle} />
+        </>
+      ) : (
+        <>
+          <>
+            <section className="text-gray-600 body-font relative">
+              <div className="container px-5 py-5 mx-auto">
+                <div className="flex flex-col text-center w-full ">
+                  <h1 className="sm:text-3xl text-2xl font-medium title-font  text-gray-900">
+                    Análisis biomecánico por video
+                  </h1>
+                  <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+                    Para iniciar el análisis por video se debe cargar dos
+                    archivos csv, primero el de datos verticales y luego el de
+                    datos horizontales
+                  </p>
+                  {!resetearVisible ? (
+                    <>
+                      <p className=" mt-10 lg:w-2/3 mx-auto leading-relaxed text-base">
+                        Click en "Iniciar" para iniciar la carga de datos
+                      </p>
+                      <button
+                        onClick={handleInnit}
+                        className="flex mx-auto mt-5 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg"
+                      >
+                        Iniciar
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <p className=" mt-10 lg:w-2/3 mx-auto leading-relaxed text-base">
+                        Click en "Resetear" para reiniciar el análisis
+                      </p>
+                      <button
+                        onClick={handleReset}
+                        className="flex mx-auto mt-5 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg"
+                      >
+                        Resetear
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </section>
+            {verticalButtonVisible ? (
+              <>
+                <p className=" mt-10 lg:w-2/3 mx-auto leading-relaxed text-base">
+                  Click en "Vertical" para cargar el archivo ".csv" de datos
+                  verticales
+                </p>
+                <ReactFileReader
+                  handleFiles={uploadVerticalFile}
+                  fileTypes={".csv"}
+                >
+                  <button className="flex mx-auto mt-10 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg">
+                    Vertical
+                  </button>
+                </ReactFileReader>
+              </>
+            ) : null}
+            {horizontalButtonVisible ? (
+              <>
+                <p className=" mt-10 lg:w-2/3 mx-auto leading-relaxed text-base">
+                  Click en "Horizontal" para cargar el archivo ".csv" de datos
+                  horizontales y ver análisis
+                </p>
+                <ReactFileReader
+                  handleFiles={uploadHorizontalFile}
+                  fileTypes={".csv"}
+                >
+                  <button className="flex mx-auto mt-10 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg">
+                    Horizontal
+                  </button>
+                </ReactFileReader>
+              </>
+            ) : null}
+            {analysisVisible ? (
+              <>
+                <Chart
+                  x={kneeAngle}
+                  xName="Angulo de rodilla"
+                  xColor="red"
+                  y={ankleAngle}
+                  yName="Angulo de tobillo"
+                  yColor="blue"
+                  // z={verticalWristArray}
+                  // zName="Wrist"
+                  // zColor="green"
+                  t={verticalTimeArray}
+                />
+                <p className=" mt-10 lg:w-2/3 mx-auto leading-relaxed text-base">
+                  Hacer click en guardar si desea guardar los datos en la base o
+                  imprimir para imprimir o descargar como PDF. Cuando los datos
+                  se guardan se deben asignar a una persona, por eso se debe
+                  ingresar un email para verificar si esa persona ya tiene una
+                  ficha en la aplicación o es su primera vez.
+                </p>
+
+                <button
+                  // onClick={() => setInputFormVisible(true)}
+                  className="flex mx-auto mt-10 mb-10 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg"
+                >
+                  Imprimir
+                </button>
+                <button
+                  onClick={() => setInputFormVisible(true)}
+                  className="flex mx-auto mt-10 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg"
+                >
+                  Guardar
+                </button>
+              </>
+            ) : null}
+
+            {loading ? (
+              <>
+                <div className="spinner-Container">
+                  <HashLoader
+                    color={"#011a42"}
+                    loading={loading}
+                    cssOverride={{
+                      display: "block",
+                      margin: "0 auto",
+                      borderColor: "#011a42",
+                    }}
+                    size={150}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                {inputFormVisible ? (
+                  <>
+                    {loading ? (
+                      <div className="spinner-Container">
+                        <HashLoader
+                          color={"#011a42"}
+                          loading={loading}
+                          cssOverride={{
+                            display: "block",
+                            margin: "0 auto",
+                            borderColor: "#011a42",
+                          }}
+                          size={150}
+                          aria-label="Loading Spinner"
+                          data-testid="loader"
+                        />
+                      </div>
+                    ) : (
+                      <InputForm
+                        email={email}
+                        setEmail={setEmail}
+                        handleSubmit={handleSubmit}
+                      />
+                    )}
+                  </>
+                ) : null}
+                {clientDataInputVisible ? (
+                  <>
+                    <ClientDataInput
+                      email={email}
+                      handleDataInputSubmit={handleDataInputSubmit}
+                      birthDate={birthDate}
+                      setBirthDate={setbirthDaste}
+                      setWeight={setWeight}
+                      weight={weight}
+                      size={size}
+                      setSize={setSize}
+                      gender={gender}
+                      setGender={setGender}
+                      pALevel={pALevel}
+                      setPALevel={setPALevel}
+                      mfComponents={mFComponents}
+                      setMFComponents={setMFComponents}
+                      mPActivity={mPActivity}
+                      setMPActivity={setMPActivity}
+                      pAType={pAType}
+                      setPAType={setPAType}
+                      roles={roles}
+                      setRoles={setRoles}
+                    />
+                  </>
+                ) : null}
+              </>
+            )}
+          </>
+        </>
+      )}
     </div>
   );
 };

@@ -77,7 +77,7 @@ const CourseForm = () => {
   };
   const handleVerification = async (e) => {
     e.preventDefault();
-    console.log(verificationNumber);
+
     setLoginPending(true);
 
     try {
@@ -107,14 +107,13 @@ const CourseForm = () => {
           alert("tu verificación no pudo realizarse");
         }
       }
-      console.log(response.response.data);
+
       if (!response.data.success) {
         setError(true);
         setErrorMessage(
           "El código de 4 dígitos no es válido, vuelva a intentarlo"
         );
       }
-      console.log(response.response.data.success);
     } catch (error) {
       setLoginPending(false);
       console.log(error);

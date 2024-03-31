@@ -8,7 +8,18 @@ import client from "../../api/client";
 import { useState } from "react";
 import SuccessUnsuscribed from "../../components/logins/SuccessUnsuscribed";
 import HashLoader from "react-spinners/HashLoader";
+import JumpCourse2024Items from "../../components/jumpCourse/JumpCourse2024Items";
+JumpCourse2024Items;
+
 const UserJC24Profile = () => {
+  const readerOptions = [
+    "Clases",
+    "Tus Análisis",
+    "Video análisis",
+    "Recursos kinApp",
+    "Programa",
+    "Docs",
+  ];
   const [succesfullyUnsuscribed, setSuccesfullyUnsuscribed] = useState(false);
   const navigate = useNavigate();
   const { profile, setProfile } = useLogin();
@@ -66,136 +77,34 @@ const UserJC24Profile = () => {
             <>
               <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
-                  <div className="flex flex-col text-center w-full mb-20">
-                    <h2 className="sm:text-3xl text-lg text-blue-900 tracking-widest font-medium title-font mb-1">
-                      Bienvenido al curso
-                    </h2>
-                    <h1 className="sm:text-3xl text-2xl font-medium title-font text-blue-900">
-                      Análisis biomecanico del salto vertical
+                  <div className="text-center mb-20">
+                    <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">
+                      Hola {profile.userName}, este es tu panel del curso
+                      "Análisis biomecánico del salto vertical"
                     </h1>
+                    <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
+                      Elegí una opción:
+                    </p>
                   </div>
-                  <div className="flex flex-wrap -m-4">
-                    <div className="p-4 md:w-1/3">
-                      <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                        <div className="flex items-center mb-3">
-                          <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-900 text-white flex-shrink-0">
-                            <SiReadthedocs />
-                          </div>
-                          <h2 className="text-gray-900 text-lg title-font font-medium">
-                            Programa
-                          </h2>
-                        </div>
-                        <div className="flex-grow">
-                          <p className="leading-relaxed text-base">
-                            Consulta el cronograma de actividade y el programa
-                            del curso
-                          </p>
-                          <Link
-                            to="/jump_program"
-                            onClick={scrollToTop}
-                            className="mt-3 text-blue-900 inline-flex items-center"
-                          >
-                            ver mas
-                            <svg
-                              fill="none"
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              className="w-4 h-4 ml-2"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                          </Link>
-                        </div>
+                  <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+                    {readerOptions.map((item) => (
+                      <JumpCourse2024Items key={item} title={item} />
+                    ))}
+                  </div>
+                  <div className="p-4 md:w-1/3 mt-20">
+                    <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
+                      <div className="flex items-center mt-103">
+                        <h2
+                          onClick={handleUnSuscribe}
+                          className="text-blue-900 text-lg title-font font-medium cursor-pointer"
+                        >
+                          Baja
+                        </h2>
                       </div>
-                    </div>
-                    <div className="p-4 md:w-1/3 ">
-                      <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                        <div className="flex items-center mb-3">
-                          <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-900 text-white flex-shrink-0">
-                            <LiaChalkboardTeacherSolid />
-                          </div>
-                          <h2 className="text-gray-900 text-lg title-font font-medium">
-                            Tus clases
-                          </h2>
-                        </div>
-                        <div className="flex-grow">
-                          <p className="leading-relaxed text-base">
-                            Ingresa para ver tus clases
-                          </p>
-                          <Link
-                            to={"/jump_clases"}
-                            onClick={scrollToTop}
-                            className="mt-3 text-blue-900 inline-flex items-center"
-                          >
-                            ver mas
-                            <svg
-                              fill="none"
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              className="w-4 h-4 ml-2"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-4 md:w-1/3">
-                      <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                        <div className="flex items-center mb-3">
-                          <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-900 text-white flex-shrink-0">
-                            <FaChartLine />
-                          </div>
-                          <h2 className="text-gray-900 text-lg title-font font-medium">
-                            Análisis
-                          </h2>
-                        </div>
-                        <div className="flex-grow">
-                          <p className="leading-relaxed text-base">
-                            Analizador del salto vertical
-                          </p>
-                          <Link
-                            to="/jump_analysis"
-                            onClick={scrollToTop}
-                            className="mt-3 text-blue-900 inline-flex items-center"
-                          >
-                            ver mas
-                            <svg
-                              fill="none"
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              className="w-4 h-4 ml-2"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-4 md:w-1/3">
-                      <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                        <div className="flex items-center mb-3">
-                          <h2
-                            onClick={handleUnSuscribe}
-                            className="text-blue-900 text-lg title-font font-medium cursor-pointer"
-                          >
-                            Baja
-                          </h2>
-                        </div>
-                        <div className="flex-grow">
-                          <p className="leading-relaxed text-base">
-                            Darse de baja del curso
-                          </p>
-                        </div>
+                      <div className="flex-grow">
+                        <p className="leading-relaxed text-base">
+                          Darse de baja del curso
+                        </p>
                       </div>
                     </div>
                   </div>

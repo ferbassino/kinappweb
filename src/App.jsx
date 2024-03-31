@@ -32,6 +32,8 @@ import ForgotPassword from "./components/logins/ForgotPassword";
 import NotVerifiedProfile from "./pages/logins/NotVerifiedProfile";
 import WebApplication from "./pages/recursos-kinapp/WebApplication";
 import Tests from "./pages/reader/reader_pages/Tests";
+import JumpTests from "./pages/JumpCourse/JumpTests";
+import JumpTest from "./pages/JumpCourse/JumpTest";
 
 function App() {
   const navigate = useNavigate();
@@ -183,6 +185,8 @@ function App() {
                 path="/success-verification"
                 element={<SuccessVerification />}
               />
+              <Route path="/jump_tests" element={<JumpTests />} />
+              <Route path="/jump_test" element={<JumpTest />} />
             </Route>
           </Routes>
 

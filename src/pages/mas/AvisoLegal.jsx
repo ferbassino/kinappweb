@@ -51,7 +51,7 @@ const AvisoLegal = () => {
       <p className="my-2">
         El Sitio Web de kinapp proporciona gran diversidad de información,
         servicios y datos. El Usuario asume su responsabilidad para realizar un
-        uso correcto del Sitio Web. Esta responsabilidad se extenderá a:
+        uso correcto del Sitio Web.
       </p>
 
       <h2 className="mt-5">

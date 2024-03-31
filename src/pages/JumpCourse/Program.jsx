@@ -1,6 +1,10 @@
 import React from "react";
 
 const Program = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+  scrollToTop();
   return (
     <div>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -39,32 +43,12 @@ const Program = () => {
                   <li className="leading-relaxed">Plataforma del curso</li>
                 </ul>
 
-                {/* <a className="text-blue-900 inline-flex items-center mt-4">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a> */}
-                <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                <div className=" md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                   <span className="mt-5 font-semibold title-font text-gray-700">
                     ENCUENTRO SINCRONICO
                   </span>
                   <ul>
-                    <li>Presentación Personal</li>
-                    <li>
-                      Demostración de la interacción entre aplicación móvil,
-                      aplicación web y pagina de KinApp
-                    </li>
-                    <li>Despeje de dudas</li>
+                    <li>Presentación y demostración del entorno kinApp</li>
                   </ul>
                 </div>
               </div>
@@ -87,7 +71,7 @@ const Program = () => {
                     Tipos de Salto y baterías de evaluación
                   </li>
                   <li className="leading-relaxed">
-                    Relación sal salto en el deporte y el rendimiento
+                    El salto en el deporte y el rendimiento
                   </li>
                   <li className="leading-relaxed">Métodos de evaluación </li>
                   <li className="leading-relaxed">
@@ -95,22 +79,7 @@ const Program = () => {
                   </li>
                 </ul>
 
-                {/* <a className="text-blue-900 inline-flex items-center mt-4">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a> */}
-                <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                <div className=" md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                   <span className="mt-5 font-semibold title-font text-gray-700">
                     ENCUENTRO SINCRONICO
                   </span>
@@ -119,7 +88,6 @@ const Program = () => {
                     <li>
                       Carga de datos a la pagina y visualización de información
                     </li>
-                    <li>Despejar dudas IMU</li>
                   </ul>
                 </div>
               </div>

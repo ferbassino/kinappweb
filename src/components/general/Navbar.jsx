@@ -27,25 +27,19 @@ const NavBar = ({ handleLogout }) => {
   return (
     <header className="text-gray-600 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <div className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-          <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? activeLink : btnLink)}
-          >
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? activeLink : btnLink)}
+        >
+          <div className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
             <img
               src={kinAppLogo}
               alt="kinapp_logo"
               className="w-10 h-10 ml-1"
             ></img>
-          </NavLink>
-
-          {/* <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? activeLink : btnLink)}
-          >
-            kinApp
-          </NavLink> */}
-        </div>
+            <span className="ml-3 text-xl">kinApp</span>
+          </div>
+        </NavLink>
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center md:text-lg">
           <NavLink
             to="/about"
@@ -73,7 +67,7 @@ const NavBar = ({ handleLogout }) => {
               to={rolesUrl}
               className={({ isActive }) => (isActive ? activeLink : btnLink)}
             >
-              {profile.userName}
+              Panel {profile.userName}
             </NavLink>
             <NavLink
               onClick={handleLogout}
