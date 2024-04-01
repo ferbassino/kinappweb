@@ -15,6 +15,7 @@ import client from "../../api/client";
 import("./CourseForm.css");
 import jumpVideoCSVAnalysis from "../../auxiliaries/videoJumpAnalysis.jsx/jumpVideoCSVAnalysis";
 import Message from "../../components/general/Message";
+
 const JumpAnalysis = () => {
   const navigate = useNavigate();
   const scrollToTop = () => {
@@ -60,33 +61,86 @@ const JumpAnalysis = () => {
   const [verticalString, setVerticalString] = useState("");
   const [horizontalString, setHorizontalString] = useState("");
   const [password, setPassword] = useState("");
-
+  // mensaje
   const [messageVisible, setMessageVisible] = useState(false);
-
   const [title, setTitle] = useState("");
   const [error, setError] = useState("");
   const [subTitle, setSubTitle] = useState("");
 
+  // validación
+
   const uploadVerticalFile = (file) => {
-    let read = new FileReader();
-    read.onload = function (e) {
-      setVerticalButtonVisible(false);
-      setHorizontalButtonVisible(true);
-      const rawData = read.result;
-      setVerticalString(rawData);
-    };
-    read.readAsText(file[0]);
+    if (file[0].type === "text/csv") {
+      let read = new FileReader();
+      read.onload = function (e) {
+        const rawData = read.result;
+        const verticalData = rawData.split("\n").slice(1);
+        const verticalRows = verticalData.map((el) => el.split(";"));
+        verticalRows.pop();
+
+        if (verticalRows[0].length === 6) {
+          setVerticalButtonVisible(false);
+          setHorizontalButtonVisible(true);
+          setVerticalString(rawData);
+        } else {
+          setMessageVisible(true);
+          setTitle("Error en la lectura del archivo csv");
+          setSubTitle(
+            `El archivo debe contener datos de los cinco marcadores (trocanter, cóndilo femoral, maleolo peroneo, calcáneo y quinto metatarsiano) y del intervalo de tiempo, asegúrese de estar cargando el archivo correcto o de que el procedimiento de registro y guardado sea el adecuado`
+          );
+          setTimeout(() => {
+            setMessageVisible(false);
+            setTitle("");
+            setSubTitle("");
+          }, 7000);
+        }
+      };
+      read.readAsText(file[0]);
+    } else {
+      setMessageVisible(true);
+      setTitle("El archivo de datos verticales debe ser con extensión .csv");
+      setTimeout(() => {
+        setMessageVisible(false);
+        setTitle("");
+      }, 5000);
+    }
   };
 
   const uploadHorizontalFile = (file) => {
-    let read = new FileReader();
-    read.onload = function (e) {
-      setHorizontalButtonVisible(false);
-      setAnalizarVisible(true);
-      const rawData = read.result;
-      setHorizontalString(rawData);
-    };
-    read.readAsText(file[0]);
+    if (file[0].type === "text/csv") {
+      let read = new FileReader();
+      read.onload = function (e) {
+        const rawData = read.result;
+        const verticalData = rawData.split("\n").slice(1);
+        const verticalRows = verticalData.map((el) => el.split(";"));
+        verticalRows.pop();
+
+        if (verticalRows[0].length === 6) {
+          setHorizontalButtonVisible(false);
+          setAnalizarVisible(true);
+          setHorizontalString(rawData);
+        } else {
+          setMessageVisible(true);
+          setTitle("Error en la lectura del archivo csv");
+          setSubTitle(
+            `El archivo debe contener datos de los cinco marcadores (trocanter, cóndilo femoral, maleolo peroneo, calcáneo y quinto metatarsiano) y del intervalo de tiempo, asegúrese de estar cargando el archivo correcto o de que el procedimiento de registro y guardado sea el adecuado`
+          );
+          setTimeout(() => {
+            setMessageVisible(false);
+            setTitle("");
+            setSubTitle("");
+          }, 7000);
+        }
+      };
+      read.readAsText(file[0]);
+    } else {
+      setMessageVisible(true);
+      setTitle("El archivo de datos verticales debe ser con extensión .csv");
+      setTimeout(() => {
+        setMessageVisible(false);
+        setTitle("");
+      }, 5000);
+    }
   };
 
   const jumpVideoCSVAnalysisFunction = () => {
@@ -181,13 +235,6 @@ const JumpAnalysis = () => {
     setInputFormVisible(false);
     setClientDataInputVisible(false);
     setVerticalTimeArray([]);
-    setVerticalTrocanterArray([]);
-    setVerticalCondiloArray([]);
-    setVerticalMaleoloArray([]);
-    setVerticalCalcaneoArray([]);
-    setVerticalQuintoMArray([]);
-    setHorizontalTimeArray([]);
-
     setKneeAngle([]);
     setAnkleAngle([]);
     setNewClientFormVisible(false);
@@ -205,7 +252,6 @@ const JumpAnalysis = () => {
     setMPActivity("");
     setPAType("");
     setRoles("");
-
     setVerticalString("");
     setHorizontalString("");
     setPassword("");
@@ -213,6 +259,7 @@ const JumpAnalysis = () => {
     setTitle("");
     setError("");
     setSubTitle("");
+    setAnalizarVisible(false);
   };
 
   useEffect(() => {
@@ -341,7 +388,7 @@ const JumpAnalysis = () => {
       ) : (
         <>
           <>
-            <section className="text-gray-600 body-font relative">
+            <section className="text-gray-600 body-font relative mb-60">
               <div className="container px-5 py-5 mx-auto">
                 <div className="flex flex-col text-center w-full ">
                   <h1 className="sm:text-3xl text-2xl font-medium title-font  text-gray-900">
@@ -358,12 +405,14 @@ const JumpAnalysis = () => {
                       <p className=" mt-10 lg:w-2/3 mx-auto leading-relaxed text-base">
                         Click en "Iniciar" para iniciar la carga de datos
                       </p>
-                      <button
-                        onClick={handleInnit}
-                        className="flex mx-auto mt-5 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg"
-                      >
-                        Iniciar
-                      </button>
+                      <a href="#vertical">
+                        <button
+                          onClick={handleInnit}
+                          className="flex mx-auto mt-5 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg"
+                        >
+                          Iniciar
+                        </button>
+                      </a>
                     </>
                   ) : (
                     <>
@@ -382,7 +431,7 @@ const JumpAnalysis = () => {
               </div>
             </section>
             {verticalButtonVisible ? (
-              <>
+              <div id="vertical">
                 <p className=" mt-10 lg:w-2/3 mx-auto leading-relaxed text-base">
                   Click en "Vertical" para cargar el archivo ".csv" de datos
                   verticales
@@ -395,7 +444,7 @@ const JumpAnalysis = () => {
                     Vertical
                   </button>
                 </ReactFileReader>
-              </>
+              </div>
             ) : null}
             {horizontalButtonVisible ? (
               <>

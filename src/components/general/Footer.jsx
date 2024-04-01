@@ -5,7 +5,7 @@ export default function Footer() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   return (
-    <footer className=" text-gray-600 body-font">
+    <footer className=" text-gray-600 body-font mt-60">
       <div className="container px-5 py-24 mx-auto flex flex-wrap flex-col md:items-center lg:items-start md:flex-row md:flex-nowrap ">
         <div className=" flex-shrink-0 md:mx-0 mx-auto text-center md:text-left sm:w-64">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">

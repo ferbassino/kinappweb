@@ -8,70 +8,65 @@ const Program = () => {
   scrollToTop();
 
   const videoArray1 = [
-    " Quienes somos y qué es KinApp",
-    "Qué herramientas y aplicaciones se utilizarán en este curso",
-    "Objetivos del curso",
-    "Plataforma del curso",
+    "Presentación de equipo y del entorno kinApp",
+    "Presentación del programa, plataforma y objetivos del curso",
   ];
   const sincronicoArray1 = [
     "Jueves 16/05/2024 19hs",
-    "Presentación y demostración del entorno kinApp",
+    "Demostración de la carga de datos para analisis a kinApp y visualización de la información",
   ];
 
   const videoArray2 = [
-    "Tipos de Salto y baterías de evaluación",
-    "El salto en el deporte y el rendimiento",
-    "Métodos de evaluación ",
-    "IMU (unidad de movimiento inercial)",
+    "Tipos de salto y baterías de evaluación",
+    "Relación del salto en el deporte y el rendimiento",
+    "Métodos de evaluación (plataforma de fuerza, alfombra de contacto, IMU)",
+    "Sistema de referencia e introducción a la Dinámica",
   ];
   const sincronicoArray2 = [
     "Jueves 23/05/2024 19hs",
-    "Demostración del App Jump",
-    "Carga de datos a la pagina y visualización de información",
+    "Análisis del salto por Aplicación móvil y por video",
   ];
 
   const videoArray3 = [
     "SJ:",
-    "- Aplicación del sistema de referencia",
-    "- Leyes dinámicas",
-    "- Análisis cinemático segmentario y puntual del SJ",
+    "- Análisis cinemático segmentario y puntual (CM) del SJ",
+    "- Análisis dinámico",
+    "- Variables de interés biomecánico",
     "CMJ:",
-    "- Leyes dinámicas",
-    "- Análisis cinemático segmentario y puntual en CMJ",
-    "Variables de interés y aplicación de herramientas de evaluación (IMU y video)",
+    "- Análisis cinemático segmentario y puntual (CM) del SJ",
+    "- Análisis dinámico",
+    "- Variables de interés biomecánico",
+    "Traslación al análisis con video y con IMU ",
   ];
   const sincronicoArray3 = [
     "Jueves 30/05/2024 19hs",
-    "Análisis en conjunto de un caso",
-    "Integración de datos por video y acelerometría y discusión del caso",
+    "Análisis en conjunto de un caso mediante la integración de datos por video y acelerometría",
   ];
 
   const videoArray4 = [
-    "Aterrizaje, impulso y cantidad de movimiento",
-    "Dinámica del aterrizaje",
+    "Física de la colisión",
+    "Dinámica y análisis del aterrizaje",
     "Energía potencial elástica y Stiffness",
-    "Variables de interés y aplicación de herramientas de evaluación",
+    "Análisis cinemático y dinámico mediante video y aplicación móvil para el Drop Jump y el Stiffness",
   ];
   const sincronicoArray4 = [
     "Jueves 06/06/2024 19hs",
-    "Integración de datos por video y acelerometría",
-    "Comportamiento del resorte y discusión del caso",
+    "Integración de datos por video y acelerometría con caso ",
+    "Introducción a la carrera",
   ];
 
   const videoArray5 = [
     "Resumen del curso y herramientas a disposición",
     "Encuesta final del curso",
   ];
-  const sincronicoArray5 = [
-    "Jueves 13/06/2024 19hs",
-    "Demostración del App Jump",
-    "Carga de datos a la pagina y visualización de información",
-    "Despejar dudas IMU",
-  ];
+  const sincronicoArray5 = ["Jueves 13/06/2024 19hs"];
 
   return (
     <div>
-      <section className="text-gray-600 body-font overflow-hidden">
+      <section
+        id="titulo-programa"
+        className="text-gray-600 body-font overflow-hidden"
+      >
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h2 className="sm:text-3xl text-xl text-blue-900 tracking-widest font-medium title-font mb-1">
@@ -85,7 +80,7 @@ const Program = () => {
             <ProgramBlocks
               semana="SEMANA 1"
               fechaSemana="13/05/2024"
-              title="MODULO DE INTRODUCCION AL ENTORNO KINAPP Y PRESENTACION DELCURSO"
+              title="MODULO DE INTRODUCCION AL ENTORNO KINAPP Y PRESENTACION DEL CURSO"
               videoArray={videoArray1}
               sincronicoArray={sincronicoArray1}
             />
