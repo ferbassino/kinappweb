@@ -3,6 +3,10 @@ import CourseForm from "./CourseForm";
 import { Link } from "react-router-dom";
 import { FaRegListAlt } from "react-icons/fa";
 const JumpCourse = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 60, left: 0, behavior: "smooth" });
+  };
+  scrollToTop();
   return (
     <>
       <div className="flex flex-wrap justify-evenly">

@@ -27,8 +27,9 @@ const UserJC24Profile = () => {
   const [loading, setLoading] = useState(false);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    window.scrollTo({ top: 60, left: 0, behavior: "smooth" });
   };
+  scrollToTop();
 
   const handleUnSuscribe = async () => {
     try {

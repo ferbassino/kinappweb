@@ -11,7 +11,7 @@ const JumpClases = () => {
   scrollToTop();
   const blocks = [
     {
-      date: "06/05/2024",
+      date: "13/05/2024",
       title: "Introducción",
       subtitle: "Entorno kinapp y presentación del curso",
       description:
@@ -20,7 +20,7 @@ const JumpClases = () => {
         "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
     },
     {
-      date: "13/05/2024",
+      date: "20/05/2024",
       title: "El salto",
       subtitle: "Introducción al salto vertical",
       description:
@@ -29,7 +29,7 @@ const JumpClases = () => {
         "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
     },
     {
-      date: "20/05/2024",
+      date: "27/05/2024",
       title: "biomecánica",
       subtitle: "biomecánica y evaluación del sj y el cmj",
       description:
@@ -38,7 +38,7 @@ const JumpClases = () => {
         "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
     },
     {
-      date: "27/05/2024",
+      date: "03/06/2024",
       title: "stiffness",
       subtitle: "biomecánica y evaluación del drop jump y el stiffness",
       description:
@@ -47,7 +47,7 @@ const JumpClases = () => {
         "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
     },
     {
-      date: "03/06/2024",
+      date: "10/06/2024",
       title: "Cierre",
       subtitle: "Conclusiones del curso",
       description:
@@ -62,6 +62,9 @@ const JumpClases = () => {
         <div className="flex flex-col text-center   ">
           <h2 className="sm:text-3xl text-xl py-10 text-blue-900  font-medium title-font mb-1">
             Tus clases
+          </h2>
+          <h2 className="sm:text-2xl text-xl  text-blue-900  font-medium title-font mb-1">
+            Proximamente se irán cargando las clases según el programa previsto
           </h2>
         </div>
         {blocks.map((block, index) => (

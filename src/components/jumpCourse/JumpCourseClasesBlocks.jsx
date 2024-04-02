@@ -1,6 +1,6 @@
 import React from "react";
 import ReactPlayer from "react-player";
-
+import videoImage from "../../assets/video_image.jpg";
 const JumpCourseClasesBlocks = ({
   date,
   title,
@@ -25,27 +25,16 @@ const JumpCourseClasesBlocks = ({
             </a>
 
             <p className="leading-relaxed mb-4">{description}</p>
-            {/* <div className="flex border-t border-gray-200 py-2">
-              <span className="text-gray-500">Color</span>
-              <span className="ml-auto text-gray-900">Blue</span>
-            </div>
-            <div className="flex border-t border-gray-200 py-2">
-              <span className="text-gray-500">Size</span>
-              <span className="ml-auto text-gray-900">Medium</span>
-            </div>
-            <div className="flex border-t border-b mb-6 border-gray-200 py-2">
-              <span className="text-gray-500">Quantity</span>
-              <span className="ml-auto text-gray-900">4</span>
-            </div> */}
           </div>
-          <div className="lg:w-1/2 w-full lg:h-auto  object-cover object-center ">
-            <ReactPlayer
+          <div className="md:w-3/5 lg:w-1/2 w-full lg:h-auto  object-cover object-center ">
+            <img src={videoImage} alt="video" />
+            {/* <ReactPlayer
               url={videoUrl}
               controls
               width="100%"
               height="100%"
-              // light="https zaraza" para la prieview
-            />
+              light="https zaraza" para la prieview
+            /> */}
           </div>
         </div>
       </div>
