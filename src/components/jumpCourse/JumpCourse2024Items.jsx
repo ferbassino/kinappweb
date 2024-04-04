@@ -10,7 +10,7 @@ const JumpCourse2024Items = ({ title }) => {
         break;
 
       case "Tus Análisis":
-        navigate("/jump_tests");
+        navigate("/tests");
         break;
       case "Video análisis":
         navigate("/jump_analysis");

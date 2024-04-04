@@ -31,8 +31,8 @@ import SuccessVerification from "./components/logins/SuccessVerification";
 import ForgotPassword from "./components/logins/ForgotPassword";
 import NotVerifiedProfile from "./pages/logins/NotVerifiedProfile";
 import WebApplication from "./pages/recursos-kinapp/WebApplication";
-import Tests from "./pages/reader/reader_pages/Tests";
-import JumpTests from "./pages/JumpCourse/JumpTests";
+// import Tests from "./pages/reader/reader_pages/Tests";
+import Tests from "./pages/JumpCourse/Tests";
 import JumpTest from "./pages/JumpCourse/JumpTest";
 
 function App() {
@@ -171,7 +171,7 @@ function App() {
             {/* protected reader routes */}
             <Route element={<ReaderRoutes roles={profile.roles} />}>
               <Route path="/reader" element={<Reader />} />
-              <Route path="/tests" element={<Tests />} />
+              {/* <Route path="/tests" element={<Tests />} /> */}
               <Route path="/clients" element={<Users />} />
               <Route path="/client/:id" element={<User />} />
             </Route>
@@ -185,7 +185,7 @@ function App() {
                 path="/success-verification"
                 element={<SuccessVerification />}
               />
-              <Route path="/jump_tests" element={<JumpTests />} />
+              <Route path="/tests" element={<Tests />} />
               <Route path="/jump_test" element={<JumpTest />} />
             </Route>
           </Routes>

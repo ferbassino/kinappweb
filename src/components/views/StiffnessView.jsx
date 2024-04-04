@@ -3,25 +3,21 @@ import { accProcess } from "../../auxiliaries/data_analysis/accProcess";
 import Chart from "../otros/Chart";
 import getDate from "../../auxiliaries/getDate";
 import stiffnessAnalysis from "../../auxiliaries/stiffness/stiffnessAnalysis";
-import jumpProcess from "../../auxiliaries/data_analysis/jumpProcess";
 
-const JumpView = ({ test, testsVisible }) => {
+const StiffnessView = ({ test, testsVisible }) => {
   const { accData, testTime, weight } = test;
-  const { accX, accY, accZ, accT, accInterval } = accProcess(accData, testTime);
+
   const {
-    arrayY0,
-    arrayY0F,
-    arrayT0F,
-    arrayY0Imp,
-    arrayT0FImp,
-    arrayY0Vuelo,
-    arrayT0Vuelo,
-    arrayY0Amort,
-    arrayT0Amort,
-    tV,
-    alturaVuelo,
-    velD,
-  } = jumpProcess(accY, testTime, weight, accT);
+    stiffnessData,
+    arrayYCentral,
+    arrayYCentral0F,
+    arrayYCentral0,
+    accX,
+    accY,
+    accZ,
+    arrayAccTime,
+    indexValidation,
+  } = stiffnessAnalysis(accData, testTime, weight);
   const testDate = getDate(test.date);
 
   return (
@@ -99,30 +95,6 @@ const JumpView = ({ test, testsVisible }) => {
                     {test.mFComponents}
                   </td>
                 </tr>
-                <tr>
-                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    Tiempo de vuelo
-                  </td>
-                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    {tV.toFixed(2)} s
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    Altura de vuelo
-                  </td>
-                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    {alturaVuelo.toFixed(2)} m
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    Velocidad de despegue
-                  </td>
-                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    {velD.toFixed(2)} m/s
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -131,8 +103,8 @@ const JumpView = ({ test, testsVisible }) => {
       <section className="text-gray-600 body-font mt-10">
         <div className="container px-5 mx-auto">
           <div className="lg:w-2/3 w-full mx-auto overflow-auto">
-            {/* <table className="table-auto w-full text-left whitespace-no-wrap"> */}
-            {/* <thead>
+            <table className="table-auto w-full text-left whitespace-no-wrap">
+              <thead>
                 <tr>
                   <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
                     Stiffness
@@ -189,7 +161,7 @@ const JumpView = ({ test, testsVisible }) => {
                   </td>
                 </tr>
               </tbody>
-            </table> */}
+            </table>
           </div>
         </div>
       </section>
@@ -197,7 +169,7 @@ const JumpView = ({ test, testsVisible }) => {
       <section className="text-gray-600 body-font">
         <div className="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
           <Chart
-            x={arrayY0F}
+            x={arrayYCentral0}
             xName="aceleración en y"
             xColor="red"
             // y={ankleAngleArray}
@@ -206,7 +178,7 @@ const JumpView = ({ test, testsVisible }) => {
             // z={verticalWristArray}
             // zName="Wrist"
             // zColor="green"
-            t={arrayT0F}
+            t={arrayAccTime}
           />
           <div className="mt-10 w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
             <div className="flex w-full justify-center items-end">
@@ -224,4 +196,4 @@ const JumpView = ({ test, testsVisible }) => {
   );
 };
 
-export default JumpView;
+export default StiffnessView;

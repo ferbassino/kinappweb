@@ -16,9 +16,9 @@ const UserJC24Profile = () => {
     "Clases",
     "Tus Análisis",
     "Video análisis",
-    "Recursos kinApp",
     "Programa",
-    "Docs",
+    // "Recucrsos kinApp",
+    // "Docs",
   ];
   const [succesfullyUnsuscribed, setSuccesfullyUnsuscribed] = useState(false);
   const navigate = useNavigate();

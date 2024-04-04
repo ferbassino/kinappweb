@@ -1,7 +1,8 @@
 const getDate = (evaluationDate) => {
-  const date = new Date();
+  const res = new Date(evaluationDate);
+  const date = res.toLocaleDateString();
 
-  return date.toLocaleDateString();
+  return date;
 };
 
 export default getDate;

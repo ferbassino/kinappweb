@@ -15,6 +15,7 @@ import client from "../../api/client";
 import("./CourseForm.css");
 import jumpVideoCSVAnalysis from "../../auxiliaries/videoJumpAnalysis.jsx/jumpVideoCSVAnalysis";
 import Message from "../../components/general/Message";
+import ClientInitialDataInput from "../../components/VideoAnalysis.jsx/ClientInnitialDataInput";
 
 const JumpAnalysis = () => {
   const navigate = useNavigate();
@@ -45,12 +46,16 @@ const JumpAnalysis = () => {
   const [analysisVisible, setAnalysisVisible] = useState(false);
   const [resetearVisible, setResetearVisible] = useState(false);
   const [analizarVisible, setAnalizarVisible] = useState(false);
+  const [clientInnitialDataInputVisible, setClientInnitialDataInputVisible] =
+    useState(false);
 
   const { profile } = useLogin();
 
   const [birthDate, setbirthDaste] = useState(new Date());
-  const [size, setSize] = useState(new Date());
-  const [weight, setWeight] = useState(0);
+  const [size, setSize] = useState("");
+  const [weight, setWeight] = useState("");
+  const [refDistance, setRefDistance] = useState("");
+  const [videoFrameRate, setVideoFrameRate] = useState("");
   const [gender, setGender] = useState("");
   const [pALevel, setPALevel] = useState("");
   const [mFComponents, setMFComponents] = useState("");
@@ -117,6 +122,7 @@ const JumpAnalysis = () => {
 
         if (verticalRows[0].length === 6) {
           setHorizontalButtonVisible(false);
+          setClientInnitialDataInputVisible(true);
           setAnalizarVisible(true);
           setHorizontalString(rawData);
         } else {
@@ -144,14 +150,24 @@ const JumpAnalysis = () => {
   };
 
   const jumpVideoCSVAnalysisFunction = () => {
-    const { kneeAngleArr, ankleAngleArr, verticalTimeArr } =
-      jumpVideoCSVAnalysis(verticalString, horizontalString);
+    if (
+      weight === "" ||
+      size === "" ||
+      videoFrameRate === "" ||
+      refDistance === ""
+    ) {
+      alert("Todos los campos deben estar completos");
+    } else {
+      const { kneeAngleArr, ankleAngleArr, verticalTimeArr } =
+        jumpVideoCSVAnalysis(verticalString, horizontalString);
 
-    setKneeAngle(kneeAngleArr);
-    setAnkleAngle(ankleAngleArr);
-    setVerticalTimeArray(verticalTimeArr);
-    setAnalizarVisible(false);
-    setAnalysisVisible(true);
+      setKneeAngle(kneeAngleArr);
+      setAnkleAngle(ankleAngleArr);
+      setVerticalTimeArray(verticalTimeArr);
+      setAnalizarVisible(false);
+      setAnalysisVisible(true);
+      setClientInnitialDataInputVisible(false);
+    }
   };
 
   const getCurrentUserClient = async () => {
@@ -181,7 +197,6 @@ const JumpAnalysis = () => {
               setTitle("");
               setSubTitle("");
               setEmail("");
-              navigate("/userJC24Profile");
             }, 5000);
           }
         } else {
@@ -198,7 +213,6 @@ const JumpAnalysis = () => {
           setTitle("");
           setSubTitle("");
           setEmail("");
-          navigate("/userJC24Profile");
         }, 5000);
       }
     } catch (error) {
@@ -244,8 +258,10 @@ const JumpAnalysis = () => {
     setCurrentClient([]);
     setOldClientFormVisible(false);
     setOldClientDataInputVisible(false);
-    setSize(0);
-    setWeight(0);
+    setSize("");
+    setWeight("");
+    setRefDistance("");
+    setVideoFrameRate("");
     setGender("");
     setPALevel("");
     setMFComponents("");
@@ -260,6 +276,7 @@ const JumpAnalysis = () => {
     setError("");
     setSubTitle("");
     setAnalizarVisible(false);
+    setClientInnitialDataInputVisible(false);
   };
 
   useEffect(() => {
@@ -271,9 +288,10 @@ const JumpAnalysis = () => {
   const dataObj = {
     kinoveaData: [verticalString, horizontalString],
     testTime: 0,
-    videoFrameRate: 240,
+    videoFrameRate,
     motionType: "kinoveaJump",
     weight,
+    refDistance,
   };
 
   const dataClientObj = {
@@ -294,6 +312,7 @@ const JumpAnalysis = () => {
           motionType: dataObj.motionType,
           kinoveaData: dataObj.kinoveaData,
           videoFrameRate: dataObj.videoFrameRate,
+          refDistance: dataObj.refDistance,
           weight: dataObj.weight,
           size: response.data.savedClient.size,
           gender: response.data.savedClient.gender,
@@ -378,7 +397,7 @@ const JumpAnalysis = () => {
       }, 5000);
     }
   };
-
+  console.log(weight, size, refDistance, videoFrameRate);
   return (
     <div>
       {messageVisible ? (
@@ -388,7 +407,7 @@ const JumpAnalysis = () => {
       ) : (
         <>
           <>
-            <section className="text-gray-600 body-font relative mb-60">
+            <section className="text-gray-600 body-font relative mb-10">
               <div className="container px-5 py-5 mx-auto">
                 <div className="flex flex-col text-center w-full ">
                   <h1 className="sm:text-3xl text-2xl font-medium title-font  text-gray-900">
@@ -407,7 +426,12 @@ const JumpAnalysis = () => {
                       </p>
                       <a href="#vertical">
                         <button
-                          onClick={handleInnit}
+                          onClick={() =>
+                            alert(
+                              "El análisis por video no está habilitado todavía"
+                            )
+                          }
+                          // onClick={handleInnit}
                           className="flex mx-auto mt-5 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg"
                         >
                           Iniciar
@@ -460,6 +484,20 @@ const JumpAnalysis = () => {
                     Horizontal
                   </button>
                 </ReactFileReader>
+              </>
+            ) : null}
+            {clientInnitialDataInputVisible ? (
+              <>
+                <ClientInitialDataInput
+                  setWeight={setWeight}
+                  weight={weight}
+                  size={size}
+                  setSize={setSize}
+                  refDistance={refDistance}
+                  setRefDistance={setRefDistance}
+                  videoFrameRate={videoFrameRate}
+                  setVideoFrameRate={setVideoFrameRate}
+                />
               </>
             ) : null}
             {analizarVisible ? (
@@ -564,10 +602,6 @@ const JumpAnalysis = () => {
                       handleDataInputSubmit={handleDataInputSubmit}
                       birthDate={birthDate}
                       setBirthDate={setbirthDaste}
-                      setWeight={setWeight}
-                      weight={weight}
-                      size={size}
-                      setSize={setSize}
                       gender={gender}
                       setGender={setGender}
                       pALevel={pALevel}
