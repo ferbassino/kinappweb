@@ -27,8 +27,7 @@ const Tests = () => {
     try {
       setLoading(true);
       const getAllUserTests = async () => {
-        // const allUT = await getTests(profile.id);
-        const allUT = [];
+        const allUT = await getTests(profile.id);
         setTimeout(() => {
           if (allUT.length === 0) {
             setTestVisibles(false);
@@ -59,7 +58,6 @@ const Tests = () => {
       case "stiffness":
         setStiffnessVisible(true);
         break;
-
       default:
     }
 
