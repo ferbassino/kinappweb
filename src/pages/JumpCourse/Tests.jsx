@@ -3,10 +3,7 @@ import { useLogin } from "../../context/LoginProvider";
 import { getTests } from "../../requests/tests/getTests";
 import getDate from "../../auxiliaries/getDate";
 import HashLoader from "react-spinners/HashLoader";
-import JumpVideoView from "../../components/views/JumpVideoView";
-import ArtroView from "../../components/views/ArtroView";
-import JumpView from "../../components/views/JumpView";
-import StiffnessView from "../../components/views/StiffnessView";
+import JumpResult from "../../components/jump/JumpResult";
 
 const Tests = () => {
   const scrollToTop = () => {
@@ -17,11 +14,10 @@ const Tests = () => {
   const [allUserTests, setAllUserTests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [testVisibles, setTestVisibles] = useState(true);
-  const [jumpVideoVisible, setJumpVideoVisible] = useState(false);
-  const [jumpVisible, setJumpVisible] = useState(false);
-  const [stiffnessVisible, setStiffnessVisible] = useState(false);
-  const [artroVisible, setArtroVisible] = useState(false);
+
   const [test, setTest] = useState("");
+  const [noTestsVisible, setNoTestsVisible] = useState(false);
+  const [jumpResultVisible, setJumpResultVisible] = useState(false);
 
   useEffect(() => {
     try {
@@ -31,6 +27,7 @@ const Tests = () => {
         setTimeout(() => {
           if (allUT.length === 0) {
             setTestVisibles(false);
+            setNoTestsVisible(true);
             setLoading(false);
           } else {
             setAllUserTests(allUT);
@@ -44,33 +41,18 @@ const Tests = () => {
       console.log(error);
     }
   }, []);
-  const handleTest = (test) => {
-    switch (test.motionType) {
-      case "kinoveaJump":
-        setJumpVideoVisible(true);
-        break;
-      case "jump":
-        setJumpVisible(true);
-        break;
-      case "artro":
-        setArtroVisible(true);
-        break;
-      case "stiffness":
-        setStiffnessVisible(true);
-        break;
-      default:
-    }
 
+  const handleTest = (test) => {
+    setJumpResultVisible(true);
     setTestVisibles(false);
     setTest(test);
   };
-  const testsVisible = () => {
+  const handleTestVisible = () => {
+    setJumpResultVisible(false);
     setTestVisibles(true);
-    setJumpVideoVisible(false);
-    setJumpVisible(false);
-    setArtroVisible(false);
-    setStiffnessVisible(false);
   };
+  console.log(testVisibles);
+
   return (
     <>
       {testVisibles ? (
@@ -155,34 +137,26 @@ const Tests = () => {
             )}
           </div>
         </section>
-      ) : (
-        <div className="container  pt-24 mx-auto">
-          <div className="flex flex-col text-center w-full mb-10">
-            <h1 className="sm:text-3xl text-3xl font-medium title-font mb-2 text-gray-900">
-              Todavía no se registraron evaluaciones en tu perfil
-            </h1>
+      ) : null}
+      {noTestsVisible ? (
+        <>
+          <div className="container  pt-24 mx-auto">
+            <div className="flex flex-col text-center w-full mb-10">
+              <h1 className="sm:text-3xl text-3xl font-medium title-font mb-2 text-gray-900">
+                Todavía no se registraron evaluaciones en tu perfil
+              </h1>
+            </div>
           </div>
-        </div>
-      )}
+        </>
+      ) : null}
 
       <>
-        {jumpVisible ? (
-          <JumpView test={test} testsVisible={testsVisible} />
-        ) : null}
-      </>
-      <>
-        {jumpVideoVisible ? (
-          <JumpVideoView testId={test._id} testsVisible={testsVisible} />
-        ) : null}
-      </>
-      <>
-        {artroVisible ? (
-          <ArtroView testId={test} testsVisible={testsVisible} />
-        ) : null}
-      </>
-      <>
-        {stiffnessVisible ? (
-          <StiffnessView test={test} testsVisible={testsVisible} />
+        {jumpResultVisible ? (
+          <JumpResult
+            test={test}
+            testsVisible={testVisibles}
+            handleTestVisible={handleTestVisible}
+          />
         ) : null}
       </>
     </>
