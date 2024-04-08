@@ -3,7 +3,8 @@ import { getUsers } from "../../requests/getUser";
 import UserList from "../../components/user/UsersList";
 import HashLoader from "react-spinners/HashLoader";
 import "./JumpCourseUsers.css";
-const Users = () => {
+
+const ReaderUsers = () => {
   const [users, setUsers] = useState([]);
   const [verifiedUsers, setVerifiedUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -12,11 +13,13 @@ const Users = () => {
       setLoading(true);
       const users = async () => {
         const users = await getUsers();
-
-        const verifiedUsers = users.filter((el) => el.verified);
+        const readerUsers = users.filter((el) => el.roles === "reader");
+        const verifiedReaderUsers = users.filter(
+          (el) => el.roles === "reader" && el.verified
+        );
         if (users) {
-          setVerifiedUsers(verifiedUsers);
-          setUsers(users);
+          setVerifiedUsers(verifiedReaderUsers);
+          setUsers(readerUsers);
           setLoading(false);
         }
         setLoading(false);
@@ -50,7 +53,7 @@ const Users = () => {
       ) : (
         <>
           <h1 className="text-gray-900 text-lg title-font font-medium my-5 text-center">
-            Inscriptos al curso Análisis biomecánico del salto vertical
+            Usuarios con rol "READER"
           </h1>
           <div className="flex flex-wrap">
             <span className="text-gray-900 mx-5 text-l title-font font-medium my-1">
@@ -71,4 +74,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default ReaderUsers;

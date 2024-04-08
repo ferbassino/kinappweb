@@ -8,9 +8,9 @@ const Profile = () => {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
-            <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
+            {/* <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
               ROOF PARTY POLAROID
-            </h2>
+            </h2> */}
             <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
               Admin panel
             </h1>
@@ -33,16 +33,18 @@ const Profile = () => {
                     </svg>
                   </div>
                   <h2 className="text-gray-900 text-lg title-font font-medium">
-                    Shooting Stars
+                    Usuarios
                   </h2>
                 </div>
                 <div className="flex-grow">
                   <p className="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine.
+                    Todos los usuarios de la aplicacion
                   </p>
-                  <a className="mt-3 text-indigo-500 inline-flex items-center">
-                    Learn More
+                  <Link
+                    to="/users"
+                    className="mt-3 text-indigo-500 inline-flex items-center"
+                  >
+                    ver mas
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -54,7 +56,7 @@ const Profile = () => {
                     >
                       <path d="M5 12h14M12 5l7 7-7 7"></path>
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -76,19 +78,18 @@ const Profile = () => {
                     </svg>
                   </div>
                   <h2 className="text-gray-900 text-lg title-font font-medium">
-                    Users
+                    Curso jump 2024
                   </h2>
                 </div>
                 <div className="flex-grow">
                   <p className="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine.
+                    Lista con todos los inscriptos del curso
                   </p>
                   <Link
-                    to={"/users"}
+                    to={"/jump_24_users"}
                     className="mt-3 text-indigo-500 inline-flex items-center"
                   >
-                    Learn More
+                    ver mas
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -123,16 +124,18 @@ const Profile = () => {
                     </svg>
                   </div>
                   <h2 className="text-gray-900 text-lg title-font font-medium">
-                    Neptune
+                    Reader
                   </h2>
                 </div>
                 <div className="flex-grow">
                   <p className="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine.
+                    Lista de los usuarios con rol "READER"
                   </p>
-                  <a className="mt-3 text-indigo-500 inline-flex items-center">
-                    Learn More
+                  <Link
+                    to="/reader_users"
+                    className="mt-3 text-indigo-500 inline-flex items-center"
+                  >
+                    ver mas
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -144,7 +147,7 @@ const Profile = () => {
                     >
                       <path d="M5 12h14M12 5l7 7-7 7"></path>
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

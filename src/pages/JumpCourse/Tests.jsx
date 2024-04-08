@@ -4,7 +4,7 @@ import { getTests } from "../../requests/tests/getTests";
 import getDate from "../../auxiliaries/getDate";
 import HashLoader from "react-spinners/HashLoader";
 import JumpResult from "../../components/jump/JumpResult";
-
+import ArtroView from "../../views/ArtroView";
 const Tests = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -14,10 +14,10 @@ const Tests = () => {
   const [allUserTests, setAllUserTests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [testVisibles, setTestVisibles] = useState(true);
-
   const [test, setTest] = useState("");
   const [noTestsVisible, setNoTestsVisible] = useState(false);
   const [jumpResultVisible, setJumpResultVisible] = useState(false);
+  const [artroResultVisible, setArtroResultVisible] = useState(false);
 
   useEffect(() => {
     try {
@@ -43,15 +43,27 @@ const Tests = () => {
   }, []);
 
   const handleTest = (test) => {
-    setJumpResultVisible(true);
-    setTestVisibles(false);
-    setTest(test);
+    switch (test.motionType) {
+      case "artro":
+        setArtroResultVisible(true);
+        setTestVisibles(false);
+        setTest(test);
+        break;
+      case "squat jump":
+        setJumpResultVisible(true);
+        setTestVisibles(false);
+        setTest(test);
+        break;
+
+      default:
+        break;
+    }
   };
   const handleTestVisible = () => {
     setJumpResultVisible(false);
+    setArtroResultVisible(false);
     setTestVisibles(true);
   };
-  console.log(testVisibles);
 
   return (
     <>
@@ -153,6 +165,15 @@ const Tests = () => {
       <>
         {jumpResultVisible ? (
           <JumpResult
+            test={test}
+            testsVisible={testVisibles}
+            handleTestVisible={handleTestVisible}
+          />
+        ) : null}
+      </>
+      <>
+        {artroResultVisible ? (
+          <ArtroView
             test={test}
             testsVisible={testVisibles}
             handleTestVisible={handleTestVisible}

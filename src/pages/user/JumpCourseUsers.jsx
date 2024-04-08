@@ -3,7 +3,7 @@ import { getUsers } from "../../requests/getUser";
 import UserList from "../../components/user/UsersList";
 import HashLoader from "react-spinners/HashLoader";
 import "./JumpCourseUsers.css";
-const Users = () => {
+const JumpCourseUsers = () => {
   const [users, setUsers] = useState([]);
   const [verifiedUsers, setVerifiedUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -12,11 +12,13 @@ const Users = () => {
       setLoading(true);
       const users = async () => {
         const users = await getUsers();
-
-        const verifiedUsers = users.filter((el) => el.verified);
+        const courseUsers = users.filter((el) => el.roles === "jumpCourse2024");
+        const verifiedCourseUsers = users.filter(
+          (el) => el.roles === "jumpCourse2024" && el.verified
+        );
         if (users) {
-          setVerifiedUsers(verifiedUsers);
-          setUsers(users);
+          setVerifiedUsers(verifiedCourseUsers);
+          setUsers(courseUsers);
           setLoading(false);
         }
         setLoading(false);
@@ -71,4 +73,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default JumpCourseUsers;

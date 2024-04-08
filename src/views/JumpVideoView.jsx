@@ -1,12 +1,12 @@
 import React from "react";
-import { getTest } from "../../requests/tests/getTest";
+import { getTest } from "../requests/tests/getTest";
 import { useEffect } from "react";
 import { useState } from "react";
-import jumpVideoCSVAnalysis from "../../auxiliaries/videoJumpAnalysis.jsx/jumpVideoCSVAnalysis";
-import Chart from "../otros/Chart";
-import Message from "../general/Message";
+import jumpVideoCSVAnalysis from "../auxiliaries/videoJumpAnalysis.jsx/jumpVideoCSVAnalysis";
+import Chart from "../components/otros/Chart";
+import Message from "../components/general/Message";
 import HashLoader from "react-spinners/HashLoader";
-import getDate from "../../auxiliaries/getDate";
+import getDate from "../auxiliaries/getDate";
 
 const JumpVideoView = ({ testId, testsVisibles }) => {
   const [currentTest, setCurrentTest] = useState([]);

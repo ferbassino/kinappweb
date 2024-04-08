@@ -7,6 +7,7 @@ import squatJumpAnalysis from "../../auxiliaries/data_analysis/squatJumpAnalysis
 import dropJumpAnalysis from "../../auxiliaries/data_analysis/dropJumpAnalysis";
 import jumpProcess from "../../auxiliaries/data_analysis/jumpProcess";
 import stiffnessAnalysis from "../../auxiliaries/data_analysis/stiffnessAnalysis";
+import GeneralDataClientsView from "../../views/GeneralDataClientsView";
 
 function JumpResult({ test, testsVisible, handleTestVisible }) {
   const [validationError, setValidationError] = useState(false);
@@ -31,7 +32,6 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
   const [stiffnessData, setStiffnessData] = useState({});
   const [weight, setWeight] = useState("");
 
-  const testDate = getDate(test.date);
   const { accX, accY, accZ, arrayAccTime } = accelerationArrays(
     test.accData,
     test.testTime
@@ -147,84 +147,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
     <div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 mx-auto">
-          <div className="flex flex-col text-center w-full mb-20">
-            <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
-              {/* {test.email} */}
-            </h1>
-            <p className="lg:w-2/3 mx-auto leading-relaxed text-lg">
-              {test.motionType}
-            </p>
-          </div>
-          <div className="lg:w-2/3 w-full mx-auto overflow-auto">
-            <table className="table-auto w-full text-left whitespace-no-wrap">
-              <thead>
-                <tr>
-                  <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
-                    Email
-                  </th>
-                  <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
-                    {test.email}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    Fecha
-                  </td>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    {testDate} kg
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">Peso</td>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    {test.weight} kg
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    Altura
-                  </td>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    {test.size} kg
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    Género
-                  </td>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    {test.gender}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    Actividad física que realiza
-                  </td>
-                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    {test.mPActivity}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    Frecuencia:
-                  </td>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    {test.pALevel}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    Cualidad principal
-                  </td>
-                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    {test.mFComponents}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <GeneralDataClientsView test={test} />
           {/* ---------------------------------- */}
           <div className="mt-10 lg:w-2/3 w-full mx-auto overflow-auto">
             <table className="table-auto w-full text-left whitespace-no-wrap">
@@ -233,9 +156,6 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
                   <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
                     Analisis
                   </th>
-                  {/* <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
-                    {testDate}
-                  </th> */}
                 </tr>
               </thead>
               <tbody>
@@ -340,7 +260,6 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
                         {contactTime.toFixed(3)} s
                       </td>
                     </tr>
-
                     <tr>
                       <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3"></td>
                       <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3"></td>
@@ -478,7 +397,6 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
               </tbody>
             </table>
           </div>
-
           {/* ---------------------------------- */}
         </div>
       </section>
@@ -501,7 +419,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
             <div className="flex w-full justify-center items-end">
               <button
                 onClick={() => handleTestVisible()}
-                className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                className="inline-flex text-white bg-blue-900 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
               >
                 Ir a evaluaciones
               </button>

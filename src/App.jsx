@@ -34,6 +34,8 @@ import WebApplication from "./pages/recursos-kinapp/WebApplication";
 // import Tests from "./pages/reader/reader_pages/Tests";
 import Tests from "./pages/JumpCourse/Tests";
 import JumpTest from "./pages/JumpCourse/JumpTest";
+import JumpCourseUsers from "./pages/user/JumpCourseUsers";
+import ReaderUsers from "./pages/user/ReaderUsers";
 
 function App() {
   const navigate = useNavigate();
@@ -166,6 +168,8 @@ function App() {
             <Route element={<AdminRoutes roles={profile.roles} />}>
               <Route path="/profile" element={<Profile />} />
               <Route path="/users" element={<Users />} />
+              <Route path="/jump_24_users" element={<JumpCourseUsers />} />
+              <Route path="/reader_users" element={<ReaderUsers />} />
               <Route path="/user/:id" element={<User />} />
             </Route>
             {/* protected reader routes */}
