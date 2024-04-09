@@ -41,7 +41,7 @@ const Tests = () => {
       console.log(error);
     }
   }, []);
-
+  console.log(test);
   const handleTest = (test) => {
     switch (test.motionType) {
       case "artro":
@@ -50,6 +50,21 @@ const Tests = () => {
         setTest(test);
         break;
       case "squat jump":
+        setJumpResultVisible(true);
+        setTestVisibles(false);
+        setTest(test);
+        break;
+      case "drop jump" || "counter movement jump":
+        setJumpResultVisible(true);
+        setTestVisibles(false);
+        setTest(test);
+        break;
+      case "counter movement jump":
+        setJumpResultVisible(true);
+        setTestVisibles(false);
+        setTest(test);
+        break;
+      case "stiffness":
         setJumpResultVisible(true);
         setTestVisibles(false);
         setTest(test);

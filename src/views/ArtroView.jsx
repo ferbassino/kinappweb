@@ -1,8 +1,28 @@
 import React from "react";
 import GeneralDataClientsView from "./GeneralDataClientsView";
+import RefImages from "../components/artro/RefImages";
+import gyroProcess from "../auxiliaries/data_analysis/gyro/gyroProcess";
+import gyroArrays from "../auxiliaries/data_analysis/gyro/gyroArrays";
+import Chart from "../components/otros/Chart";
 
 const ArtroView = ({ test, testsVisible, handleTestVisible }) => {
-  console.log(test);
+  const { gyroX, gyroY, gyroZ, arrayGyroTime } = gyroArrays(
+    test.gyroData,
+    test.testTime
+  );
+  const {
+    xCountRadAngle,
+    xArrayGradAngle,
+    xCountGradAngle,
+    xArrayRadAngle,
+    yCountRadAngle,
+    yArrayGradAngle,
+    yCountGradAngle,
+    zArrayRadAngle,
+    zCountRadAngle,
+    zArrayGradAngle,
+    zCountGradAngle,
+  } = gyroProcess(gyroX, gyroY, gyroZ, arrayGyroTime, test.testTime);
   return (
     <div>
       <section className="text-gray-600 body-font">
@@ -43,15 +63,34 @@ const ArtroView = ({ test, testsVisible, handleTestVisible }) => {
                     {test.motion}
                   </td>
                 </tr>
+                <RefImages
+                  segment={test.segment}
+                  side={test.side}
+                  movement={test.motion}
+                />
                 <tr>
                   <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    Ubicación del dispositivo
+                    movimeinto en x
                   </td>
-                  <img
-                    className="h-20 rounded  object-cover object-center mb-3"
-                    alt="content"
-                    src="https://storage.googleapis.com/mobile-artro/ubucacion_dispositivo/ubicacion_dispositivo/axial/cervical/cervical.jpg"
-                  ></img>
+                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                    {xCountGradAngle.toFixed(2)}°
+                  </td>
+                </tr>
+                <tr>
+                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                    movimiento en y
+                  </td>
+                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                    {yCountGradAngle.toFixed(2)}°
+                  </td>
+                </tr>
+                <tr>
+                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                    movimiento en z
+                  </td>
+                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                    {zCountGradAngle.toFixed(2)}°
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -63,18 +102,18 @@ const ArtroView = ({ test, testsVisible, handleTestVisible }) => {
 
       <section className="text-gray-600 body-font">
         <div className="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
-          {/* <Chart
-            x={arrayY0F}
-            xName="aceleración en y"
+          <Chart
+            x={xArrayGradAngle}
+            xName="rotación en x"
             xColor="red"
-            y={xAxisArray}
-            yName="x axis"
-            yColor="black"
-            z={verticalWristArray}
-            zName="transparent"
-            zColor="white"
-            t={arrayT0F}
-          /> */}
+            y={yArrayGradAngle}
+            yName="rotación en y"
+            yColor="blue"
+            z={zArrayGradAngle}
+            zName="rotación en z"
+            zColor="green"
+            t={arrayGyroTime}
+          />
           <div className="mt-10 w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
             <div className="flex w-full justify-center items-end">
               <button
