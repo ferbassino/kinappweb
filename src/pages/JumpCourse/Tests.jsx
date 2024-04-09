@@ -69,6 +69,11 @@ const Tests = () => {
         setTestVisibles(false);
         setTest(test);
         break;
+      case "free":
+        setJumpResultVisible(true);
+        setTestVisibles(false);
+        setTest(test);
+        break;
 
       default:
         break;
