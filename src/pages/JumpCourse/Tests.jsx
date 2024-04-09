@@ -41,7 +41,7 @@ const Tests = () => {
       console.log(error);
     }
   }, []);
-  console.log(test);
+
   const handleTest = (test) => {
     switch (test.motionType) {
       case "artro":
