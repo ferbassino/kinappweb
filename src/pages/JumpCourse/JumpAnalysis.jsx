@@ -426,12 +426,12 @@ const JumpAnalysis = () => {
                       </p>
                       <a href="#vertical">
                         <button
-                          onClick={() =>
-                            alert(
-                              "El análisis por video no está habilitado todavía"
-                            )
-                          }
-                          // onClick={handleInnit}
+                          // onClick={() =>
+                          //   alert(
+                          //     "El análisis por video no está habilitado todavía"
+                          //   )
+                          // }
+                          onClick={handleInnit}
                           className="flex mx-auto mt-5 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg"
                         >
                           Iniciar
@@ -536,7 +536,7 @@ const JumpAnalysis = () => {
                 </p>
 
                 <button
-                  // onClick={() => setInputFormVisible(true)}
+                  onClick={() => setInputFormVisible(true)}
                   className="flex mx-auto mt-10 mb-10 text-white bg-blue-900 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg"
                 >
                   Imprimir
