@@ -36,7 +36,7 @@ import Tests from "./pages/JumpCourse/Tests";
 import JumpTest from "./pages/JumpCourse/JumpTest";
 import JumpCourseUsers from "./pages/user/JumpCourseUsers";
 import ReaderUsers from "./pages/user/ReaderUsers";
-
+import ImuAnalysis from "./pages/JumpCourse/ImuAnalysis";
 function App() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -185,6 +185,7 @@ function App() {
               <Route path="/userJC24Profile" element={<UserJC24Profile />} />
               <Route path="/jump_clases" element={<JumpClases />} />
               <Route path="/jump_analysis" element={<JumpAnalysis />} />
+              <Route path="/imu_analysis" element={<ImuAnalysis />} />
               <Route
                 path="/success-verification"
                 element={<SuccessVerification />}

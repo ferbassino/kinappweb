@@ -31,6 +31,8 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
   const [takeoffSpeed2, setTakeoffSpeed2] = useState(0);
   const [stiffnessData, setStiffnessData] = useState({});
   const [weight, setWeight] = useState("");
+  const [propTime, setPropTime] = useState("");
+  const [propDist, setPropDist] = useState("");
 
   const { accX, accY, accZ, arrayAccTime } = accelerationArrays(
     test.accData,
@@ -83,6 +85,8 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
           validation,
           cMjumpInterv,
           arrT0F,
+          propulsiveTime,
+          propulsiveDistance,
         } = jumpProcess(accX, accY, accZ, test.testTime);
         setArrayYF(arrayY0F);
         setXAxisArray(cMJXAxis);
@@ -92,6 +96,8 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
         setTakeoffSpeed(velD);
         setInterval(cMjumpInterv);
         setArrayT0F(arrT0F);
+        setPropTime(propulsiveTime);
+        setPropDist(propulsiveDistance);
         break;
       case "drop jump":
         const {
@@ -185,6 +191,22 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
                 </tr>
                 {squatJumpVisible || cMJumpVisible ? (
                   <>
+                    <tr>
+                      <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                        Tiempo propulsivo
+                      </td>
+                      <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                        {propTime} s
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                        Distancia Propulsiva
+                      </td>
+                      <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                        {propDist.toFixed(2)} m
+                      </td>
+                    </tr>
                     <tr>
                       <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
                         Tiempo de vuelo

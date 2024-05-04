@@ -14,7 +14,8 @@ JumpCourse2024Items;
 const UserJC24Profile = () => {
   const readerOptions = [
     "Clases",
-    "Tus Análisis",
+    "Análisis guardados",
+    "I.M.U. análisis",
     "Video análisis",
     "Programa",
     // "Recucrsos kinApp",

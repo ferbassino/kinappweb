@@ -1,5 +1,5 @@
 import numbers from "numbers";
-
+import integralFunction from "./integral";
 export default function jumpProcess(
   accX = [],
   accY = [],
@@ -9,7 +9,7 @@ export default function jumpProcess(
   const evT = testTime / 1000;
   const cMjumpInterv = evT / accY.length;
   const modo = numbers.statistic.mode(accY);
-  const arrayY0 = accY.map((el) => el - modo);
+  const arrayY0 = accY.map((el) => (el - modo) * 9.81);
 
   const index2 = accY.findIndex(
     (el, index) =>
@@ -36,7 +36,7 @@ export default function jumpProcess(
 
   accY.map((el, index) => {
     if (index < index2) {
-      arrayY1.push(el);
+      arrayY1.push(el * 9.81);
     }
   });
 
@@ -46,31 +46,86 @@ export default function jumpProcess(
   const arrayY2 = [];
 
   arrayY1.map((el, index) => {
-    if (index > index1) arrayY2.push(el);
+    if (index > index1) arrayY2.push((el - modo) * 9.81);
   });
 
   const index3 = accY.findIndex((el, index) => el < modo && index > index2);
 
   const arrayY3 = [];
 
+  const arrayY3T = [];
+  let county3T = 0;
   accY.map((el, index) => {
     if (index > index2 && index < index3) {
-      arrayY3.push(el);
+      arrayY3.push((el - modo) * 9.81);
+      arrayY3T.push((county3T += cMjumpInterv));
     }
   });
 
   const index4 = accY.findIndex((el, index) => el > modo && index > index3);
 
   const arrayY4 = [];
+
   accY.map((el, index) => {
-    if (index > index3 && index < index4 && el < 5) {
-      arrayY4.push(el);
+    if (index - 1 > index3 && index + 2 < index4) {
+      arrayY4.push((el - modo) * 9.81);
     }
   });
+  console.log("-----------------------------------------");
 
   const tV = arrayY4.length * cMjumpInterv;
+
   const alturaVuelo = (1 / 8) * 9.81 * Math.pow(tV, 2);
   const velD = Math.sqrt(2 * 9.81 * alturaVuelo);
+
+  // ----------------------reverse
+  const arrayY3Invertido = [...arrayY3].reverse();
+
+  // calculamos la velocidad máxima como el 100 por ciento de la de despegue
+  const velMax = (100 * velD) / 90;
+
+  // como la velocidad es maxima, la aceleración debe ser cero, entonces integramos hacia atras la aceleración partiendo como valor incial de velocidad la máxima
+  const integralArray = [];
+  let countDP = velMax;
+  for (let i = 0; i < arrayY3Invertido.length; i++) {
+    countDP -=
+      ((Number(arrayY3Invertido[i]) + Number(arrayY3Invertido[i + 1])) *
+        (arrayY3T[i + 1] - arrayY3T[i])) /
+      2;
+    integralArray.push(countDP);
+  }
+  // del array de velocidad filtramos los positivos y para saber al length donde la velocidad es cero que corresponde al punto mas bajo de la trayectoria
+
+  const arrayY3InvertidoPositivo = integralArray.filter((el) => el > 0);
+
+  // ahora tenemos un array de velocidad que va de cero a la maxima. nos falta saber que intervalo de tiempo existe entre este punto y la velocidad de despegue, que seria el punto donde la asceleración es monor a -5 m/s". le sumamos por tanteo 4 intervalos de tiempo
+
+  // para obtener la distancia sumamos la superficie
+
+  // a. del triangulo cuya base es el intervalo de tiempo desde la posición mas baja hasta la velocidad máxima
+
+  const propulsiveMaxTime = Number(
+    (arrayY3InvertidoPositivo.length * cMjumpInterv).toFixed(2)
+  );
+
+  const propulsiveMaxDist = (propulsiveMaxTime * velMax) / 2;
+
+  // b. el paralelepipedo de base 4 intervalos de tiempo agregados, un lado es la vemax y el otro la v de despegue. aplicamos regla del trapecio
+
+  const sumaVel = velMax + velD;
+  const intervalo = cMjumpInterv * 4;
+  const propulsiveDespDist = (sumaVel * intervalo) / 2;
+
+  // sumamos
+
+  const propulsiveDistance = propulsiveMaxDist + propulsiveDespDist;
+
+  // el tiempo propulsivo seria
+
+  const propulsiveTime = (
+    intervalo +
+    arrayY3InvertidoPositivo.length * cMjumpInterv
+  ).toFixed(2);
 
   const index5 = accY.findIndex((el, index) => el < modo && index > index4);
   const index6 = accY.findIndex((el, index) => el > modo && index > index5);
@@ -151,8 +206,11 @@ export default function jumpProcess(
     tV,
     alturaVuelo,
     velD,
+
     validation,
     cMjumpInterv,
     arrT0F,
+    propulsiveTime,
+    propulsiveDistance,
   };
 }
