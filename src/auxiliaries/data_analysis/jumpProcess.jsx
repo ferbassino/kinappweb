@@ -1,9 +1,8 @@
 import numbers from "numbers";
 import integralFunction from "./integral";
 export default function jumpProcess(
-  accX = [],
   accY = [],
-  accZ = [],
+
   testTime = 0
 ) {
   const evT = testTime / 1000;
@@ -162,21 +161,21 @@ export default function jumpProcess(
 
   const modeValidation = modo < 1.1 && modo > 0.9;
 
-  const initialAngleZY = [];
-  const initialAngleXY = [];
+  // const initialAngleZY = [];
+  // const initialAngleXY = [];
 
-  accY.map((el, index) => {
-    if (index < index2) {
-      initialAngleZY.push(
-        (Math.atan2(accZ[index], accY[index]) * 180) / Math.PI
-      );
-      initialAngleXY.push(
-        (Math.atan2(accX[index], accY[index]) * 180) / Math.PI
-      );
-    }
-  });
-  const initialAngleZYMean = numbers.statistic.mean(initialAngleZY);
-  const initialAngleXYMean = numbers.statistic.mean(initialAngleXY);
+  // accY.map((el, index) => {
+  //   if (index < index2) {
+  //     initialAngleZY.push(
+  //       (Math.atan2(accZ[index], accY[index]) * 180) / Math.PI
+  //     );
+  //     initialAngleXY.push(
+  //       (Math.atan2(accX[index], accY[index]) * 180) / Math.PI
+  //     );
+  //   }
+  // });
+  // const initialAngleZYMean = numbers.statistic.mean(initialAngleZY);
+  // const initialAngleXYMean = numbers.statistic.mean(initialAngleXY);
 
   const validation =
     initialTailValidation &&
@@ -192,11 +191,11 @@ export default function jumpProcess(
     index2 < index3 &&
     index3 < index4 &&
     index4 < index5 &&
-    index5 < index6 &&
-    initialAngleZYMean < 10 &&
-    initialAngleZYMean > -10 &&
-    initialAngleXYMean < 10 &&
-    initialAngleXYMean > -10;
+    index5 < index6;
+  // initialAngleZYMean < 10 &&
+  // initialAngleZYMean > -10 &&
+  // initialAngleXYMean < 10 &&
+  // initialAngleXYMean > -10;
 
   return {
     arrayY0,

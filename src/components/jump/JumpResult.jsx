@@ -9,7 +9,15 @@ import jumpProcess from "../../auxiliaries/data_analysis/jumpProcess";
 import stiffnessAnalysis from "../../auxiliaries/data_analysis/stiffnessAnalysis";
 import GeneralDataClientsView from "../../views/GeneralDataClientsView";
 
-function JumpResult({ test, testsVisible, handleTestVisible }) {
+function JumpResult({
+  accY,
+  testTime,
+  weight,
+  motionType,
+  testsVisible,
+  handleTestVisible,
+}) {
+  console.log(testTime, weight, motionType);
   const [validationError, setValidationError] = useState(false);
   const [validationErrorMessage, setValidationErrorMessage] = useState("");
   const [freeJumpVisible, setFreeJumpVisible] = useState(false);
@@ -30,22 +38,22 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
   const [flightHeight2, setFlightHeight2] = useState(0);
   const [takeoffSpeed2, setTakeoffSpeed2] = useState(0);
   const [stiffnessData, setStiffnessData] = useState({});
-  const [weight, setWeight] = useState("");
+  // const [weight, setWeight] = useState("");
   const [propTime, setPropTime] = useState("");
   const [propDist, setPropDist] = useState("");
 
-  const { accX, accY, accZ, arrayAccTime } = accelerationArrays(
-    test.accData,
-    test.testTime
-  );
+  // const { accX, accY, accZ, arrayAccTime } = accelerationArrays(
+  //   test.accData,
+  //   test.testTime
+  // );
 
   useEffect(() => {
-    setWeight(test.weight);
-    switch (test.motionType) {
+    // setWeight(weight);
+    switch (motionType) {
       case "free":
         const { freeArrayY1, freeXAxis, arrTf, interval } = freeJumpAnalysis(
           accY,
-          test.testTime,
+          testTime,
           weight
         );
         setArrayYF(freeArrayY1);
@@ -62,7 +70,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
           takeoffSpeed,
           sJInterval,
           arrTfinal,
-        } = squatJumpAnalysis(accY, test.testTime, weight);
+        } = squatJumpAnalysis(accY, testTime, weight);
 
         setArrayYF(sJAccYFinal);
         setXAxisArray(xAxis);
@@ -87,7 +95,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
           arrT0F,
           propulsiveTime,
           propulsiveDistance,
-        } = jumpProcess(accX, accY, accZ, test.testTime);
+        } = jumpProcess(accY, testTime);
         setArrayYF(arrayY0F);
         setXAxisArray(cMJXAxis);
         setCMJumpVisible(true);
@@ -112,7 +120,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
           flightHeight2,
           takeoffSpeed2,
           arrTF,
-        } = dropJumpAnalysis(accY, test.testTime, weight);
+        } = dropJumpAnalysis(accY, testTime, weight);
         setArrayYF(dropJumpAccY0F);
         setXAxisArray(dropJumpXAxis);
         setDropJumpVisible(true);
@@ -138,7 +146,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
           indexValidation,
           stiffnessInterval,
           arrTCentral0F,
-        } = stiffnessAnalysis(accY, test.testTime, weight);
+        } = stiffnessAnalysis(accY, testTime, weight);
         setArrayYF(arrayYCentral0F);
         setXAxisArray(stiffnessXAxis);
         setStiffnessData(stiffnessData);
@@ -153,7 +161,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
     <div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 mx-auto">
-          <GeneralDataClientsView test={test} />
+          {/* <GeneralDataClientsView test={test} /> */}
           {/* ---------------------------------- */}
           <div className="mt-10 lg:w-2/3 w-full mx-auto overflow-auto">
             <table className="table-auto w-full text-left whitespace-no-wrap">
@@ -170,7 +178,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
                     Tiempo de evaluación
                   </td>
                   <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    {test.testTime / 1000} s
+                    {testTime / 1000} s
                   </td>
                 </tr>
                 <tr>
@@ -178,7 +186,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
                     Tiempo de ejecución
                   </td>
                   <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    {(xAxisArray.length * interval).toFixed(2)} s
+                    {xAxisArray.length * interval} s
                   </td>
                 </tr>
                 <tr>
@@ -186,7 +194,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
                     Intervalo de muestreo
                   </td>
                   <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    {interval.toFixed(3)} s
+                    {interval} s
                   </td>
                 </tr>
                 {squatJumpVisible || cMJumpVisible ? (
@@ -204,7 +212,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
                         Distancia Propulsiva
                       </td>
                       <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                        {propDist.toFixed(2)} m
+                        {propDist} m
                       </td>
                     </tr>
                     <tr>
@@ -212,7 +220,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
                         Tiempo de vuelo
                       </td>
                       <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                        {flightTime.toFixed(2)} s
+                        {flightTime} s
                       </td>
                     </tr>
                     <tr>
@@ -220,7 +228,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
                         Altura de vuelo
                       </td>
                       <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                        {flightHeight.toFixed(2)} m
+                        {flightHeight} m
                       </td>
                     </tr>
                     <tr>
@@ -228,7 +236,7 @@ function JumpResult({ test, testsVisible, handleTestVisible }) {
                         Velocidad de despegue
                       </td>
                       <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                        {takeoffSpeed.toFixed(2)} m/s
+                        {takeoffSpeed} m/s
                       </td>
                     </tr>
                   </>
