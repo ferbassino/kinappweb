@@ -85,25 +85,30 @@ function JumpResult({
         const {
           arrayY0,
           arrayY0F,
+          accT,
+          arrayY0FLong,
           cMJXAxis,
-          arrayY0Vuelo,
+          cMJXAxisLong,
           tV,
           alturaVuelo,
           velD,
-          validation,
           cMjumpInterv,
-          arrT0F,
+          power,
+          fRM,
           propulsiveTime,
           propulsiveDistance,
+          validation,
+          arrayY4,
+          arrayXAxis,
         } = jumpProcess(accY, testTime);
         setArrayYF(arrayY0F);
-        setXAxisArray(cMJXAxis);
+        // setXAxisArray(cMJXAxis);
         setCMJumpVisible(true);
         setFlightTime(tV);
         setFlightHeight(alturaVuelo);
         setTakeoffSpeed(velD);
         setInterval(cMjumpInterv);
-        setArrayT0F(arrT0F);
+        setArrayT0F(accT);
         setPropTime(propulsiveTime);
         setPropDist(propulsiveDistance);
         break;

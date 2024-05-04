@@ -1,41 +1,50 @@
 import numbers from "numbers";
-import integralFunction from "./integral";
-export default function jumpProcess(
-  accY = [],
+import powerCMJDropAnalysis from "./powerCMJDropAnalysis";
+// generar csv
 
-  testTime = 0
-) {
+export default function jumpProcess(accY = [], testTime = 0, weight = 0) {
   const evT = testTime / 1000;
   const cMjumpInterv = evT / accY.length;
   const modo = numbers.statistic.mode(accY);
+  const arrayT0 = [];
+  let countArrayT0 = 0;
   const arrayY0 = accY.map((el) => (el - modo) * 9.81);
 
-  const index2 = accY.findIndex(
+  arrayY0.map((el) => {
+    arrayT0.push(Number((countArrayT0 += cMjumpInterv).toFixed(3)));
+  });
+
+  const arrayYT = [];
+  arrayY0.map((el, index) => {
+    arrayYT.push([arrayT0[index], el]);
+  });
+
+  const index2 = arrayY0.findIndex(
     (el, index) =>
       el > modo &&
-      el < accY[index + 1] &&
-      el < accY[index + 2] &&
-      el < accY[index + 3] &&
-      el < accY[index + 4] &&
-      el < accY[index + 5] &&
-      el < accY[index + 6] &&
-      el < accY[index + 7] &&
-      el < accY[index + 8] &&
-      el < accY[index + 9] &&
-      el < accY[index + 10] &&
-      el < accY[index + 11] &&
-      el < accY[index + 12] &&
-      el < accY[index + 13] &&
-      el < accY[index + 14] &&
-      el < accY[index + 15] &&
-      el < accY[index + 16]
+      el < arrayY0[index + 1] &&
+      el < arrayY0[index + 2] &&
+      el < arrayY0[index + 3] &&
+      el < arrayY0[index + 4] &&
+      el < arrayY0[index + 5] &&
+      el < arrayY0[index + 6] &&
+      el < arrayY0[index + 7] &&
+      el < arrayY0[index + 8] &&
+      el < arrayY0[index + 9] &&
+      el < arrayY0[index + 10] &&
+      el < arrayY0[index + 11] &&
+      el < arrayY0[index + 12] &&
+      el < arrayY0[index + 13] &&
+      el < arrayY0[index + 14] &&
+      el < arrayY0[index + 15] &&
+      el < arrayY0[index + 16]
   );
 
   const arrayY1 = [];
 
-  accY.map((el, index) => {
+  arrayY0.map((el, index) => {
     if (index < index2) {
-      arrayY1.push(el * 9.81);
+      arrayY1.push(el);
     }
   });
 
@@ -45,32 +54,41 @@ export default function jumpProcess(
   const arrayY2 = [];
 
   arrayY1.map((el, index) => {
-    if (index > index1) arrayY2.push((el - modo) * 9.81);
+    if (index > index1) {
+      arrayY2.push(el);
+    }
   });
 
-  const index3 = accY.findIndex((el, index) => el < modo && index > index2);
+  const index3 = arrayY0.findIndex((el, index) => el < 0 && index > index2);
 
   const arrayY3 = [];
 
   const arrayY3T = [];
   let county3T = 0;
-  accY.map((el, index) => {
+  arrayY0.map((el, index) => {
     if (index > index2 && index < index3) {
-      arrayY3.push((el - modo) * 9.81);
+      arrayY3.push(el);
+
       arrayY3T.push((county3T += cMjumpInterv));
     }
   });
 
-  const index4 = accY.findIndex((el, index) => el > modo && index > index3);
+  // array y4 es el de la fase aerea, para buscar el indice 4 que seria cuando termina el array 4 buscamos valores negativos de aceleración pero solo luego de los 20 primeros valores para que no tome ningun pico de inercia positivo
+  const index4 = arrayY0.findIndex(
+    (el, index) => el > 0 && index > index3 + 20
+  );
 
   const arrayY4 = [];
 
-  accY.map((el, index) => {
-    if (index - 1 > index3 && index + 2 < index4) {
-      arrayY4.push((el - modo) * 9.81);
+  const arrayXAxis = [];
+
+  arrayY0.map((el, index) => {
+    if (index - 3 > index3 && index + 3 < index4) {
+      arrayY4.push(el);
+
+      arrayXAxis.push(0);
     }
   });
-  console.log("-----------------------------------------");
 
   const tV = arrayY4.length * cMjumpInterv;
 
@@ -78,15 +96,16 @@ export default function jumpProcess(
   const velD = Math.sqrt(2 * 9.81 * alturaVuelo);
 
   // ----------------------reverse
+
   const arrayY3Invertido = [...arrayY3].reverse();
 
   // calculamos la velocidad máxima como el 100 por ciento de la de despegue
-  const velMax = (100 * velD) / 90;
+  const velMax = (100 * velD) / 95;
 
   // como la velocidad es maxima, la aceleración debe ser cero, entonces integramos hacia atras la aceleración partiendo como valor incial de velocidad la máxima
   const integralArray = [];
   let countDP = velMax;
-  for (let i = 0; i < arrayY3Invertido.length; i++) {
+  for (let i = 0; i < arrayY3Invertido.length - 1; i++) {
     countDP -=
       ((Number(arrayY3Invertido[i]) + Number(arrayY3Invertido[i + 1])) *
         (arrayY3T[i + 1] - arrayY3T[i])) /
@@ -96,6 +115,7 @@ export default function jumpProcess(
   // del array de velocidad filtramos los positivos y para saber al length donde la velocidad es cero que corresponde al punto mas bajo de la trayectoria
 
   const arrayY3InvertidoPositivo = integralArray.filter((el) => el > 0);
+  integralArray.reverse();
 
   // ahora tenemos un array de velocidad que va de cero a la maxima. nos falta saber que intervalo de tiempo existe entre este punto y la velocidad de despegue, que seria el punto donde la asceleración es monor a -5 m/s". le sumamos por tanteo 4 intervalos de tiempo
 
@@ -106,18 +126,19 @@ export default function jumpProcess(
   const propulsiveMaxTime = Number(
     (arrayY3InvertidoPositivo.length * cMjumpInterv).toFixed(2)
   );
-
   const propulsiveMaxDist = (propulsiveMaxTime * velMax) / 2;
 
   // b. el paralelepipedo de base 4 intervalos de tiempo agregados, un lado es la vemax y el otro la v de despegue. aplicamos regla del trapecio
 
   const sumaVel = velMax + velD;
-  const intervalo = cMjumpInterv * 4;
+  const intervalo = cMjumpInterv * 3;
   const propulsiveDespDist = (sumaVel * intervalo) / 2;
 
   // sumamos
 
-  const propulsiveDistance = propulsiveMaxDist + propulsiveDespDist;
+  const propulsiveDistance = (propulsiveMaxDist + propulsiveDespDist).toFixed(
+    2
+  );
 
   // el tiempo propulsivo seria
 
@@ -125,21 +146,22 @@ export default function jumpProcess(
     intervalo +
     arrayY3InvertidoPositivo.length * cMjumpInterv
   ).toFixed(2);
+  // {----------------------------------------------------}
 
-  const index5 = accY.findIndex((el, index) => el < modo && index > index4);
-  const index6 = accY.findIndex((el, index) => el > modo && index > index5);
+  const index5 = arrayY0.findIndex((el, index) => el < 0 && index > index4);
+  const index6 = arrayY0.findIndex((el, index) => el > 0 && index > index5);
 
   const arrayY0F = [];
-  const arrT0F = [];
-  let count = 0;
+  const accT = [];
+  let countInterval = 0;
   const arrayY0Vuelo = [];
   const cMJXAxis = [];
+
   arrayY0.forEach((el, index) => {
     if (index > index1 && index < index6) {
       arrayY0F.push(Number(el.toFixed(2)));
       cMJXAxis.push(0);
-      count += cMjumpInterv;
-      arrT0F.push(count.toFixed(3));
+      accT.push((countInterval += cMjumpInterv));
     }
     if (index > index3 && index < index4) {
       arrayY0Vuelo.push(Number(el.toFixed(2)));
@@ -147,69 +169,55 @@ export default function jumpProcess(
   });
 
   const initalTail = [];
-  accY.map((el, index) => {
+  arrayY0.map((el, index) => {
     if (index < index1) initalTail.push(el);
   });
+
   const finalTail = [];
-  accY.map((el, index) => {
-    if (index > accY.length - 90) finalTail.push(el);
+  arrayY0.map((el, index) => {
+    if (index > arrayY0.length - 90) finalTail.push(el);
   });
-  const initialTailValidation = initalTail.length > 90;
-  const finalTailMode = numbers.statistic.mode(finalTail);
 
-  const finalTailValidation = finalTailMode < 1.1 && finalTailMode > 0.9;
+  const validation = true;
+  // initalTail.length > 80 &&
+  // finalTail.length > 80 &&
+  // index1 !== -1 &&
+  // index2 !== -1 &&
+  // index3 !== -1 &&
+  // index4 !== -1 &&
+  // index5 !== -1 &&
+  // index6 !== -1 &&
+  // index1 < index2 &&
+  // index2 < index3 &&
+  // index3 < index4 &&
+  // index4 < index5 &&
+  // index5 < index6;
 
-  const modeValidation = modo < 1.1 && modo > 0.9;
-
-  // const initialAngleZY = [];
-  // const initialAngleXY = [];
-
-  // accY.map((el, index) => {
-  //   if (index < index2) {
-  //     initialAngleZY.push(
-  //       (Math.atan2(accZ[index], accY[index]) * 180) / Math.PI
-  //     );
-  //     initialAngleXY.push(
-  //       (Math.atan2(accX[index], accY[index]) * 180) / Math.PI
-  //     );
-  //   }
-  // });
-  // const initialAngleZYMean = numbers.statistic.mean(initialAngleZY);
-  // const initialAngleXYMean = numbers.statistic.mean(initialAngleXY);
-
-  const validation =
-    initialTailValidation &&
-    finalTailValidation &&
-    modeValidation &&
-    index1 !== -1 &&
-    index2 !== -1 &&
-    index3 !== -1 &&
-    index4 !== -1 &&
-    index5 !== -1 &&
-    index6 !== -1 &&
-    index1 < index2 &&
-    index2 < index3 &&
-    index3 < index4 &&
-    index4 < index5 &&
-    index5 < index6;
-  // initialAngleZYMean < 10 &&
-  // initialAngleZYMean > -10 &&
-  // initialAngleXYMean < 10 &&
-  // initialAngleXYMean > -10;
-
+  const { power, fRM } = powerCMJDropAnalysis(
+    weight,
+    tV,
+    propulsiveMaxTime,
+    alturaVuelo
+  );
+  const arrayY0FLong = arrayY0F;
+  const cMJXAxisLong = cMJXAxis;
   return {
     arrayY0,
+    accT,
     arrayY0F,
+    arrayY0FLong,
     cMJXAxis,
-    arrayY0Vuelo,
+    cMJXAxisLong,
     tV,
     alturaVuelo,
     velD,
-
-    validation,
     cMjumpInterv,
-    arrT0F,
+    power,
+    fRM,
     propulsiveTime,
     propulsiveDistance,
+    validation,
+    arrayY4,
+    arrayXAxis,
   };
 }
