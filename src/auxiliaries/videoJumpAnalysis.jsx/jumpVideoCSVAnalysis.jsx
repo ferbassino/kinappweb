@@ -44,6 +44,7 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
   const maleoloArr = [];
   const calcaneoArr = [];
   const quintoMArr = [];
+
   verticalTrocanterArray.map((el, index) => {
     trocanterArr.push([
       verticalTrocanterArray[index],
@@ -70,7 +71,7 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
   });
 
   // declaramos 3 arrays de  vectores, t para muslo, l para pierna y f para pie
-
+  const vArray = [];
   const tArray = [];
   const lArray = [];
   const fArray = [];
@@ -79,6 +80,7 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
   // l se forma con el de condilo y maleolo
   // f se forma con el de maleolo y pie
   trocanterArr.map((el, index) => {
+    vArray.push([0, condiloArr[index][1] - trocanterArr[index][1]]);
     tArray.push([
       condiloArr[index][1] - trocanterArr[index][1],
       condiloArr[index][0] - trocanterArr[index][0],
@@ -95,10 +97,14 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
   });
 
   // producto vectorial
+  const dotProductVT = [];
   const dotProductTL = [];
   const dotProductLF = [];
 
   tArray.map((el, index) => {
+    dotProductVT.push(
+      vArray[index][0] * tArray[index][0] + vArray[index][1] * tArray[index][1]
+    );
     dotProductTL.push(
       tArray[index][0] * lArray[index][0] + tArray[index][1] * lArray[index][1]
     );
@@ -108,10 +114,14 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
   });
 
   //producto de los modulos
+  const vModule = [];
   const tModule = [];
   const lModule = [];
   const fModule = [];
   tArray.map((el, index) => {
+    vModule.push(
+      Math.sqrt(Math.pow(vArray[index][0], 2) + Math.pow(vArray[index][1], 2))
+    );
     tModule.push(
       Math.sqrt(Math.pow(tArray[index][0], 2) + Math.pow(tArray[index][1], 2))
     );
@@ -124,17 +134,23 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
     );
   });
 
+  const moduleVTProduct = [];
   const moduleTLProduct = [];
   const moduleLFProduct = [];
   tModule.map((el, index) => {
+    moduleVTProduct.push(vModule[index] * tModule[index]);
     moduleTLProduct.push(tModule[index] * lModule[index]);
     moduleLFProduct.push(lModule[index] * fModule[index]);
   });
 
+  const hipAngleArr = [];
   const kneeAngleArr = [];
   const ankleAngleArr = [];
 
   moduleTLProduct.map((el, index) => {
+    hipAngleArr.push(
+      (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180) / Math.PI
+    );
     kneeAngleArr.push(
       (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180) / Math.PI
     );
@@ -142,8 +158,9 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
       (Math.acos(dotProductLF[index] / moduleLFProduct[index]) * 180) / Math.PI
     );
   });
-
+  console.log(hipAngleArr);
   return {
+    hipAngleArr,
     kneeAngleArr,
     ankleAngleArr,
     verticalTimeArr,

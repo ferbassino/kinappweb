@@ -102,7 +102,7 @@ const ImuAnalysis = () => {
   };
   return (
     <div>
-      {/* <button onClick={() => handlePicker()}>Vertical</button> */}
+      <button onClick={() => handlePicker()}>Vertical</button>
       {inputVisible ? (
         <>
           <ReactFileReader handleFiles={handleFiles} fileTypes={".txt"}>

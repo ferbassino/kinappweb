@@ -9,15 +9,8 @@ import jumpProcess from "../../auxiliaries/data_analysis/jumpProcess";
 import stiffnessAnalysis from "../../auxiliaries/data_analysis/stiffnessAnalysis";
 import GeneralDataClientsView from "../../views/GeneralDataClientsView";
 
-function JumpResult({
-  accY,
-  testTime,
-  weight,
-  motionType,
-  testsVisible,
-  handleTestVisible,
-}) {
-  console.log(testTime, weight, motionType);
+function JumpResult({ test = {}, testsVisible, handleTestVisible }) {
+  console.log(test);
   const [validationError, setValidationError] = useState(false);
   const [validationErrorMessage, setValidationErrorMessage] = useState("");
   const [freeJumpVisible, setFreeJumpVisible] = useState(false);
@@ -42,19 +35,19 @@ function JumpResult({
   const [propTime, setPropTime] = useState("");
   const [propDist, setPropDist] = useState("");
 
-  // const { accX, accY, accZ, arrayAccTime } = accelerationArrays(
-  //   test.accData,
-  //   test.testTime
-  // );
+  const { accX, accY, accZ, arrayAccTime } = accelerationArrays(
+    test.accData,
+    test.testTime
+  );
 
   useEffect(() => {
     // setWeight(weight);
-    switch (motionType) {
+    switch (test.motionType) {
       case "free":
         const { freeArrayY1, freeXAxis, arrTf, interval } = freeJumpAnalysis(
           accY,
-          testTime,
-          weight
+          test.testTime,
+          test.weight
         );
         setArrayYF(freeArrayY1);
         setXAxisArray(freeXAxis);
@@ -70,7 +63,7 @@ function JumpResult({
           takeoffSpeed,
           sJInterval,
           arrTfinal,
-        } = squatJumpAnalysis(accY, testTime, weight);
+        } = squatJumpAnalysis(accY, test.testTime, test.weight);
 
         setArrayYF(sJAccYFinal);
         setXAxisArray(xAxis);
@@ -100,7 +93,7 @@ function JumpResult({
           validation,
           arrayY4,
           arrayXAxis,
-        } = jumpProcess(accY, testTime);
+        } = jumpProcess(accY, test.testTime, test.weight);
         setArrayYF(arrayY0F);
         // setXAxisArray(cMJXAxis);
         setCMJumpVisible(true);
@@ -125,7 +118,7 @@ function JumpResult({
           flightHeight2,
           takeoffSpeed2,
           arrTF,
-        } = dropJumpAnalysis(accY, testTime, weight);
+        } = dropJumpAnalysis(accY, test.testTime, test.weight);
         setArrayYF(dropJumpAccY0F);
         setXAxisArray(dropJumpXAxis);
         setDropJumpVisible(true);
@@ -151,7 +144,7 @@ function JumpResult({
           indexValidation,
           stiffnessInterval,
           arrTCentral0F,
-        } = stiffnessAnalysis(accY, testTime, weight);
+        } = stiffnessAnalysis(accY, test.testTime, test.weight);
         setArrayYF(arrayYCentral0F);
         setXAxisArray(stiffnessXAxis);
         setStiffnessData(stiffnessData);
@@ -183,7 +176,7 @@ function JumpResult({
                     Tiempo de evaluación
                   </td>
                   <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                    {testTime / 1000} s
+                    {test.testTime / 1000} s
                   </td>
                 </tr>
                 <tr>

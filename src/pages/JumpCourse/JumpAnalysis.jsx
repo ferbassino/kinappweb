@@ -34,7 +34,7 @@ const JumpAnalysis = () => {
   const [oldClientArray, setOldClientArray] = useState(false);
   const [email, setEmail] = useState("");
   const [currentClient, setCurrentClient] = useState([]);
-
+  const [hipAngleArray, sethipAngleArray] = useState([]);
   const [clientDataInputVisible, setClientDataInputVisible] = useState(false);
   const [oldClientDataInputVisible, setOldClientDataInputVisible] =
     useState(false);
@@ -158,9 +158,9 @@ const JumpAnalysis = () => {
     ) {
       alert("Todos los campos deben estar completos");
     } else {
-      const { kneeAngleArr, ankleAngleArr, verticalTimeArr } =
+      const { hipAngleArr, kneeAngleArr, ankleAngleArr, verticalTimeArr } =
         jumpVideoCSVAnalysis(verticalString, horizontalString);
-
+      sethipAngleArray(hipAngleArr);
       setKneeAngle(kneeAngleArr);
       setAnkleAngle(ankleAngleArr);
       setVerticalTimeArray(verticalTimeArr);
@@ -522,9 +522,9 @@ const JumpAnalysis = () => {
                   y={ankleAngle}
                   yName="Angulo de tobillo"
                   yColor="blue"
-                  // z={verticalWristArray}
-                  // zName="Wrist"
-                  // zColor="green"
+                  z={hipAngleArray}
+                  zName="Angulo de cadera"
+                  zColor="green"
                   t={verticalTimeArray}
                 />
                 <p className=" mt-10 lg:w-2/3 mx-auto leading-relaxed text-base">

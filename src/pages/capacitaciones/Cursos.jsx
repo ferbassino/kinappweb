@@ -34,12 +34,13 @@ const Cursos = () => {
                 Análisis por video y con dispositivos inerciales del salto
                 vertical
               </p>
-              <Link
+              <p className="leading-relaxed font-bold">Agotado</p>
+              {/* <Link
                 to="/jump_course"
                 className="text-2xl font-semibold leading-6 text-gray-900"
               >
                 Ver mas <span aria-hidden="true">→</span>
-              </Link>
+              </Link> */}
             </div>
             <div className="sm:w-1/2 mb-10 px-4">
               <div className="rounded-lg h-64 overflow-hidden">
@@ -56,7 +57,7 @@ const Cursos = () => {
                 Interpretación de los datos registrado por las unidades
                 inerciales (I.M.U.)
               </p>
-              <p className="leading-relaxed text-base">Agotado</p>
+              <p className="leading-relaxed font-bold">Agotado</p>
               {/* <Link
                 to="/jump_course"
                 className="text-sm font-semibold leading-6 text-gray-900"

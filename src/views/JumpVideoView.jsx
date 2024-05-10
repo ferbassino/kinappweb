@@ -11,6 +11,7 @@ import getDate from "../auxiliaries/getDate";
 const JumpVideoView = ({ testId, testsVisibles }) => {
   const [currentTest, setCurrentTest] = useState([]);
   const [testDate, setTestDate] = useState("");
+  const [hipAngleArray, sethipAngleArray] = useState([]);
   const [kneeAngleArray, setKneeAngleArray] = useState([]);
   const [ankleAngleArray, setAnkleAngleArray] = useState([]);
   const [verticalTimeArray, setVerticalTimeArray] = useState([]);
@@ -33,8 +34,9 @@ const JumpVideoView = ({ testId, testsVisibles }) => {
 
           setTestDate(date);
           console.log(test);
-          const { kneeAngleArr, ankleAngleArr, verticalTimeArr } =
+          const { hipAngleArr, kneeAngleArr, ankleAngleArr, verticalTimeArr } =
             jumpVideoCSVAnalysis(test.kinoveaData[0], test.kinoveaData[1]);
+          sethipAngleArray(hipAngleArr);
           setKneeAngleArray(kneeAngleArr);
           setAnkleAngleArray(ankleAngleArr);
           setVerticalTimeArray(verticalTimeArr);
@@ -166,9 +168,9 @@ const JumpVideoView = ({ testId, testsVisibles }) => {
                     y={ankleAngleArray}
                     yName="Angulo de tobillo"
                     yColor="blue"
-                    // z={verticalWristArray}
-                    // zName="Wrist"
-                    // zColor="green"
+                    z={hipAngleArray}
+                    zName="Ángulo cadera"
+                    zColor="green"
                     t={verticalTimeArray}
                   />
                   {/* <div className="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
