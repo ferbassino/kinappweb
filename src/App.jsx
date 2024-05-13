@@ -7,7 +7,7 @@ import Landing from "./views/landing/Landing";
 import { Routes, Route } from "react-router-dom";
 import ReaderProfile from "./views/reader/ReaderProfile";
 import { testsContext } from "./context/TestsContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import ImuAnalysis from "./views/reader/readerViews/ImuAnalysis";
 import Clases from "./views/reader/readerViews/Clases";
 import JumpVideoAnalysis from "./views/reader/readerViews/JumpVideoAnalysis";
@@ -20,7 +20,14 @@ import QuienesSomos from "./views/landing/conocenos/QuienesSomos";
 import WebApplication from "./views/landing/recursos-kinapp/WebApplication";
 import AvisoLegal from "./views/landing/mas/AvisoLegal";
 function App() {
-  const { roles } = useContext(testsContext);
+  const { user } = useContext(testsContext);
+  const [roles, setRoles] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      setRoles(user.roles);
+    }
+  }, [user]);
 
   return (
     <Routes>

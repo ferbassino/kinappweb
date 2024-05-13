@@ -20,6 +20,8 @@ export const TestsContextProvider = ({ children }) => {
   const [currentTest, setCurrentTest] = useState([]);
 
   useEffect(() => {
+    setUser({ userName: "" });
+    console.log("se ejecuta");
     const loggedUser = window.localStorage.getItem("user");
 
     if (loggedUser) {
