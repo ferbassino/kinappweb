@@ -22,11 +22,8 @@ const ClasesBlocks = ({ date, title, subtitle, description, videoUrl }) => {
               url={videoUrl}
               controls
               width="100%"
-              height="100%"
-              light="https zaraza"
-              para
-              la
-              prieview
+              // height="100%"
+              light={videoImage}
             />
           </div>
         </div>
