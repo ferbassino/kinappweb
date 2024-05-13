@@ -20,8 +20,8 @@ const JumpClases = () => {
       subtitle: "Entorno kinapp y presentación del curso",
       description:
         "En este clase nos presentaremos, hablaremos de kinApp, describiremos la aplicación web y cuales son los objetivos del curso",
-      videoUrl:
-        "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
+      // videoUrl:
+      //   "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
     },
     {
       date: "20/05/2024",
@@ -29,8 +29,8 @@ const JumpClases = () => {
       subtitle: "Introducción al salto vertical",
       description:
         "En esta clase hablaremos sobre los tipos de salto y su importancia en el deporte y en el rendimiento y de los diferentes métodos de evalauación y entre ellos de las unidades inreciales de movimiento disponibles.",
-      videoUrl:
-        "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
+      // videoUrl:
+      //   "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
     },
     {
       date: "27/05/2024",
@@ -38,8 +38,8 @@ const JumpClases = () => {
       subtitle: "biomecánica y evaluación del sj y el cmj",
       description:
         "En esta clase abordaremos las bases biomecánicas de la evaluación de los saltos con y sin contramovimiento, las variables de interes y los datos obtenidos a través de las unidades inerciales y a través de video.",
-      videoUrl:
-        "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
+      // videoUrl:
+      //   "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
     },
     {
       date: "03/06/2024",
@@ -47,8 +47,8 @@ const JumpClases = () => {
       subtitle: "biomecánica y evaluación del drop jump y el stiffness",
       description:
         "En esta clase hablaremos de la dinámica del drop jump, la energía potencial elástica y de la aplicación de las herramientas disponibles para su evaluación.",
-      videoUrl:
-        "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
+      // videoUrl:
+      //   "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
     },
     {
       date: "10/06/2024",
@@ -56,8 +56,8 @@ const JumpClases = () => {
       subtitle: "Conclusiones del curso",
       description:
         "En esta clase realizaremos un resumen del curso, de la integración de las herramientas expuesta en la práctica diaria y realizaremos una encuesta final.",
-      videoUrl:
-        "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
+      // videoUrl:
+      //   "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
     },
   ];
   const handleHome = () => {

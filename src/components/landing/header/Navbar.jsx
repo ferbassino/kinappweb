@@ -24,15 +24,7 @@ function Navbar() {
         {user.userName === "" ? (
           <>
             <NavLink to="/login_form">Login</NavLink>
-
-            {/* <NavLink  to="/register">Registrarse</NavLink> */}
-            <NavLink
-              onClick={() =>
-                alert("Función dehabilitada, estamos trabajando en ello")
-              }
-            >
-              Registrarse
-            </NavLink>
+            <NavLink to="/register">Registrarse</NavLink>
           </>
         ) : (
           <>
