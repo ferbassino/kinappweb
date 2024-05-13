@@ -23,7 +23,7 @@ const Downloads = () => {
     const fileName = url.split("/").pop();
     aTag.href = url;
     aTag.setAttribute("download", fileName);
-    console.log(fileName);
+    console.log(url);
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
