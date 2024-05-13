@@ -3,10 +3,10 @@ import Navbar from "../../../components/landing/header/Navbar";
 import Footer from "../../../components/landing/footer/Footer";
 import "./Cursos.css";
 const Cursos = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 60, left: 0, behavior: "smooth" });
-  };
-  scrollToTop();
+  // const scrollToTop = () => {
+  //   window.scrollTo({ top: 60, left: 0, behavior: "smooth" });
+  // };
+  // scrollToTop();
   return (
     <div>
       <header>

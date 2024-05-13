@@ -1,6 +1,6 @@
 import React from "react";
 import ReactPlayer from "react-player";
-// import ReactPlayer from "react-player";
+
 import videoImage from "../../assets/video_image.jpg";
 import "./ClasesBlocks.css";
 const ClasesBlocks = ({ date, title, subtitle, description, videoUrl }) => {

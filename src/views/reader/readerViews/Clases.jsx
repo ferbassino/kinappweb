@@ -20,8 +20,8 @@ const JumpClases = () => {
       subtitle: "Entorno kinapp y presentación del curso",
       description:
         "En este clase nos presentaremos, hablaremos de kinApp, describiremos la aplicación web y cuales son los objetivos del curso",
-      // videoUrl:
-      //   "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
+      videoUrl:
+        "https://storage.googleapis.com/kinapp-web/jump-course/clases/clase1.mp4",
     },
     {
       date: "20/05/2024",

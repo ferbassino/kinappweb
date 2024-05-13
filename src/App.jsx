@@ -19,6 +19,7 @@ import Cursos from "./views/landing/capacitaciones/Cursos";
 import QuienesSomos from "./views/landing/conocenos/QuienesSomos";
 import WebApplication from "./views/landing/recursos-kinapp/WebApplication";
 import AvisoLegal from "./views/landing/mas/AvisoLegal";
+import Downloads from "./views/landing/descargas/Downloads";
 function App() {
   const { user } = useContext(testsContext);
   const [roles, setRoles] = useState("");
@@ -39,6 +40,7 @@ function App() {
       <Route path="/about_us" element={<QuienesSomos />} />
       <Route path="/web_application" element={<WebApplication />} />
       <Route path="/aviso_legal" element={<AvisoLegal />} />
+      <Route path="/downloads" element={<Downloads />} />
       <Route element={<ReaderRoutes roles={roles} />}>
         <Route path="/reader_profile" element={<ReaderProfile />} />
         <Route path="/clases" element={<Clases />} />

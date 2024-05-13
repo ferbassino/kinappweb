@@ -19,12 +19,13 @@ function Navbar() {
       <nav className="nav-navbar" ref={navRef}>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">Acerca de kinApp</NavLink>
+        <NavLink to="/downloads">Descargas</NavLink>
         <NavLink to="/courses">Capacitaciones</NavLink>
         <NavLink to="/about_us">Quienes somos</NavLink>
         {user.userName === "" ? (
           <>
             <NavLink to="/login_form">Login</NavLink>
-            <NavLink to="/register">Registrarse</NavLink>
+            {/* <NavLink to="/register">Registrarse</NavLink> */}
           </>
         ) : (
           <>

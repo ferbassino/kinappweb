@@ -11,11 +11,12 @@ const ProgramBlocks = ({
     <div className="block-programa">
       <div className="program-izq">
         <span className="semana">{semana}</span>
+        <br />
         <span className="semana">{fechaSemana}</span>
         <h2 className="titulo-semana">{title}</h2>
       </div>
       <div className="program-der">
-        <ul>
+        <ul className="ul-program">
           {videoArray.map((li, index) => (
             <li key={index} className="li-program">
               {li}

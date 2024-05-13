@@ -1,0 +1,120 @@
+.check{
+    width: 30px;
+    height: 30px;
+    color: #8f0000;
+}
+.down-container{
+    display: flex;
+    flex-direction: column;
+}
+.down-header-container{
+    padding: 1rem;
+    
+}
+.down-title-container{
+    text-align: center;
+}
+.down-title{
+margin-top: 2rem;
+margin-bottom: 2rem;
+}
+.down-subtitle{
+font-size: 1.3rem;
+margin-bottom: 2rem;
+}
+.down-ecosistema{
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+.down-items{
+    margin-top: 2rem;
+    width: 70%;
+    margin:0 auto;
+    margin-bottom: 2rem;
+}
+.down-item{
+    font-size: 2rem;
+    margin-left: 2rem;
+    font-size: 1.5rem;
+}
+.down-item-e-icon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+}
+.down-description-container{
+    padding: 1rem;
+}
+.down-desc-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.down-item-des{
+    margin-top: 2rem;
+}
+.down-desc{
+    margin-top: 2rem;
+    
+}
+.down-icon-container{
+    margin-top: 2rem;
+}
+.us-image{
+    width: 25%;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.android-container{
+    margin-top: 2rem;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .down-container{
+    max-width: 70%;
+    margin: 0 auto;
+}
+.down-desc-container{
+    display: flex;
+    flex-direction: row;
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.check{
+    width: 60px;
+    height: 60px;
+    color: #8f0000;
+  }
+
+.us-image{
+    width: 30%;
+    border-radius: 30px;
+}
+
+.down-title{
+margin-top: 3rem;
+margin-bottom: 3rem;
+font-size: 2rem;
+}
+.down-subtitle{
+font-size: 1.3rem;
+margin-bottom: 3rem;
+font-size: 1.5rem;
+}
+.down-ecosistema{
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+    font-size: 1.5rem;
+}
+.down-text-container{
+    max-width: 70%;
+    margin: 0 auto;
+}
+.down-desc-container{
+    margin-bottom: 5rem;
+}
+}

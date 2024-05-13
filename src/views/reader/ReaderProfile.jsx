@@ -3,6 +3,7 @@ import { testsContext } from "../../context/TestsContext";
 import { useContext } from "react";
 import ReaderItems from "../../components/reader/ReaderItems";
 import Navbar from "../../components/landing/header/Navbar";
+import Footer from "../../components/landing/footer/Footer";
 import "./ReaderProfile.css";
 const ReaderProfile = () => {
   const { user } = useContext(testsContext);
@@ -36,6 +37,9 @@ const ReaderProfile = () => {
           })}
         </div>
       </section>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };

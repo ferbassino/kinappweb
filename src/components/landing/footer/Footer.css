@@ -12,7 +12,9 @@
 }
 
 .footer-paragraph {
+  display: flex;
   max-width: 800px;
+  flex-direction: column;
   width: 100%;
   margin-bottom: 4rem;
   text-align: center;
@@ -30,6 +32,18 @@
   margin-top: 1rem;
 }
 
+.footer-footer-container{
+  margin-bottom: 8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.footer-footer-title{
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 /* Media query for desktop view */
 @media (min-width: 1039px) {
   .footer-container {

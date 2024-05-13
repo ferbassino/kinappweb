@@ -13,7 +13,10 @@ padding: 1.5rem;
 .li-program{
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
-   
+  
+}
+.ul-program{
+    list-style: none;
 }
 .encuentro{
     margin-top: 1rem;
