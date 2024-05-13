@@ -27,6 +27,7 @@ export const TestsContextProvider = ({ children }) => {
       setUser(user);
       setRoles(user.roles);
       if (user.roles === "jumpCourse2024") {
+        console.log("entrea a prof");
         navigate("/reader_profile");
       }
 

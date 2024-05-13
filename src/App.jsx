@@ -20,7 +20,9 @@ import QuienesSomos from "./views/landing/conocenos/QuienesSomos";
 import WebApplication from "./views/landing/recursos-kinapp/WebApplication";
 import AvisoLegal from "./views/landing/mas/AvisoLegal";
 function App() {
-  const { roles } = useContext(testsContext);
+  const { user } = useContext(testsContext);
+  const roles = user.roles;
+  console.log("roles en app", roles);
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
