@@ -1,0 +1,8 @@
+ .imu-container{
+margin-top: 2rem;
+padding: 1rem;
+ }
+.imu-title{margin-top: 3rem;font-size: 1.8rem; text-align: center;}
+.imu-text{margin-top: 3rem;font-size: 1.3rem;text-align: center;}
+.imu-title{margin-top: 3rem;}
+.imu-button{margin-top: 3rem;text-align: center;}

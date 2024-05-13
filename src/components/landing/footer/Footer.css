@@ -1,0 +1,44 @@
+/* ParagraphComponent.css */
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9; /* Very light gray background */
+  padding: 20px;
+  margin-top: 10rem;
+  margin-bottom: 3rem;
+  
+}
+
+.footer-paragraph {
+  max-width: 800px;
+  width: 100%;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.footer-title {
+  font-size: 16px;
+  color: #1b1b33; /* Dark blue color */
+  margin-bottom: 8px;
+}
+
+.footer-description {
+  font-size: 16px;
+  color: #1b1b33; /* Dark blue color */
+  margin-top: 1rem;
+}
+
+/* Media query for desktop view */
+@media (min-width: 1039px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-paragraph {
+    max-width: 20%;
+    margin-bottom: 0;
+  }
+}

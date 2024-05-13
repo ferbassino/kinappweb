@@ -1,0 +1,30 @@
+.boton {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #8f0000;
+  color: #fff;
+  border-radius: 5px;
+  border-radius: 3px;margin-top: 1rem;
+  font-size: 1.2rem;
+}
+.boton:hover{
+background-color:  #1b1b33
+}
+@media only screen and (min-width: 768px) {
+  
+
+  .boton {
+   
+    padding: 20px;
+    text-align: left;
+    background-color: #8f0000;
+    color: #ccc;;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    
+  }
+  .boton:hover {
+background-color:  #1b1b33;
+  }
+}

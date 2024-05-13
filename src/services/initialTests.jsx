@@ -1,0 +1,18 @@
+export const initialTest = {
+  id: "",
+  email: "",
+  motionType: "",
+  accData: "",
+  gyroData: "",
+  magData: "",
+  kinoveaData: "",
+  array: [],
+  testTime: 0,
+  age: 0,
+  weight: 0,
+  size: 0,
+  gender: "",
+  userId: "",
+  clientId: "",
+  date: "",
+};

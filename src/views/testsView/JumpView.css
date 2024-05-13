@@ -1,0 +1,49 @@
+.contenedor-tabla{
+     max-width: 40%;
+  overflow-x: auto;
+  margin: 0 auto;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+table{
+width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #333;
+  
+}
+caption{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+th, td{
+  border: 1px solid #666;
+  padding: 10px;
+}
+.chart-jump{
+    width: 60%;
+    margin:0 auto
+
+}
+ .jump-title-container{
+ width: 60%;
+  overflow-x: auto;
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+ }
+.jump-title{
+    margin-top: 2rem;
+}
+.jump-subtitle{ margin-top: 1rem;}
+.jump-jump{ margin-top: 1rem;}
+.jump-date{ margin-top: 1rem;}
+.jump-ref{ margin-top: 1rem;}
+.jump-masa{ margin-top: 1rem;}
+@media only screen and (max-width: 768px) {
+  .chart-jump{
+    width: 95%;
+    margin:0 auto
+}
+}

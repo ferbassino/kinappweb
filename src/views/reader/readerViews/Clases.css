@@ -1,0 +1,14 @@
+.clases-container{
+    padding: 1rem;
+}
+.titles-container{
+    margin: 1rem;
+    text-align: center;
+}
+.title{
+    font-size: 1.5rem;
+}
+.subtitle{
+    padding-top: 1rem;
+    font-size: 1.3rem;
+}

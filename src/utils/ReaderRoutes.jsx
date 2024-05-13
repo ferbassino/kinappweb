@@ -1,8 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 const ReaderRoutes = ({ roles, redirectPath = "/" }) => {
-  console.log(roles);
-  if (roles !== "reader") {
+  if (roles !== "editor") {
     return <Navigate to={redirectPath} replace />;
   }
   return <Outlet />;
