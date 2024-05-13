@@ -40,7 +40,7 @@ const Tests = () => {
 
     handleCurrentTest(dataObject);
   };
-  console.log("current test en test", currentTest);
+
   useEffect(() => {
     if (
       currentTest.motionType === "squat jump" ||

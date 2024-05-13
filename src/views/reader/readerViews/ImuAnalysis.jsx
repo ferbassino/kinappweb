@@ -27,7 +27,6 @@ const ImuAnalysis = () => {
   });
 
   const handleFiles = (files) => {
-    // console.log(files[0]);
     const reader = new FileReader();
     reader.onload = function (e) {
       const data = e.target.result;
@@ -38,7 +37,7 @@ const ImuAnalysis = () => {
       accY0.pop();
       const accY = [];
       accY0.map((el) => accY.push(Number(el)));
-      console.log(dataObj);
+
       const dataObject = {
         accY: accY,
         testTime: dataObj.testTimeInput,
@@ -51,7 +50,6 @@ const ImuAnalysis = () => {
       navigate("/jump_view");
       setAnalysisVisible(true);
       setInputVisible(false);
-      // console.log(sJAccYFinal);
     };
     reader.readAsText(files[0]);
   };

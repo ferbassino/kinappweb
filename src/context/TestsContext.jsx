@@ -21,7 +21,7 @@ export const TestsContextProvider = ({ children }) => {
 
   useEffect(() => {
     setUser({ userName: "" });
-    console.log("se ejecuta");
+
     const loggedUser = window.localStorage.getItem("user");
 
     if (loggedUser) {
@@ -29,7 +29,7 @@ export const TestsContextProvider = ({ children }) => {
       setUser(user);
       setRoles(user.roles);
 
-      if (user.roles === "jumpCourse2024") {
+      if (user.roles === "editor") {
         navigate("/reader_profile");
       }
 
