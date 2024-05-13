@@ -26,8 +26,8 @@ export const TestsContextProvider = ({ children }) => {
       const user = JSON.parse(loggedUser);
       setUser(user);
       setRoles(user.roles);
+
       if (user.roles === "jumpCourse2024") {
-        console.log("entrea a prof");
         navigate("/reader_profile");
       }
 
