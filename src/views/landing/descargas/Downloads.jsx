@@ -5,7 +5,8 @@ import Navbar from "../../../components/landing/header/Navbar";
 import Footer from "../../../components/landing/footer/Footer";
 import jumpLogo from "../../../assets/icon.png";
 import android from "../../../assets/android.png";
-const jumpApk = "https://kinapp-api.vercel.app/jump.apk";
+const jumpApk =
+  "https://storage.googleapis.com/kinapp-web/kinapp-web/apks/jump.apk";
 const Downloads = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
