@@ -32,17 +32,17 @@ function App() {
       <Route path="/about_us" element={<QuienesSomos />} />
       <Route path="/web_application" element={<WebApplication />} />
       <Route path="/aviso_legal" element={<AvisoLegal />} />
-      {/* <Route element={<ReaderRoutes roles={roles} />}> */}
-      <Route path="/reader_profile" element={<ReaderProfile />} />
-      <Route path="/clases" element={<Clases />} />
-      <Route path="/jump_video_analysis" element={<JumpVideoAnalysis />} />
-      <Route path="/imu_analysis" element={<ImuAnalysis />} />
-      <Route path="/jump_view" element={<JumpView />} />
-      <Route path="/jump_program" element={<Program />} />
-      {/* <Route path="/success-verification" element={<SuccessVerification />} /> */}
-      <Route path="/tests" element={<Tests />} />
-      {/* <Route path="/jump_test" element={<JumpTest />} /> */}
-      {/* </Route> */}
+      <Route element={<ReaderRoutes roles={roles} />}>
+        <Route path="/reader_profile" element={<ReaderProfile />} />
+        <Route path="/clases" element={<Clases />} />
+        <Route path="/jump_video_analysis" element={<JumpVideoAnalysis />} />
+        <Route path="/imu_analysis" element={<ImuAnalysis />} />
+        <Route path="/jump_view" element={<JumpView />} />
+        <Route path="/jump_program" element={<Program />} />
+        {/* <Route path="/success-verification" element={<SuccessVerification />} /> */}
+        <Route path="/tests" element={<Tests />} />
+        {/* <Route path="/jump_test" element={<JumpTest />} /> */}
+      </Route>
     </Routes>
   );
 }

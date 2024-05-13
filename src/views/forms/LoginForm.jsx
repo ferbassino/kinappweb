@@ -32,7 +32,7 @@ const LoginForm = () => {
     const credentials = { email: data.email, password: data.password };
     const getCurrentUser = async () => {
       const user = await login(credentials);
-      console.log(user);
+
       handleUser(user);
       navigate("/reader_profile");
     };

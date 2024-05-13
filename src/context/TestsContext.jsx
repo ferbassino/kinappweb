@@ -27,11 +27,9 @@ export const TestsContextProvider = ({ children }) => {
       setUser(user);
       setRoles(user.roles);
 
-      navigate("/reader_profile");
-
-      // if (user.roles === "jumpCourse2024") {
-      //   navigate("/reader_profile");
-      // }
+      if (user.roles === "jumpCourse2024") {
+        navigate("/reader_profile");
+      }
 
       const fetchUser = async () => {
         if (user.token !== null) {
