@@ -95,6 +95,11 @@ const LoginForm = () => {
           </div>
 
           <input id="submit" type="submit" name="enviar" />
+          <div className="forgot-container">
+            <NavLink to={"/forgot_password"} className="forgot">
+              ¿Olvidó la contraseña?
+            </NavLink>
+          </div>
         </form>
       </div>
     </>

@@ -20,6 +20,7 @@ import QuienesSomos from "./views/landing/conocenos/QuienesSomos";
 import WebApplication from "./views/landing/recursos-kinapp/WebApplication";
 import AvisoLegal from "./views/landing/mas/AvisoLegal";
 import Downloads from "./views/landing/descargas/Downloads";
+import ForgotPassword from "./views/forms/ForgotPassword";
 function App() {
   const { user } = useContext(testsContext);
   const [roles, setRoles] = useState("");
@@ -35,6 +36,7 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login_form" element={<LoginForm />} />
+      <Route path="/forgot_password" element={<ForgotPassword />} />
       <Route path="/about" element={<About />} />
       <Route path="/courses" element={<Cursos />} />
       <Route path="/about_us" element={<QuienesSomos />} />

@@ -38,6 +38,15 @@ input[type="submit"]:hover {
   
 }
 
+.forgot-container{
+  margin-top: 2rem;
+}
+
+.ingresar-mensaje{
+  margin-top: 4rem;
+  text-align: center;
+}
+
 /* Media queries para escritorio */
 @media only screen and (min-width: 768px) {
   .formulario-container {

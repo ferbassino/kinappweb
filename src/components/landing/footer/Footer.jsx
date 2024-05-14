@@ -35,24 +35,28 @@ const ParagraphComponent = () => {
           <p className="footer-title">kinappbiomechanics@gmail.com</p>
         </div>
         <div className="footer-footer">
-          <a
-            href="https://www.instagram.com/kinapp.dev?igsh=d21nYnhtaTJpdDJ0"
-            className="footer-title"
-            target="blanc"
-            rel="noopener"
-          >
-            Instagram
-          </a>
+          <div className="footer-title">
+            <a
+              href="https://www.instagram.com/kinapp.dev?igsh=d21nYnhtaTJpdDJ0"
+              className="footer-title"
+              target="blanc"
+              rel="noopener"
+            >
+              Instagram
+            </a>
+          </div>
         </div>
         <div className="footer-footer">
-          <a
-            href="https://www.facebook.com/share/2TLpi5BRKV5FhS7n/?mibextid=qi2Omg"
-            className="footer-title"
-            target="blanc"
-            rel="noopener"
-          >
-            facebook
-          </a>
+          <div className="footer-title">
+            <a
+              href="https://www.facebook.com/share/2TLpi5BRKV5FhS7n/?mibextid=qi2Omg"
+              className="footer-title"
+              target="blanc"
+              rel="noopener"
+            >
+              facebook
+            </a>
+          </div>
         </div>
       </div>
     </>
