@@ -1,0 +1,46 @@
+.menu-container {
+  text-align: center;
+}
+
+.titulo {
+    margin-top: 5rem;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+    margin-top: 2rem;
+  font-size: 18px;
+  margin-bottom: 3rem;
+}
+
+.botones-container {
+  
+  display: flex;
+  flex-direction: column;
+  margin:0 auto;
+  max-width: 70%;
+}
+
+
+
+/* Media queries para dispositivos de escritorio */
+@media only screen and (min-width: 768px) {
+  .botones-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+   
+   
+  }
+.titulo{
+    font-size: 2rem;
+}
+.subtitulo {
+    
+  font-size: 1.5rem;
+  
+}
+  
+}

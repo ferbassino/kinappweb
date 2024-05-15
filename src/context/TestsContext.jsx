@@ -1,11 +1,12 @@
 import { useEffect, useState, createContext, useContext } from "react";
 import { getAllTests } from "../services/testsServices";
 import { initialTest } from "../services/initialTests";
-import { getAllUsers } from "../services/userServices";
+import { getAllUsers, updateUser } from "../services/userServices";
 import { getAllClients } from "../services/clientServices";
 import client from "../api/client";
 import { useNavigate } from "react-router-dom";
 import logout from "../services/logout";
+import getDifferenceNowMonth from "../auxiliaries/basics/getDifferenceNowMonth";
 export const testsContext = createContext();
 
 export const TestsContextProvider = ({ children }) => {
@@ -18,6 +19,7 @@ export const TestsContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [roles, setRoles] = useState("");
   const [currentTest, setCurrentTest] = useState([]);
+  const [currentUser, setCurrentUser] = useState([]);
 
   useEffect(() => {
     setUser({ userName: "" });
@@ -26,12 +28,13 @@ export const TestsContextProvider = ({ children }) => {
 
     if (loggedUser) {
       const user = JSON.parse(loggedUser);
-      setUser(user);
-      setRoles(user.roles);
 
-      if (user.roles === "editor") {
-        navigate("/reader_profile");
-      }
+      // if (user.roles === "editor") {
+      //   navigate("/reader_profile");
+      // }
+      // if (user.roles === "admin") {
+      //   navigate("/admin_panel");
+      // }
 
       const fetchUser = async () => {
         if (user.token !== null) {
@@ -40,6 +43,41 @@ export const TestsContextProvider = ({ children }) => {
               Authorization: `JWT ${user.token}`,
             },
           });
+          if (res.data.success) {
+            setUser(user);
+            setRoles(user.roles);
+            if (user.roles === "editor") {
+              const { initialDate } = user;
+              const diasDesdeInicio = getDifferenceNowMonth(initialDate);
+              if (diasDesdeInicio > 31 && user.level === "cero") {
+                const changeExpiredRole = async () => {
+                  try {
+                    const id = user.id;
+                    const values = {
+                      roles: "reader",
+                    };
+
+                    const res = await updateUser(id, values);
+
+                    if (res.success) {
+                      localStorage.removeItem("user");
+                      logout();
+                    }
+                  } catch (error) {
+                    console.log(error);
+                  }
+                };
+                changeExpiredRole();
+              }
+              navigate("/reader_profile");
+            }
+            // if (user.roles === "reader") {
+            //   navigate("/reader_profile");
+            // }
+            if (user.roles === "admin") {
+              navigate("/admin_panel");
+            }
+          }
 
           // if (!res.data.verified) {
           //   setError("perfil no verificado");
@@ -49,18 +87,7 @@ export const TestsContextProvider = ({ children }) => {
           //   return;
           // }
 
-          // if (res.data.success) {
-          //   setUser(res.data.user);
-          //   if (user.roles === "admin") {
-          //     navigate("/admin");
-          //   }
-          //   if (user.roles === "jumpCourse2024") {
-          //     navigate("/reader_profile");
-          //   }
-          //   if (user.roles === "reader") {
-          //     console.log("entra a navegar");
-          //     navigate("/reader_profile");
-          //   }
+          //
           // } else {
           //   console.log("entra aca en el else");
           //   setUser({});
@@ -115,8 +142,10 @@ export const TestsContextProvider = ({ children }) => {
   useEffect(() => {
     fetchTests();
     fetchClients();
-    fetchUsers();
   }, []);
+  useEffect(() => {
+    fetchUsers();
+  }, [users]);
 
   // const handleUser = (user) => {
   //   setUser(user);
@@ -130,10 +159,16 @@ export const TestsContextProvider = ({ children }) => {
   const handleUser = (user) => {
     setUser(user);
   };
+  const handleUsers = (users) => {
+    setUsers(users);
+  };
 
   const handleLogout = () => {
     logout();
-    setUser({ userName: "" });
+    setUser({ userName: "", verified: false });
+  };
+  const handleCurrentUser = (user) => {
+    setCurrentUser(user);
   };
 
   return (
@@ -151,6 +186,9 @@ export const TestsContextProvider = ({ children }) => {
         currentTest,
         handleLogout,
         handleResetCurrentTest,
+        currentUser,
+        handleCurrentUser,
+        handleUsers,
       }}
     >
       {children}

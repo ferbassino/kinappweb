@@ -21,6 +21,12 @@ import WebApplication from "./views/landing/recursos-kinapp/WebApplication";
 import AvisoLegal from "./views/landing/mas/AvisoLegal";
 import Downloads from "./views/landing/descargas/Downloads";
 import ForgotPassword from "./views/forms/ForgotPassword";
+import AdminRoutes from "./utils/AdminRoutes";
+import AdminPanel from "./views/admin/AdminPanel";
+import Users from "./views/admin/admin_views/Users";
+import User from "./views/admin/admin_views/User";
+import ExpiredRoleMessage from "./components/messages/ExpiredRoleMessage";
+
 function App() {
   const { user } = useContext(testsContext);
   const [roles, setRoles] = useState("");
@@ -43,6 +49,7 @@ function App() {
       <Route path="/web_application" element={<WebApplication />} />
       <Route path="/aviso_legal" element={<AvisoLegal />} />
       <Route path="/downloads" element={<Downloads />} />
+      <Route path="/expired_role_message" element={<ExpiredRoleMessage />} />
       <Route element={<ReaderRoutes roles={roles} />}>
         <Route path="/reader_profile" element={<ReaderProfile />} />
         <Route path="/clases" element={<Clases />} />
@@ -53,6 +60,11 @@ function App() {
         {/* <Route path="/success-verification" element={<SuccessVerification />} /> */}
         <Route path="/tests" element={<Tests />} />
         {/* <Route path="/jump_test" element={<JumpTest />} /> */}
+      </Route>
+      <Route element={<AdminRoutes roles={roles} />}>
+        <Route path="/admin_panel" element={<AdminPanel />} />
+        <Route path="/admin_users" element={<Users />} />
+        <Route path="/admin_user" element={<User />} />
       </Route>
     </Routes>
   );

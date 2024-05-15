@@ -11,7 +11,6 @@ const login = async (credentials) => {
     if (data.user.verified) {
       const { user } = data;
       localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("session_date", Date.now());
     }
 
     return data.user;

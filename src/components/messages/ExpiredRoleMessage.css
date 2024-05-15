@@ -1,0 +1,25 @@
+.expired_role{
+    margin-top: 6rem;
+}
+.expired_title{
+    text-align: center;
+}
+.expired_subtitle1{
+    margin-top: 4rem;
+    text-align: center;
+}
+.expired_subtitle2{
+    margin-top: 4rem;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .expired_role{
+    width: 80%;
+    margin: 0 auto;
+}
+  .expired_title{
+    margin-top: 4rem;
+}
+}
+      

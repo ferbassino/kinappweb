@@ -25,13 +25,21 @@ function Navbar() {
         {user.userName === "" ? (
           <>
             <NavLink to="/login_form">Login</NavLink>
-            {/* <NavLink to="/register">Registrarse</NavLink> */}
+            <NavLink to="/register">Registrarse</NavLink>
           </>
         ) : (
           <>
-            <NavLink to="/reader_profile" onClick={handleResetCurrentTest}>
-              Perfil {user.userName}
-            </NavLink>
+            {user.roles === "admin" ? (
+              <NavLink to="/admin_panel" onClick={handleResetCurrentTest}>
+                Perfil {user.userName}
+              </NavLink>
+            ) : null}
+            {user.roles === "editor" ? (
+              <NavLink to="/reader_profile" onClick={handleResetCurrentTest}>
+                Perfil {user.userName}
+              </NavLink>
+            ) : null}
+
             <NavLink to="/" onClick={handleLogout}>
               Logout
             </NavLink>

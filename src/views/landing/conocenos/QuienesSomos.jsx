@@ -20,7 +20,7 @@ const QuienesSomos = () => {
           <div className="individual-container">
             <img
               alt="team"
-              className="us-image"
+              className="us-image1"
               src="https://storage.googleapis.com/kinapp-web/kinapp-web/quienes-somos/fer.jpeg"
             />
             <div className="us-desc-container">
@@ -83,7 +83,7 @@ const QuienesSomos = () => {
           <div className="individual-container">
             <img
               alt="team"
-              className="us-image"
+              className="us-image1"
               src="https://storage.googleapis.com/kinapp-web/kinapp-web/quienes-somos/juan.jpeg"
             />
             <div className="us-desc-container">
