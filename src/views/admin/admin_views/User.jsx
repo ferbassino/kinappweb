@@ -17,7 +17,7 @@ const User = () => {
   const [diasQueRestan, setDiasQueRestan] = useState(0);
 
   const [visible, setVisible] = useState(true);
-
+  console.log(currentUser);
   useEffect(() => {
     if (currentUser.roles === "editor" && currentUser.level === "cero") {
       const diasDesdeInicio = getDifferenceNowMonth(initialDate);

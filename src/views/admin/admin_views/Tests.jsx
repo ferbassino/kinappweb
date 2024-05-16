@@ -12,11 +12,6 @@ const Tests = () => {
   const { user, tests, handleCurrentTest, currentTest } =
     useContext(testsContext);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-  scrollToTop();
-
   const [userTests, setUserTests] = useState([]);
   const [testVisibles, setTestVisibles] = useState(true);
   const [noTestsVisible, setNoTestsVisible] = useState(false);
