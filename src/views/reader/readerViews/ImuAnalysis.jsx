@@ -10,9 +10,6 @@ import "./ImuAnalysis.css";
 const ImuAnalysis = () => {
   const { handleCurrentTest, currentTest } = useContext(testsContext);
   const navigate = useNavigate();
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
 
   const [analysisVisible, setAnalysisVisible] = useState(false);
   const [inputVisible, setInputVisible] = useState(true);

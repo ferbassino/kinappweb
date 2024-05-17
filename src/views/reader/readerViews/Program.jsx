@@ -6,10 +6,6 @@ import Footer from "../../../components/landing/footer/Footer";
 import "./Program.css";
 const Program = () => {
   const navigate = useNavigate();
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-  scrollToTop();
 
   const videoArray1 = [
     "Presentación de equipo y del entorno kinApp",

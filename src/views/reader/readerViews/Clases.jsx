@@ -9,10 +9,7 @@ const url =
 
 const JumpClases = () => {
   const navigate = useNavigate();
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-  scrollToTop();
+
   const blocks = [
     {
       date: "13/05/2024",

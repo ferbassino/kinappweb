@@ -17,9 +17,7 @@ import Footer from "../../../components/landing/footer/Footer";
 
 const JumpVideoAnalysis = () => {
   const navigate = useNavigate();
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
+
   const [verticalTimeArray, setVerticalTimeArray] = useState([]);
 
   const [kneeAngle, setKneeAngle] = useState([]);
@@ -248,7 +246,6 @@ const JumpVideoAnalysis = () => {
     setVerticalButtonVisible(true);
   };
   const handleReset = () => {
-    scrollToTop();
     setResetearVisible(false);
     setVerticalButtonVisible(false);
     setHorizontalButtonVisible(false);

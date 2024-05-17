@@ -8,10 +8,6 @@ import android from "../../../assets/android.png";
 const jumpApk =
   "https://storage.googleapis.com/kinapp-web/kinapp-web/apks/jump.apk";
 const Downloads = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-  scrollToTop();
   const items = [
     "Counter movement jump",
     "Squat jump",

@@ -8,10 +8,6 @@ import "./About.css";
 import Navbar from "../../../components/landing/header/Navbar";
 import Footer from "../../../components/landing/footer/Footer";
 const About = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-  scrollToTop();
   const items = [
     "Aplicación web",
     "Aplicaciones móviles",
