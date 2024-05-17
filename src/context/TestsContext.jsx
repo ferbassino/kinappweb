@@ -7,6 +7,7 @@ import client from "../api/client";
 import { useNavigate } from "react-router-dom";
 import logout from "../services/logout";
 import getDifferenceNowMonth from "../auxiliaries/basics/getDifferenceNowMonth";
+import { getAllApps } from "../services/appsServices";
 export const testsContext = createContext();
 
 export const TestsContextProvider = ({ children }) => {
@@ -20,6 +21,7 @@ export const TestsContextProvider = ({ children }) => {
   const [roles, setRoles] = useState("");
   const [currentTest, setCurrentTest] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
+  const [apps, setApps] = useState([]);
 
   useEffect(() => {
     setUser({ userName: "" });
@@ -139,9 +141,23 @@ export const TestsContextProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+  const fetchApps = async () => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      const data = await getAllApps();
+      setApps(data);
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   useEffect(() => {
     fetchTests();
     fetchClients();
+    fetchApps();
   }, []);
   useEffect(() => {
     fetchUsers();
@@ -189,6 +205,7 @@ export const TestsContextProvider = ({ children }) => {
         currentUser,
         handleCurrentUser,
         handleUsers,
+        apps,
       }}
     >
       {children}

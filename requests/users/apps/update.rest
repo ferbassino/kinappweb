@@ -1,0 +1,6 @@
+PUT  https://kinapp-api.vercel.app/api/imudata/664761c5e59f61ff53675683
+Content-Type: application/json
+
+{
+    "downloads": 1
+}

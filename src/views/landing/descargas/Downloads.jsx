@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 import "./Downloads.css";
 import Navbar from "../../../components/landing/header/Navbar";
 import Footer from "../../../components/landing/footer/Footer";
 import jumpLogo from "../../../assets/icon.png";
 import android from "../../../assets/android.png";
+import { testsContext } from "../../../context/TestsContext";
+import { updateApp } from "../../../services/appsServices";
 const jumpApk =
   "https://storage.googleapis.com/kinapp-web/kinapp-web/apks/jump.apk";
 const Downloads = () => {
+  const { apps } = useContext(testsContext);
+
+  const getJump = () => {
+    const jumpObj = apps.find((app) => app.name === "jump0");
+    return jumpObj;
+  };
+
+  // useEffect(() => {
+  //   getJump();
+  // }, []);
+
   const items = [
     "Counter movement jump",
     "Squat jump",
@@ -15,6 +28,23 @@ const Downloads = () => {
     "Stiffness",
   ];
   const handleAPK = (url) => {
+    const id = "664761c5e59f61ff53675683";
+    const jumpObj = getJump();
+
+    let oldDownloads = jumpObj.downloads;
+
+    const newDowunloads = (oldDownloads += 1);
+
+    const values = { downloads: newDowunloads };
+    try {
+      const updateDownloads = async () => {
+        const res = await updateApp(id, values);
+      };
+      updateDownloads();
+    } catch (error) {
+      console.log(error);
+    }
+
     const aTag = document.createElement("a");
     const fileName = url.split("/").pop();
     aTag.href = url;
