@@ -17,6 +17,8 @@ const LoginForm = () => {
   const { handleUser, user } = useContext(testsContext);
   const navigate = useNavigate();
   const [expiredMessageVisible, setExpiredMessageVisible] = useState(false);
+  const [errorMessageVisible, setErrorMessageVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const password = useRef(null);
   const {
@@ -38,37 +40,49 @@ const LoginForm = () => {
     try {
       const credentials = { email: data.email, password: data.password };
       const getCurrentUser = async () => {
-        const user = await login(credentials);
-        handleUser(user);
-        if (user.roles === "reader") {
-          navigate("/reader_profile");
-        }
-        if (user.roles === "editor") {
-          const { initialDate } = user;
-          const diasDesdeInicio = getDifferenceNowMonth(initialDate);
+        const res = await login(credentials);
+        if (!res.success) {
+          setErrorMessage(res.message);
+          setErrorMessageVisible(true);
+          setTimeout(() => {
+            setErrorMessageVisible(false);
+            setErrorMessage("");
+            reset();
+          }, 5000);
+        } else {
+          handleUser(res.user);
 
-          if (diasDesdeInicio > 31 && user.level === "cero") {
-            const changeExpiredRole = async () => {
-              try {
-                const id = user.id;
-                const values = {
-                  roles: "reader",
-                };
-                const res = await updateUser(id, values);
-                if (res.success) {
-                  localStorage.removeItem("user");
-                  logout();
-                }
-              } catch (error) {
-                console.log(error);
-              }
-            };
-            changeExpiredRole();
+          if (res.user.roles === "reader") {
+            navigate("/reader_profile");
           }
-          navigate("/reader_profile");
-        }
-        if (user.roles === "admin") {
-          navigate("/admin_panel");
+          if (res.user.roles === "admin") {
+            navigate("/admin_panel");
+          }
+          if (res.user.roles === "editor") {
+            console.log("entra editor");
+            const { initialDate } = res.user;
+            const diasDesdeInicio = getDifferenceNowMonth(initialDate);
+
+            if (diasDesdeInicio > 31 && res.user.level === "cero") {
+              const changeExpiredRole = async () => {
+                try {
+                  const id = res.user.id;
+                  const values = {
+                    roles: "reader",
+                  };
+                  const res = await updateUser(id, values);
+                  if (res.success) {
+                    localStorage.removeItem("user");
+                    logout();
+                  }
+                } catch (error) {
+                  console.log(error);
+                }
+              };
+              changeExpiredRole();
+            }
+            navigate("/reader_profile");
+          }
         }
       };
       getCurrentUser();
@@ -89,6 +103,12 @@ const LoginForm = () => {
         </>
       ) : (
         <>
+          {errorMessageVisible ? (
+            <h2 className="error-message">{errorMessage}</h2>
+          ) : (
+            <h2 className="error-message-ghost"> </h2>
+          )}
+
           <div className="formulario-container">
             <form className="formulario" onSubmit={onSubmit}>
               <div className="campo">

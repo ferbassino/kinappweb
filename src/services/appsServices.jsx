@@ -10,7 +10,6 @@ export const getApp = async (id) => {
   const res = await client.get(`/api/imudata/${id}`);
   if (!res.data.success) throw new Error("Response not ok");
   const data = await res.data.imuData;
-
   return data;
 };
 

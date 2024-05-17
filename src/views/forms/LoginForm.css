@@ -1,7 +1,7 @@
 .formulario-container {
   display: flex;
   justify-content: center; /* Centra horizontalmente en dispositivos móviles */
-  margin-top: 100px;
+  margin-top: 3rem;
 }
 
 .formulario {
@@ -46,6 +46,18 @@ input[type="submit"]:hover {
   margin-top: 4rem;
   text-align: center;
 }
+.error-message{
+  margin-top: 8rem;
+  text-align: center;
+  color:#db0209;
+  width: 90%;
+  
+}
+.error-message-ghost{
+  margin-top: 8rem;
+  height: 2rem;
+  text-align: center;
+}
 
 /* Media queries para escritorio */
 @media only screen and (min-width: 768px) {
@@ -56,4 +68,9 @@ input[type="submit"]:hover {
   .formulario {
     width: 400px;
   }
+  .error-message{
+   text-align: center;
+    width: 90%;
+  
+}
 }

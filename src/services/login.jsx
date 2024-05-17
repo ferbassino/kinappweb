@@ -7,22 +7,20 @@ const login = async (credentials) => {
       email,
       password,
     });
-
-    if (data.user.verified) {
-      const { user } = data;
-      localStorage.setItem("user", JSON.stringify(user));
+    if (!data.success) {
+      return { success: false, message: data.message };
+    } else {
+      if (!data.user.verified) {
+        return { success: false, message: "unverified email" };
+      }
     }
-
-    return data.user;
+    const user = data.user;
+    localStorage.setItem("user", JSON.stringify(user));
+    return { success: true, user };
   } catch (error) {
     if (error?.response?.data) {
       return error.response.data;
     }
-    console.log(`signIn method error: ${error}`);
-    return {
-      success: false,
-      error: error.message,
-    };
   }
 };
 

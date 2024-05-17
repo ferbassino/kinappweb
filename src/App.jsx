@@ -29,13 +29,6 @@ import ExpiredRoleMessage from "./components/messages/ExpiredRoleMessage";
 
 function App() {
   const { user } = useContext(testsContext);
-  const [roles, setRoles] = useState("");
-
-  useEffect(() => {
-    if (user) {
-      setRoles(user.roles);
-    }
-  }, [user]);
 
   return (
     <Routes>
@@ -50,7 +43,7 @@ function App() {
       <Route path="/aviso_legal" element={<AvisoLegal />} />
       <Route path="/downloads" element={<Downloads />} />
       <Route path="/expired_role_message" element={<ExpiredRoleMessage />} />
-      <Route element={<ReaderRoutes roles={roles} />}>
+      <Route element={<ReaderRoutes roles={user.roles} />}>
         <Route path="/reader_profile" element={<ReaderProfile />} />
         <Route path="/clases" element={<Clases />} />
         <Route path="/jump_video_analysis" element={<JumpVideoAnalysis />} />
@@ -61,7 +54,7 @@ function App() {
         <Route path="/tests" element={<Tests />} />
         {/* <Route path="/jump_test" element={<JumpTest />} /> */}
       </Route>
-      <Route element={<AdminRoutes roles={roles} />}>
+      <Route element={<AdminRoutes roles={user.roles} />}>
         <Route path="/admin_panel" element={<AdminPanel />} />
         <Route path="/admin_users" element={<Users />} />
         <Route path="/admin_user" element={<User />} />
