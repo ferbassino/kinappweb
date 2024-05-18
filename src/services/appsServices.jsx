@@ -6,6 +6,12 @@ export const getAllApps = async () => {
   const data = await res.data.imuDatas;
   return data;
 };
+export const getAllDownloadedJumps = async () => {
+  const res = await client.get("/api/imudata/664761c5e59f61ff53675683");
+  if (!res.data.success) throw new Error("Response not ok");
+  const data = await res.data.imuData.downloads;
+  return data;
+};
 export const getApp = async (id) => {
   const res = await client.get(`/api/imudata/${id}`);
   if (!res.data.success) throw new Error("Response not ok");

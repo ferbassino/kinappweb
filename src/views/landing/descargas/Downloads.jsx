@@ -17,10 +17,6 @@ const Downloads = () => {
     return jumpObj;
   };
 
-  // useEffect(() => {
-  //   getJump();
-  // }, []);
-
   const items = [
     "Counter movement jump",
     "Squat jump",

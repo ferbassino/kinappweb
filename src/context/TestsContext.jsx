@@ -7,7 +7,7 @@ import client from "../api/client";
 import { useNavigate } from "react-router-dom";
 import logout from "../services/logout";
 import getDifferenceNowMonth from "../auxiliaries/basics/getDifferenceNowMonth";
-import { getAllApps } from "../services/appsServices";
+import { getAllApps, getAllDownloadedJumps } from "../services/appsServices";
 export const testsContext = createContext();
 
 export const TestsContextProvider = ({ children }) => {
@@ -22,6 +22,7 @@ export const TestsContextProvider = ({ children }) => {
   const [currentTest, setCurrentTest] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
   const [apps, setApps] = useState([]);
+  const [downloadedJumpApp, setDownloadedJumpApp] = useState(0);
 
   useEffect(() => {
     setUser({ userName: "" });
@@ -141,11 +142,28 @@ export const TestsContextProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+  const fetchDownloadsJump = async () => {
+    try {
+      setError(null);
+      setIsLoading(true);
+
+      const data = await getAllDownloadedJumps();
+
+      setDownloadedJumpApp(data);
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const fetchApps = async () => {
     try {
       setError(null);
       setIsLoading(true);
+
       const data = await getAllApps();
+
       setApps(data);
     } catch (error) {
       console.log(error);
@@ -157,6 +175,7 @@ export const TestsContextProvider = ({ children }) => {
   useEffect(() => {
     fetchTests();
     fetchClients();
+    fetchDownloadsJump();
     fetchApps();
   }, []);
   useEffect(() => {
@@ -205,6 +224,7 @@ export const TestsContextProvider = ({ children }) => {
         currentUser,
         handleCurrentUser,
         handleUsers,
+        downloadedJumpApp,
         apps,
       }}
     >
