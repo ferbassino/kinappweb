@@ -4,7 +4,7 @@ const Payment = () => {
   return (
     <div className="payment-container">
       <div className="payment-column">
-        <h1 className="h1-payment">LECTOR</h1>
+        <h1 className="h1-payment">USUARIO FREE</h1>
         <h2 className="h2-payment">✅ Descarga de Jump.apk</h2>
         <h2 className="h2-payment">
           ✅ Acceso a variables cinemáticas y gráficas del entorno
@@ -21,7 +21,7 @@ const Payment = () => {
         <p className="p-payment">FREE</p>
       </div>
       <div className="payment-column">
-        <h1 className="h1-payment">EDITOR</h1>
+        <h1 className="h1-payment">USUARIO COMPLETO</h1>
         <h2 className="h2-payment">✅ Descarga de Jump.apk</h2>
         <h2 className="h2-payment">
           ✅ Acceso a variables cinemáticas y gráficas del entorno

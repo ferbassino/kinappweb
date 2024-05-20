@@ -5,6 +5,7 @@ import Blocks from "../../components/landing/main/Blocks";
 import Footer from "../../components/landing/footer/Footer";
 import Statistics from "./statistics/Statistics";
 import Payment from "./payment/Payment";
+
 const Landing = () => {
   return (
     <>
@@ -13,11 +14,9 @@ const Landing = () => {
       </header>
       <main>
         <Hero />
-        <section>
-          <Statistics />
-          <Payment />
-          <Blocks />
-        </section>
+        <Statistics />
+        {/* <Payment /> */}
+        <Blocks />
       </main>
 
       <footer>

@@ -1,5 +1,5 @@
 import Block from "./Block";
-
+import "./Blocks.css";
 const Blocks = () => {
   const items = [
     {
