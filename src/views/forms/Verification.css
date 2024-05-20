@@ -1,0 +1,47 @@
+.main-verification{
+  height: 50vh;
+}
+
+.verification-container{
+   margin-top: 5rem;
+}
+.input-verification-container{
+   margin: 0 auto;
+  width: 20%;
+  text-align: center;
+}
+
+.title-verification-container{
+   margin: 0 auto;
+  width: 50%;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.input-verification{
+   width: 50%;
+  font-size: 2rem;
+  text-align: center;
+}
+#input-submit-verification-container{
+  margin-top: 3rem;
+  text-align: center;
+  
+}
+#input-submit-verification{
+  width: 10rem;
+  
+}
+
+@media only screen and (max-width: 768px) {
+  .input-verification-container{
+    width: 60%;
+  
+}
+.title-verification-container{
+   margin: 0 auto;
+  width: 80%;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+}

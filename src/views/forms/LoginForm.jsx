@@ -9,12 +9,15 @@ import { testsContext } from "../../context/TestsContext";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import getDifferenceNowMonth from "../../auxiliaries/basics/getDifferenceNowMonth";
+
 import { updateUser } from "../../services/userServices";
+
 import ExpiredRoleMessage from "../../components/messages/ExpiredRoleMessage";
 import logout from "../../services/logout";
 
 const LoginForm = () => {
-  const { handleUser, user } = useContext(testsContext);
+  const { handleUser, users } = useContext(testsContext);
+
   const navigate = useNavigate();
   const [expiredMessageVisible, setExpiredMessageVisible] = useState(false);
   const [errorMessageVisible, setErrorMessageVisible] = useState(false);
@@ -39,17 +42,35 @@ const LoginForm = () => {
   const onSubmit = handleSubmit((data) => {
     try {
       const credentials = { email: data.email, password: data.password };
-      const getCurrentUser = async () => {
-        const res = await login(credentials);
-        if (!res.success) {
-          setErrorMessage(res.message);
-          setErrorMessageVisible(true);
-          setTimeout(() => {
-            setErrorMessageVisible(false);
-            setErrorMessage("");
-            reset();
-          }, 5000);
-        } else {
+      const currentUser = users.find((user) => user.email === data.email);
+
+      const userId = currentUser._id;
+      if (!currentUser.verified) {
+        setErrorMessage(
+          "El email no está verificado, por favor chequee su correo para encontrar el número que hemos enviado."
+        );
+        setErrorMessageVisible(true);
+        setTimeout(() => {
+          setErrorMessageVisible(false);
+          setErrorMessage("");
+          navigate(`/verification/${userId}`);
+          return;
+        }, 5000);
+      } else {
+        const getCurrentUser = async () => {
+          const res = await login(credentials);
+
+          if (!res.success) {
+            setErrorMessage(res.message);
+            setErrorMessageVisible(true);
+            setTimeout(() => {
+              setErrorMessageVisible(false);
+              setErrorMessage("");
+              reset();
+              return;
+            }, 5000);
+          }
+
           handleUser(res.user);
 
           if (res.user.roles === "reader") {
@@ -59,7 +80,6 @@ const LoginForm = () => {
             navigate("/admin_panel");
           }
           if (res.user.roles === "editor") {
-            console.log("entra editor");
             const { initialDate } = res.user;
             const diasDesdeInicio = getDifferenceNowMonth(initialDate);
 
@@ -83,10 +103,10 @@ const LoginForm = () => {
             }
             navigate("/reader_profile");
           }
-        }
-      };
-      getCurrentUser();
-      reset();
+        };
+        getCurrentUser();
+        reset();
+      }
     } catch (error) {
       console.log(error);
     }

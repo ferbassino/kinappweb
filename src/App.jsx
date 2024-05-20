@@ -26,6 +26,7 @@ import AdminPanel from "./views/admin/AdminPanel";
 import Users from "./views/admin/admin_views/Users";
 import User from "./views/admin/admin_views/User";
 import ExpiredRoleMessage from "./components/messages/ExpiredRoleMessage";
+import Verification from "./views/forms/Verification";
 
 function App() {
   const { user } = useContext(testsContext);
@@ -43,6 +44,7 @@ function App() {
       <Route path="/aviso_legal" element={<AvisoLegal />} />
       <Route path="/downloads" element={<Downloads />} />
       <Route path="/expired_role_message" element={<ExpiredRoleMessage />} />
+      <Route path="/verification/:userId" element={<Verification />} />
       <Route element={<ReaderRoutes roles={user.roles} />}>
         <Route path="/reader_profile" element={<ReaderProfile />} />
         <Route path="/clases" element={<Clases />} />

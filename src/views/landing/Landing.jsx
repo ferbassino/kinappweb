@@ -14,8 +14,8 @@ const Landing = () => {
       <main>
         <Hero />
         <section>
-          {/* <Statistics />
-          <Payment /> */}
+          <Statistics />
+          <Payment />
           <Blocks />
         </section>
       </main>

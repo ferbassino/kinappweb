@@ -17,7 +17,7 @@ export const TestsContextProvider = ({ children }) => {
   const [clients, setClients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ userName: "", roles: "" });
   const [roles, setRoles] = useState("");
   const [currentTest, setCurrentTest] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
@@ -26,19 +26,14 @@ export const TestsContextProvider = ({ children }) => {
 
   useEffect(() => {
     setUser({ userName: "" });
-
     const loggedUser = window.localStorage.getItem("user");
 
     if (loggedUser) {
       const user = JSON.parse(loggedUser);
-
-      // if (user.roles === "editor") {
-      //   navigate("/reader_profile");
+      // if (!user.verified) {
+      //   navigate("/");
+      //   return;
       // }
-      // if (user.roles === "admin") {
-      //   navigate("/admin_panel");
-      // }
-
       const fetchUser = async () => {
         if (user.token !== null) {
           const res = await client.get("/profile", {
@@ -74,28 +69,11 @@ export const TestsContextProvider = ({ children }) => {
               }
               navigate("/reader_profile");
             }
-            // if (user.roles === "reader") {
-            //   navigate("/reader_profile");
-            // }
+
             if (user.roles === "admin") {
               navigate("/admin_panel");
             }
           }
-
-          // if (!res.data.verified) {
-          //   setError("perfil no verificado");
-          //   setTimeout(() => {
-          //     setError(false);
-          //   }, 5000);
-          //   return;
-          // }
-
-          //
-          // } else {
-          //   console.log("entra aca en el else");
-          //   setUser({});
-          //   navigate("/");
-          // }
         }
       };
       fetchUser();

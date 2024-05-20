@@ -26,8 +26,8 @@ const JumpClases = () => {
       subtitle: "Introducción al salto vertical",
       description:
         "En esta clase hablaremos sobre los tipos de salto y su importancia en el deporte y en el rendimiento y de los diferentes métodos de evalauación y entre ellos de las unidades inreciales de movimiento disponibles.",
-      // videoUrl:
-      //   "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
+      videoUrl:
+        "https://storage.googleapis.com/kinapp-web/jump-course/clases/Clase%202%20curso%20kinApp.mp4",
     },
     {
       date: "27/05/2024",

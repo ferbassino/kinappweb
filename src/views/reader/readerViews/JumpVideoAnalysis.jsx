@@ -164,11 +164,16 @@ const JumpVideoAnalysis = () => {
   //   }
   // };
   const jumpVideoCSVAnalysisFunction = () => {
-    const { hipAngleArr, kneeAngleArr, ankleAngleArr, verticalTimeArr } =
-      jumpVideoCSVAnalysis(verticalString, horizontalString);
+    const {
+      hipAngleArr,
+      kneeAngleArr,
+      ankleAngleArr,
+      verticalTimeArr,
+      ankle2AngleArr,
+    } = jumpVideoCSVAnalysis(verticalString, horizontalString);
     sethipAngleArray(hipAngleArr);
     setKneeAngle(kneeAngleArr);
-    setAnkleAngle(ankleAngleArr);
+    setAnkleAngle(ankle2AngleArr);
     setVerticalTimeArray(verticalTimeArr);
     setAnalizarVisible(false);
     setAnalysisVisible(true);

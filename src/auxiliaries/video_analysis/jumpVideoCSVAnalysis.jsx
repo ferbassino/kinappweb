@@ -75,6 +75,7 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
   const tArray = [];
   const lArray = [];
   const fArray = [];
+  const fArray2 = [];
 
   // t se forma con los puntos de trocanter y condilo
   // l se forma con el de condilo y maleolo
@@ -94,12 +95,17 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
       quintoMArr[index][1] - maleoloArr[index][1],
       quintoMArr[index][0] - maleoloArr[index][0],
     ]);
+    fArray2.push([
+      quintoMArr[index][1] - calcaneoArr[index][1],
+      quintoMArr[index][0] - calcaneoArr[index][0],
+    ]);
   });
 
-  // producto vectorial
+  // producto escalar
   const dotProductVT = [];
   const dotProductTL = [];
   const dotProductLF = [];
+  const dotProductLF2 = [];
 
   tArray.map((el, index) => {
     dotProductVT.push(
@@ -111,6 +117,10 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
     dotProductLF.push(
       lArray[index][0] * fArray[index][0] + lArray[index][1] * fArray[index][1]
     );
+    dotProductLF2.push(
+      lArray[index][0] * fArray2[index][0] +
+        lArray[index][1] * fArray2[index][1]
+    );
   });
 
   //producto de los modulos
@@ -118,6 +128,7 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
   const tModule = [];
   const lModule = [];
   const fModule = [];
+  const f2Module = [];
   tArray.map((el, index) => {
     vModule.push(
       Math.sqrt(Math.pow(vArray[index][0], 2) + Math.pow(vArray[index][1], 2))
@@ -132,38 +143,97 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
     fModule.push(
       Math.sqrt(Math.pow(fArray[index][0], 2) + Math.pow(fArray[index][1], 2))
     );
+    f2Module.push(
+      Math.sqrt(Math.pow(fArray2[index][0], 2) + Math.pow(fArray2[index][1], 2))
+    );
   });
 
   const moduleVTProduct = [];
   const moduleTLProduct = [];
   const moduleLFProduct = [];
+  const moduleLF2Product = [];
   tModule.map((el, index) => {
     moduleVTProduct.push(vModule[index] * tModule[index]);
     moduleTLProduct.push(tModule[index] * lModule[index]);
     moduleLFProduct.push(lModule[index] * fModule[index]);
+    moduleLF2Product.push(lModule[index] * f2Module[index]);
   });
 
   const hipAngleArr = [];
   const kneeAngleArr = [];
   const ankleAngleArr = [];
+  const ankle2AngleArr = [];
+
+  // para articulacion de la cadera derecha el condicional seria
+  // if (dotProductVT[index] < 0) {
+  //   hipAngleArr.push(
+  //     180 -
+  //       (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180) /
+  //         Math.PI
+  //   );
+  // } else {
+  //   hipAngleArr.push(
+  //     (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180 * -1) /
+  //       Math.PI
+  //   );
+  // }
+
+  // lado iquierdo cadera
+  // if (dotProductVT[index] < 0) {
+  //   console.log("esta es la teta");
+  //   hipAngleArr.push(
+  //     (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180) /
+  //       Math.PI -
+  //       180
+  //   );
+  // } else {
+  //   hipAngleArr.push(
+  //     (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180) / Math.PI
+  //   );
+  // }
 
   moduleTLProduct.map((el, index) => {
-    hipAngleArr.push(
-      (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180) / Math.PI
-    );
+    if (dotProductVT[index] < 0) {
+      hipAngleArr.push(
+        180 -
+          (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180) /
+            Math.PI
+      );
+    } else {
+      hipAngleArr.push(
+        (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180 * -1) /
+          Math.PI
+      );
+    }
+    // if (dotProductVT[index] ) {
+    //   console.log("entra");
+    //   kneeAngleArr.push(
+    //     (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180 * -1) /
+    //       Math.PI
+    //   );
+    // } else {
     kneeAngleArr.push(
-      (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180) / Math.PI
+      180 -
+        (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180) /
+          Math.PI
     );
+    // }
+
     ankleAngleArr.push(
       (Math.acos(dotProductLF[index] / moduleLFProduct[index]) * 180) / Math.PI
     );
+    ankle2AngleArr.push(
+      (Math.acos(dotProductLF2[index] / moduleLF2Product[index]) * 180) /
+        Math.PI
+    );
   });
-  console.log(hipAngleArr);
+
   return {
     hipAngleArr,
     kneeAngleArr,
     ankleAngleArr,
     verticalTimeArr,
+    ankle2AngleArr,
   };
 };
 

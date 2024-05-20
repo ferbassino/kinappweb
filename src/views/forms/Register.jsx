@@ -1,14 +1,20 @@
 import { NavLink } from "react-router-dom";
 import Navbar from "../../components/landing/header/Navbar";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useRef } from "react";
-
 import { testsContext } from "../../context/TestsContext";
 import login from "../../services/login";
 import "./LoginForm.css";
+import client from "../../api/client";
+import { useNavigate } from "react-router-dom";
 const Register = () => {
+  const navigate = useNavigate();
   const password = useRef(null);
+  const { user, handleUser } = useContext(testsContext);
+  const [errorMessageVisible, setErrorMessageVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -25,16 +31,53 @@ const Register = () => {
     },
   });
   password.current = watch("password", "");
-
+  // {"email":"oestebiomecanica@gmail.com"}
+  // {"email":"kinappbiomechanics@gmail.com"}
   const onSubmit = handleSubmit((data) => {
-    const user = login;
-    alert(JSON.stringify(data));
+    const signUp = async () => {
+      try {
+        const response = await client.post("/create-user", {
+          ...data,
+        });
+
+        if (response.data.success) {
+          const res = await client.post("/sign-in", {
+            email: response.data.user.email,
+            password: data.password,
+          });
+
+          if (res.data.success) {
+            navigate(`/verification/${res.data.user.id}`);
+          }
+        }
+        if (!response.data.success) {
+          setErrorMessage(response.data.message);
+          setErrorMessageVisible(true);
+          setTimeout(() => {
+            setErrorMessage("");
+            setErrorMessageVisible(false);
+          }, 5000);
+        }
+      } catch (error) {
+        if (error?.response?.data) {
+          return error.response.data;
+        }
+
+        return { success: false, error: error.message };
+      }
+    };
+    signUp();
     reset();
   });
 
   return (
     <>
       <Navbar />
+      {errorMessageVisible ? (
+        <h2 className="error-message-register">{errorMessage}</h2>
+      ) : (
+        <h2 className="error-message-ghost-registes"> </h2>
+      )}
       <div className="formulario-container">
         <form className="formulario" onSubmit={onSubmit}>
           <div className="campo">
