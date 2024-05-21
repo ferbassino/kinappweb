@@ -117,7 +117,7 @@ const stiffnessAnalysis = (accY = [], testTimeInput = 0, weight = 0) => {
   const d = tC / 4;
 
   const stiffness = parseInt(a / (b * (c + d)));
-  console.log(stiffness);
+
   const stiffnessData = {
     tC34,
     tC56,

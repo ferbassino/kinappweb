@@ -143,7 +143,6 @@ const dropJumpAnalysis = (accY = [], testTimeInput = 0, weight = 0) => {
     propulsiveDistanceDJ,
     validationDJ,
   };
-  console.log(dJDataObject);
 
   return { dJDataObject };
 };

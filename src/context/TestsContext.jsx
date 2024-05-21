@@ -155,10 +155,8 @@ export const TestsContextProvider = ({ children }) => {
     fetchClients();
     fetchDownloadsJump();
     fetchApps();
-  }, []);
-  useEffect(() => {
     fetchUsers();
-  }, [users]);
+  }, []);
 
   // const handleUser = (user) => {
   //   setUser(user);

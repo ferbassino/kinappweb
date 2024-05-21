@@ -14,6 +14,7 @@ import { updateUser } from "../../services/userServices";
 
 import ExpiredRoleMessage from "../../components/messages/ExpiredRoleMessage";
 import logout from "../../services/logout";
+import { useEffect } from "react";
 
 const LoginForm = () => {
   const { handleUser, users } = useContext(testsContext);
@@ -67,41 +68,40 @@ const LoginForm = () => {
               setErrorMessageVisible(false);
               setErrorMessage("");
               reset();
-              return;
             }, 5000);
-          }
+          } else {
+            handleUser(res.user);
 
-          handleUser(res.user);
-
-          if (res.user.roles === "reader") {
-            navigate("/reader_profile");
-          }
-          if (res.user.roles === "admin") {
-            navigate("/admin_panel");
-          }
-          if (res.user.roles === "editor") {
-            const { initialDate } = res.user;
-            const diasDesdeInicio = getDifferenceNowMonth(initialDate);
-
-            if (diasDesdeInicio > 31 && res.user.level === "cero") {
-              const changeExpiredRole = async () => {
-                try {
-                  const id = res.user.id;
-                  const values = {
-                    roles: "reader",
-                  };
-                  const res = await updateUser(id, values);
-                  if (res.success) {
-                    localStorage.removeItem("user");
-                    logout();
-                  }
-                } catch (error) {
-                  console.log(error);
-                }
-              };
-              changeExpiredRole();
+            if (res.user.roles === "reader") {
+              navigate("/reader_profile");
             }
-            navigate("/reader_profile");
+            if (res.user.roles === "admin") {
+              navigate("/admin_panel");
+            }
+            if (res.user.roles === "editor") {
+              const { initialDate } = res.user;
+              const diasDesdeInicio = getDifferenceNowMonth(initialDate);
+
+              if (diasDesdeInicio > 31 && res.user.level === "cero") {
+                const changeExpiredRole = async () => {
+                  try {
+                    const id = res.user.id;
+                    const values = {
+                      roles: "reader",
+                    };
+                    const res = await updateUser(id, values);
+                    if (res.success) {
+                      localStorage.removeItem("user");
+                      logout();
+                    }
+                  } catch (error) {
+                    console.log(error);
+                  }
+                };
+                changeExpiredRole();
+              }
+              navigate("/reader_profile");
+            }
           }
         };
         getCurrentUser();
