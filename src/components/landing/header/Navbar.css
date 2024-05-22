@@ -12,6 +12,11 @@
 .kinapp{
 	color: var(--textColor);
 	background-color: var(--mainColor);
+	font-size: 2rem;
+}
+.kinapp:hover{
+	color:  var(--secondaryColor);
+	background-color: var(--mainColor);
 }
 
 .navbar-header {

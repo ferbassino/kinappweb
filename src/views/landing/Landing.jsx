@@ -12,10 +12,11 @@ const Landing = () => {
       <header>
         <Navbar />
       </header>
+
       <main>
         <Hero />
         <Statistics />
-        {/* <Payment /> */}
+        <Payment />
         <Blocks />
       </main>
 

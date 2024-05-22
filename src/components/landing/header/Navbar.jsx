@@ -15,11 +15,13 @@ function Navbar() {
 
   return (
     <header className="navbar-header">
-      <h3 className="kinapp">kinApp</h3>
+      <NavLink to="/">
+        <h3 className="kinapp ">kinApp</h3>
+      </NavLink>
       <nav className="nav-navbar" ref={navRef}>
-        <NavLink to="/">Home</NavLink>
         <NavLink to="/about">Acerca de kinApp</NavLink>
         <NavLink to="/downloads">Descargas</NavLink>
+        <NavLink to="/products">Productos</NavLink>
         <NavLink to="/courses">Capacitaciones</NavLink>
         <NavLink to="/about_us">Quienes somos</NavLink>
         {user.userName === "" ? (

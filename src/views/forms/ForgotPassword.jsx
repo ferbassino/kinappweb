@@ -38,7 +38,7 @@ const ForgotPassword = () => {
   const onSubmit = handleSubmit((data) => {
     setLoginPending(true);
     setEmail(data.email);
-    console.log(email);
+
     try {
       const getResponseForgot = async () => {
         const res = await client.post("/forgot-password", {

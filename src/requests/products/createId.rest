@@ -1,0 +1,9 @@
+POST http://localhost:3001/create_preference
+Content-Type: application/json
+
+{
+    "title":"banana",
+    "quantity": 1,
+    "price":30000
+
+}

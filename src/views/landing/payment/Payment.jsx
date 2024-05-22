@@ -1,10 +1,15 @@
 import React from "react";
 import "./Payment.css";
+import { useNavigate } from "react-router-dom";
 const Payment = () => {
+  const navigate = useNavigate();
+  const handleFullUser = () => {
+    navigate("/products");
+  };
   return (
     <div className="payment-container">
       <div className="payment-column">
-        <h1 className="h1-payment">USUARIO FREE</h1>
+        <h1 className="h1-payment">FREE USER</h1>
         <h2 className="h2-payment">✅ Descarga de Jump.apk</h2>
         <h2 className="h2-payment">
           ✅ Acceso a variables cinemáticas y gráficas del entorno
@@ -20,8 +25,11 @@ const Payment = () => {
         <h2 className="h2-payment">❌ Entorno personalizado</h2>
         <p className="p-payment">FREE</p>
       </div>
-      <div className="payment-column">
-        <h1 className="h1-payment">USUARIO COMPLETO</h1>
+      <div
+        className="payment-column payment-column-full"
+        onClick={handleFullUser}
+      >
+        <h1 className="h1-payment">FULL USER</h1>
         <h2 className="h2-payment">✅ Descarga de Jump.apk</h2>
         <h2 className="h2-payment">
           ✅ Acceso a variables cinemáticas y gráficas del entorno
