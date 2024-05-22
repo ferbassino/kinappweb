@@ -6,8 +6,10 @@ import client from "../../../api/client";
 import { useState } from "react";
 import Navbar from "../../../components/landing/header/Navbar";
 import Footer from "../../../components/landing/footer/Footer";
-
+import { useParams } from "react-router-dom";
 const Products = () => {
+  let data = useParams();
+  console.log(data);
   const [preferenceId, setPreferenceId] = useState(null);
   initMercadoPago(`APP_USR-8e90396a-fd28-4c24-81e4-812af239461f`, {
     locale: "es-AR",
