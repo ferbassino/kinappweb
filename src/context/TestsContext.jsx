@@ -13,6 +13,7 @@ export const testsContext = createContext();
 export const TestsContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const [tests, setTests] = useState([]);
+  const [test, setTest] = useState([]);
   const [users, setUsers] = useState([]);
   const [clients, setClients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -25,58 +26,65 @@ export const TestsContextProvider = ({ children }) => {
   const [downloadedJumpApp, setDownloadedJumpApp] = useState(0);
 
   useEffect(() => {
+    setIsLoading(true);
     setUser({ userName: "" });
-    const loggedUser = window.localStorage.getItem("user");
+    try {
+      const loggedUser = window.localStorage.getItem("user");
 
-    if (loggedUser) {
-      const user = JSON.parse(loggedUser);
-      // if (!user.verified) {
-      //   navigate("/");
-      //   return;
-      // }
-      const fetchUser = async () => {
-        if (user.token !== null) {
-          const res = await client.get("/profile", {
-            headers: {
-              Authorization: `JWT ${user.token}`,
-            },
-          });
-          if (res.data.success) {
-            setUser(user);
-            setRoles(user.roles);
-            if (user.roles === "editor") {
-              const { initialDate } = user;
-              const diasDesdeInicio = getDifferenceNowMonth(initialDate);
-              if (diasDesdeInicio > 31 && user.level === "cero") {
-                const changeExpiredRole = async () => {
-                  try {
-                    const id = user.id;
-                    const values = {
-                      roles: "reader",
-                    };
+      if (loggedUser) {
+        const user = JSON.parse(loggedUser);
+        // if (!user.verified) {
+        //   navigate("/");
+        //   return;
+        // }
+        const fetchUser = async () => {
+          if (user.token !== null) {
+            const res = await client.get("/profile", {
+              headers: {
+                Authorization: `JWT ${user.token}`,
+              },
+            });
+            if (res.data.success) {
+              setUser(user);
+              setRoles(user.roles);
+              if (user.roles === "editor") {
+                const { initialDate } = user;
+                const diasDesdeInicio = getDifferenceNowMonth(initialDate);
+                if (diasDesdeInicio > 31 && user.level === "cero") {
+                  const changeExpiredRole = async () => {
+                    try {
+                      const id = user.id;
+                      const values = {
+                        roles: "reader",
+                      };
 
-                    const res = await updateUser(id, values);
+                      const res = await updateUser(id, values);
 
-                    if (res.success) {
-                      localStorage.removeItem("user");
-                      logout();
+                      if (res.success) {
+                        localStorage.removeItem("user");
+                        logout();
+                      }
+                    } catch (error) {
+                      console.log(error);
                     }
-                  } catch (error) {
-                    console.log(error);
-                  }
-                };
-                changeExpiredRole();
+                  };
+                  changeExpiredRole();
+                }
+                navigate("/reader_profile");
               }
-              navigate("/reader_profile");
-            }
 
-            if (user.roles === "admin") {
-              navigate("/admin_panel");
+              if (user.roles === "admin") {
+                navigate("/admin_panel");
+              }
             }
           }
-        }
-      };
-      fetchUser();
+        };
+        fetchUser();
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -139,9 +147,7 @@ export const TestsContextProvider = ({ children }) => {
     try {
       setError(null);
       setIsLoading(true);
-
       const data = await getAllApps();
-
       setApps(data);
     } catch (error) {
       console.log(error);
@@ -164,6 +170,9 @@ export const TestsContextProvider = ({ children }) => {
   const handleCurrentTest = (test) => {
     setCurrentTest(test);
   };
+  const handleTest = (test) => {
+    setTest(test);
+  };
   const handleResetCurrentTest = () => {
     setCurrentTest({});
   };
@@ -180,6 +189,10 @@ export const TestsContextProvider = ({ children }) => {
   };
   const handleCurrentUser = (user) => {
     setCurrentUser(user);
+  };
+
+  const handleLoading = (param) => {
+    setIsLoading(param);
   };
 
   return (
@@ -202,6 +215,9 @@ export const TestsContextProvider = ({ children }) => {
         handleUsers,
         downloadedJumpApp,
         apps,
+        test,
+        handleTest,
+        handleLoading,
       }}
     >
       {children}

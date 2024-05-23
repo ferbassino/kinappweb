@@ -9,7 +9,7 @@ import accelerationArrays from "../../../auxiliaries/basics/accelerationArrays";
 
 const Tests = () => {
   const navigate = useNavigate();
-  const { user, tests, handleCurrentTest, currentTest } =
+  const { user, tests, handleCurrentTest, currentTest, handleTest } =
     useContext(testsContext);
 
   const [userTests, setUserTests] = useState([]);
@@ -17,8 +17,14 @@ const Tests = () => {
   const [noTestsVisible, setNoTestsVisible] = useState(false);
 
   useEffect(() => {
-    const currentUserTests = tests.filter((test) => test.userId[0] === user.id);
-    setUserTests(currentUserTests);
+    if (user.roles === "admin") {
+      setUserTests(tests);
+    } else {
+      const currentUserTests = tests.filter(
+        (test) => test.userId[0] === user.id
+      );
+      setUserTests(currentUserTests);
+    }
   }, []);
 
   const handleCurrentLocalTest = (test) => {
@@ -26,6 +32,8 @@ const Tests = () => {
       test.accData,
       test.testTime
     );
+    handleTest(test);
+
     const dataObject = {
       accY: accY,
       testTime: test.testTime,
@@ -36,6 +44,11 @@ const Tests = () => {
     handleCurrentTest(dataObject);
   };
 
+  useEffect(() => {
+    if (currentTest.length === "") {
+      setTestVisibles(false);
+    }
+  }, []);
   useEffect(() => {
     if (
       currentTest.motionType === "squat jump" ||
@@ -70,7 +83,6 @@ const Tests = () => {
               cualquiera de ellas vas a poder acceder a todas sus propiedades.
             </p>
           </div>
-
           <>
             <div className="contenedor-tabla">
               <table className="tabla-tests">
@@ -78,7 +90,6 @@ const Tests = () => {
                   <tr>
                     <th className="th-tests">Email</th>
                     <th className="th-tests">Test</th>
-
                     <th className="th-tests">Fecha</th>
                   </tr>
                 </thead>
@@ -91,7 +102,6 @@ const Tests = () => {
                     >
                       <td className="td-tests">{test.email}</td>
                       <td className="td-tests">{test.motionType}</td>
-
                       <td className="td-tests">{getDate(test.date)}</td>
                     </tr>
                   ))}

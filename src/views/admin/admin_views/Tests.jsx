@@ -12,13 +12,12 @@ const Tests = () => {
   const { user, tests, handleCurrentTest, currentTest } =
     useContext(testsContext);
 
-  const [userTests, setUserTests] = useState([]);
+  const [tests, setTests] = useState([]);
   const [testVisibles, setTestVisibles] = useState(true);
   const [noTestsVisible, setNoTestsVisible] = useState(false);
 
   useEffect(() => {
-    const currentUserTests = tests.filter((test) => test.userId[0] === user.id);
-    setUserTests(currentUserTests);
+    setTests(tests);
   }, []);
 
   const handleCurrentLocalTest = (test) => {
@@ -78,12 +77,11 @@ const Tests = () => {
                   <tr>
                     <th className="th-tests">Email</th>
                     <th className="th-tests">Test</th>
-
                     <th className="th-tests">Fecha</th>
                   </tr>
                 </thead>
                 <tbody className="tbody-tests">
-                  {userTests.map((test) => (
+                  {tests.map((test) => (
                     <tr
                       onClick={() => handleCurrentLocalTest(test)}
                       key={test._id}
@@ -91,7 +89,6 @@ const Tests = () => {
                     >
                       <td className="td-tests">{test.email}</td>
                       <td className="td-tests">{test.motionType}</td>
-
                       <td className="td-tests">{getDate(test.date)}</td>
                     </tr>
                   ))}

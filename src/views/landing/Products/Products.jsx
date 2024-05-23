@@ -3,13 +3,13 @@ import "./Products.css";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import client from "../../../api/client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../../components/landing/header/Navbar";
 import Footer from "../../../components/landing/footer/Footer";
 import { useParams } from "react-router-dom";
 const Products = () => {
   let data = useParams();
-  console.log(data);
+
   const [preferenceId, setPreferenceId] = useState(null);
   initMercadoPago(`APP_USR-8e90396a-fd28-4c24-81e4-812af239461f`, {
     locale: "es-AR",
@@ -38,6 +38,15 @@ const Products = () => {
       setPreferenceId(result);
     }
   };
+
+  // const getPayment = async () => {
+  //   const response = await client.get(`/payment/?topic=payment&id=123456`);
+  //   console.log("response", response);
+  // };
+
+  // useEffect(() => {
+  //   getPayment();
+  // }, []);
 
   return (
     <>

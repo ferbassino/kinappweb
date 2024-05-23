@@ -205,13 +205,6 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
           Math.PI
       );
     }
-    // if (dotProductVT[index] ) {
-    //   console.log("entra");
-    //   kneeAngleArr.push(
-    //     (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180 * -1) /
-    //       Math.PI
-    //   );
-    // } else {
     kneeAngleArr.push(
       180 -
         (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180) /

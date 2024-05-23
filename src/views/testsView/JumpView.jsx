@@ -15,7 +15,7 @@ import Navbar from "../../components/landing/header/Navbar";
 
 function JumpView() {
   const navigate = useNavigate();
-  const { currentTest, handleCurrentTest } = useContext(testsContext);
+  const { currentTest, handleCurrentTest, test } = useContext(testsContext);
 
   const [validationError, setValidationError] = useState(false);
   const [validationErrorMessage, setValidationErrorMessage] = useState("");
@@ -181,8 +181,18 @@ function JumpView() {
             <h1 className="jump-title">Análisis del salto</h1>
             {/* <h2 className="jump-subtitle">subtitle</h2> */}
             <h3 className="jump-jump">{currentTest.motionType}</h3>
-            <h3 className="jump-ref">Ref: {currentTest.email}</h3>
-            <h3 className="jump-date">Fecha: {currentTest.date}</h3>
+            {currentTest === "undefined" ? (
+              <>
+                <h3 className="jump-ref">Ref: {currentTest.email}</h3>
+                <h3 className="jump-date">Fecha: {currentTest.date}</h3>
+              </>
+            ) : (
+              <>
+                <h3 className="jump-ref">Ref: {test.email}</h3>
+                <h3 className="jump-date">Fecha: {getDate(test.date)}</h3>
+              </>
+            )}
+
             <h3 className="jump-masa">masa: {currentTest.weight} kg</h3>
           </div>
           <div className="contenedor-tabla">
@@ -219,7 +229,6 @@ function JumpView() {
                       <td className="">Potencia media propulsiva</td>
                       <td className="">{power} W</td>
                     </tr>
-
                     <tr>
                       <td className="">Tiempo de vuelo</td>
                       <td className="">{flightTime.toFixed(2)} s</td>
@@ -275,15 +284,36 @@ function JumpView() {
                       </tr>
                     </thead>
                     <tr>
+                      <td className="3">Tiempo propulsivo</td>
+                      <td className="">{propTime} s</td>
+                    </tr>
+                    <tr>
+                      <td className="">Distancia Propulsiva</td>
+                      <td className="">{propDist} m</td>
+                    </tr>
+                    <tr>
+                      <td className="">Fuerza media propulsiva</td>
+                      <td className="">{force} N</td>
+                    </tr>
+                    <tr>
+                      <td className="">Potencia media propulsiva</td>
+                      <td className="">{power} W</td>
+                    </tr>
+                    <thead>
+                      <tr>
+                        <th className="">Fase de vuelo</th>
+                      </tr>
+                    </thead>
+                    <tr>
                       <td className="">Tiempo de vuelo</td>
                       <td className="">{flightTime2.toFixed(2)} s</td>
                     </tr>
                     <tr>
-                      <td className="">Altura de caida</td>
+                      <td className="">Altura del salto</td>
                       <td className="">{flightHeight2.toFixed(2)} m</td>
                     </tr>
                     <tr>
-                      <td className="">Velocidad de caida</td>
+                      <td className="">Velocidad de despegue</td>
                       <td className="">{takeoffSpeed2.toFixed(2)} m/s</td>
                     </tr>
                   </>

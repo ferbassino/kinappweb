@@ -12,7 +12,6 @@ const Landing = () => {
       <header>
         <Navbar />
       </header>
-
       <main>
         <Hero />
         <Statistics />

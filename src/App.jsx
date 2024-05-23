@@ -28,7 +28,7 @@ import User from "./views/admin/admin_views/User";
 import ExpiredRoleMessage from "./components/messages/ExpiredRoleMessage";
 import Verification from "./views/forms/Verification";
 import Products from "./views/landing/Products/Products";
-
+import Loader from "./components/basics/Loader";
 function App() {
   const { user } = useContext(testsContext);
 
@@ -47,12 +47,12 @@ function App() {
       <Route path="/expired_role_message" element={<ExpiredRoleMessage />} />
       <Route path="/verification/:userId" element={<Verification />} />
       <Route path="/products" element={<Products />} />
+      <Route path="/jump_view" element={<JumpView />} />
       <Route element={<ReaderRoutes roles={user.roles} />}>
         <Route path="/reader_profile" element={<ReaderProfile />} />
         <Route path="/clases" element={<Clases />} />
         <Route path="/jump_video_analysis" element={<JumpVideoAnalysis />} />
         <Route path="/imu_analysis" element={<ImuAnalysis />} />
-        <Route path="/jump_view" element={<JumpView />} />
         <Route path="/jump_program" element={<Program />} />
         {/* <Route path="/success-verification" element={<SuccessVerification />} /> */}
         <Route path="/tests" element={<Tests />} />
@@ -62,7 +62,9 @@ function App() {
         <Route path="/admin_panel" element={<AdminPanel />} />
         <Route path="/admin_users" element={<Users />} />
         <Route path="/admin_user" element={<User />} />
+        <Route path="/admin_Tests" element={<Tests />} />
       </Route>
+      <Route path="*" element={<h1>404</h1>}></Route>
     </Routes>
   );
 }

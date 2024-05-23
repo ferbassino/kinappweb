@@ -15,9 +15,11 @@ import { updateUser } from "../../services/userServices";
 import ExpiredRoleMessage from "../../components/messages/ExpiredRoleMessage";
 import logout from "../../services/logout";
 import { useEffect } from "react";
+import Loader from "../../components/basics/Loader";
 
 const LoginForm = () => {
-  const { handleUser, users } = useContext(testsContext);
+  const { handleUser, users, isLoading, handleLoading } =
+    useContext(testsContext);
 
   const navigate = useNavigate();
   const [expiredMessageVisible, setExpiredMessageVisible] = useState(false);
@@ -41,6 +43,7 @@ const LoginForm = () => {
   password.current = watch("password", "");
 
   const onSubmit = handleSubmit((data) => {
+    handleLoading(true);
     try {
       const credentials = { email: data.email, password: data.password };
       const currentUser = users.find((user) => user.email === data.email);
@@ -109,6 +112,8 @@ const LoginForm = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      handleLoading(false);
     }
   });
 
@@ -117,80 +122,91 @@ const LoginForm = () => {
       <header>
         <Navbar />
       </header>
-      {expiredMessageVisible ? (
+
+      {isLoading ? (
         <>
-          <ExpiredRoleMessage />
+          <Loader />
         </>
       ) : (
         <>
-          {errorMessageVisible ? (
-            <h2 className="error-message">{errorMessage}</h2>
+          {expiredMessageVisible ? (
+            <>
+              <ExpiredRoleMessage />
+            </>
           ) : (
-            <h2 className="error-message-ghost"> </h2>
+            <>
+              {errorMessageVisible ? (
+                <h2 className="error-message">{errorMessage}</h2>
+              ) : (
+                <h2 className="error-message-ghost"> </h2>
+              )}
+
+              <div className="formulario-container">
+                <form className="formulario" onSubmit={onSubmit}>
+                  <div className="campo">
+                    <label htmlFor="email" className="label-login">
+                      Email
+                    </label>
+                    <input
+                      type="text"
+                      name="email"
+                      id="email"
+                      {...register("email", {
+                        required: {
+                          value: true,
+                          message: "El email es requerido...",
+                        },
+                        pattern: {
+                          value:
+                            /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                          message: "El formato del email no es válido",
+                        },
+                      })}
+                    />
+                    <p> {errors.email?.message}</p>
+                  </div>
+                  <div className="campo">
+                    <label htmlFor="password" className="label-login">
+                      Contraseña
+                    </label>
+                    <input
+                      type="text"
+                      name="password"
+                      id="password"
+                      {...register("password", {
+                        required: {
+                          value: true,
+                          message: "La contraseña es requerida...",
+                        },
+                        minLength: {
+                          value: 8,
+                          message: "La contraseña debe tener 8 caracteres",
+                        },
+                        maxLength: {
+                          value: 8,
+                          message: "La contraseña debe tener 8 caracteres",
+                        },
+                      })}
+                    />
+                    <p> {errors.password?.message}</p>
+                  </div>
+
+                  <input id="submit" type="submit" name="enviar" />
+                  <div className="forgot-container">
+                    <NavLink to={"/forgot_password"} className="forgot">
+                      ¿Olvidó la contraseña?
+                    </NavLink>
+                  </div>
+                </form>
+              </div>
+            </>
           )}
-
-          <div className="formulario-container">
-            <form className="formulario" onSubmit={onSubmit}>
-              <div className="campo">
-                <label htmlFor="email" className="label-login">
-                  Email
-                </label>
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  {...register("email", {
-                    required: {
-                      value: true,
-                      message: "El email es requerido...",
-                    },
-                    pattern: {
-                      value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
-                      message: "El formato del email no es válido",
-                    },
-                  })}
-                />
-                <p> {errors.email?.message}</p>
-              </div>
-              <div className="campo">
-                <label htmlFor="password" className="label-login">
-                  Contraseña
-                </label>
-                <input
-                  type="text"
-                  name="password"
-                  id="password"
-                  {...register("password", {
-                    required: {
-                      value: true,
-                      message: "La contraseña es requerida...",
-                    },
-                    minLength: {
-                      value: 8,
-                      message: "La contraseña debe tener 8 caracteres",
-                    },
-                    maxLength: {
-                      value: 8,
-                      message: "La contraseña debe tener 8 caracteres",
-                    },
-                  })}
-                />
-                <p> {errors.password?.message}</p>
-              </div>
-
-              <input id="submit" type="submit" name="enviar" />
-              <div className="forgot-container">
-                <NavLink to={"/forgot_password"} className="forgot">
-                  ¿Olvidó la contraseña?
-                </NavLink>
-              </div>
-            </form>
-          </div>
-          <footer>
-            <Footer />
-          </footer>
         </>
       )}
+
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };
