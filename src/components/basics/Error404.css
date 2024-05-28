@@ -1,0 +1,42 @@
+.error-container {
+  text-align: center;
+  margin-top: 30vh;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+p {
+  font-size: 2rem;
+}
+.link-home{
+  margin-top: 2rem;
+}
+
+/* Media queries para hacer el componente responsivo */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+  .link-home{
+  margin-top: 2rem;
+}
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+  .link-home{
+  margin-top: 2rem;
+}
+}

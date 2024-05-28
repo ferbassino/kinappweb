@@ -183,17 +183,17 @@ function JumpView() {
             <h3 className="jump-jump">{currentTest.motionType}</h3>
             {currentTest === "undefined" ? (
               <>
-                <h3 className="jump-ref">Ref: {currentTest.email}</h3>
-                <h3 className="jump-date">Fecha: {currentTest.date}</h3>
+                <h3 className="jump-ref">Ref:{currentTest.email}</h3>
+                <h3 className="jump-date">Fecha:{currentTest.date}</h3>
               </>
             ) : (
               <>
-                <h3 className="jump-ref">Ref: {test.email}</h3>
-                <h3 className="jump-date">Fecha: {getDate(test.date)}</h3>
+                <h3 className="jump-ref">Ref:{test.email}</h3>
+                <h3 className="jump-date">Fecha:{getDate(test.date)}</h3>
               </>
             )}
 
-            <h3 className="jump-masa">masa: {currentTest.weight} kg</h3>
+            <h3 className="jump-masa">masa:{currentTest.weight} kg</h3>
           </div>
           <div className="contenedor-tabla">
             <table className="">
@@ -205,11 +205,11 @@ function JumpView() {
               <tbody>
                 <tr>
                   <td className="">Tiempo de evaluación</td>
-                  <td className="">{currentTest.testTime / 1000} s</td>
+                  <td className="">{currentTest.testTime / 1000}s</td>
                 </tr>
                 <tr>
                   <td className="">Intervalo de muestreo</td>
-                  <td className="">{interval.toFixed(3)} s</td>
+                  <td className="">{interval.toFixed(3)}s</td>
                 </tr>
                 {squatJumpVisible || cMJumpVisible ? (
                   <>
@@ -219,7 +219,7 @@ function JumpView() {
                     </tr>
                     <tr>
                       <td className="">Distancia Propulsiva</td>
-                      <td className="">{propDist} m</td>
+                      <td className="">{propDist}m</td>
                     </tr>
                     <tr>
                       <td className="">Fuerza media propulsiva</td>
@@ -227,19 +227,19 @@ function JumpView() {
                     </tr>
                     <tr>
                       <td className="">Potencia media propulsiva</td>
-                      <td className="">{power} W</td>
+                      <td className="">{power}W</td>
                     </tr>
                     <tr>
                       <td className="">Tiempo de vuelo</td>
-                      <td className="">{flightTime.toFixed(2)} s</td>
+                      <td className="">{flightTime.toFixed(2)}s</td>
                     </tr>
                     <tr>
                       <td className="">Altura de vuelo</td>
-                      <td className="">{flightHeight.toFixed(2)} m</td>
+                      <td className="">{flightHeight.toFixed(2)}m</td>
                     </tr>
                     <tr>
                       <td className="">Velocidad de despegue</td>
-                      <td className="">{takeoffSpeed.toFixed(2)} m/s</td>
+                      <td className="">{takeoffSpeed.toFixed(2)}m/s</td>
                     </tr>
                   </>
                 ) : null}{" "}
@@ -256,15 +256,15 @@ function JumpView() {
                     </thead>
                     <tr>
                       <td className="">Tiempo de caida</td>
-                      <td className="">{flightTime.toFixed(2)} s</td>
+                      <td className="">{flightTime.toFixed(2)}s</td>
                     </tr>
                     <tr>
                       <td className="">Altura de caida</td>
-                      <td className="">{flightHeight.toFixed(2)} m</td>
+                      <td className="">{flightHeight.toFixed(2)}m</td>
                     </tr>
                     <tr>
                       <td className="">Velocidad de caida</td>
-                      <td className="">{dropSpeed.toFixed(2)} m/s</td>
+                      <td className="">{dropSpeed.toFixed(2)}m/s</td>
                     </tr>
                     <tr>
                       <td className=""></td>
@@ -272,7 +272,7 @@ function JumpView() {
                     </tr>
                     <tr>
                       <td className="">Tiempo de contacto</td>
-                      <td className="">{contactTime.toFixed(3)} s</td>
+                      <td className="">{contactTime.toFixed(3)}s</td>
                     </tr>
                     <tr>
                       <td className=""></td>
@@ -285,19 +285,19 @@ function JumpView() {
                     </thead>
                     <tr>
                       <td className="3">Tiempo propulsivo</td>
-                      <td className="">{propTime} s</td>
+                      <td className="">{propTime}s</td>
                     </tr>
                     <tr>
                       <td className="">Distancia Propulsiva</td>
-                      <td className="">{propDist} m</td>
+                      <td className="">{propDist}m</td>
                     </tr>
                     <tr>
                       <td className="">Fuerza media propulsiva</td>
-                      <td className="">{force} N</td>
+                      <td className="">{force}N</td>
                     </tr>
                     <tr>
                       <td className="">Potencia media propulsiva</td>
-                      <td className="">{power} W</td>
+                      <td className="">{power}W</td>
                     </tr>
                     <thead>
                       <tr>
@@ -306,11 +306,11 @@ function JumpView() {
                     </thead>
                     <tr>
                       <td className="">Tiempo de vuelo</td>
-                      <td className="">{flightTime2.toFixed(2)} s</td>
+                      <td className="">{flightTime2.toFixed(2)}s</td>
                     </tr>
                     <tr>
                       <td className="">Altura del salto</td>
-                      <td className="">{flightHeight2.toFixed(2)} m</td>
+                      <td className="">{flightHeight2.toFixed(2)}m</td>
                     </tr>
                     <tr>
                       <td className="">Velocidad de despegue</td>
@@ -331,12 +331,12 @@ function JumpView() {
                     </thead>
                     <tr>
                       <td className="">Stiffness</td>
-                      <td className="">{stiffnessData.stiffness} N/m</td>
+                      <td className="">{stiffnessData.stiffness}N/m</td>
                     </tr>
                     <tr>
                       <td className="">Frecuencia</td>
                       <td className="">
-                        {stiffnessData.frequency.toFixed(2)} Hz
+                        {stiffnessData.frequency.toFixed(2)}Hz
                       </td>
                     </tr>
                     <tr>
@@ -350,44 +350,32 @@ function JumpView() {
                     </thead>
                     <tr>
                       <td className="">Primer ciclo</td>
-                      <td className="">
-                        tv: {stiffnessData.tV23.toFixed(3)} s
-                      </td>
-                      <td className="">
-                        tc: {stiffnessData.tC34.toFixed(3)} s
-                      </td>
+                      <td className="">tv: {stiffnessData.tV23.toFixed(3)}s</td>
+                      <td className="">tc: {stiffnessData.tC34.toFixed(3)}s</td>
                     </tr>
                     <tr>
                       <td className="">Segundo ciclo</td>
-                      <td className="">
-                        tv: {stiffnessData.tV45.toFixed(3)} s
-                      </td>
+                      <td className="">tv: {stiffnessData.tV45.toFixed(3)}s</td>
                       <td className="">
                         tc: {stiffnessData.tC56.toFixed(3)} s
                       </td>
                     </tr>
                     <tr>
                       <td className="">Tercer ciclo</td>
-                      <td className="">
-                        tv: {stiffnessData.tV67.toFixed(3)} s
-                      </td>
-                      <td className="">
-                        tc: {stiffnessData.tC78.toFixed(3)} s
-                      </td>
+                      <td className="">tv: {stiffnessData.tV67.toFixed(3)}s</td>
+                      <td className="">tc: {stiffnessData.tC78.toFixed(3)}s</td>
                     </tr>
                     <tr>
                       <td className="">Cuarto ciclo</td>
+                      <td className="">tv: {stiffnessData.tV89.toFixed(3)}s</td>
                       <td className="">
-                        tv: {stiffnessData.tV89.toFixed(3)} s
-                      </td>
-                      <td className="">
-                        tc: {stiffnessData.tC910.toFixed(3)} s
+                        tc: {stiffnessData.tC910.toFixed(3)}s
                       </td>
                     </tr>
                     <tr>
                       <td className="">Quinto ciclo</td>
                       <td className="">
-                        tv: {stiffnessData.tV1011.toFixed(3)} s
+                        tv: {stiffnessData.tV1011.toFixed(3)}s
                       </td>
                       <td className="">
                         tc: {stiffnessData.tC1112.toFixed(3)} s

@@ -29,6 +29,7 @@ import ExpiredRoleMessage from "./components/messages/ExpiredRoleMessage";
 import Verification from "./views/forms/Verification";
 import Products from "./views/landing/Products/Products";
 import Loader from "./components/basics/Loader";
+import Error404 from "./components/basics/Error404";
 function App() {
   const { user } = useContext(testsContext);
 
@@ -64,7 +65,7 @@ function App() {
         <Route path="/admin_user" element={<User />} />
         <Route path="/admin_Tests" element={<Tests />} />
       </Route>
-      <Route path="*" element={<h1>404</h1>}></Route>
+      <Route path="*" element={<Error404 />}></Route>
     </Routes>
   );
 }
