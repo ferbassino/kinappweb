@@ -35,8 +35,8 @@ const JumpClases = () => {
       subtitle: "biomecánica y evaluación del sj y el cmj",
       description:
         "En esta clase abordaremos las bases biomecánicas de la evaluación de los saltos con y sin contramovimiento, las variables de interes y los datos obtenidos a través de las unidades inerciales y a través de video.",
-      // videoUrl:
-      //   "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
+      videoUrl:
+        "https://storage.googleapis.com/kinapp-web/jump-course/clases/clase%203.mp4",
     },
     {
       date: "03/06/2024",
