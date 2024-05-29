@@ -10,8 +10,8 @@ const AdminPanel = () => {
   const { user } = useContext(testsContext);
   const readerOptions = [
     "Usuarios",
-    "Clientes",
     "Tests",
+    "Projects",
     // "Video análisis",
     // "Programa",
     // "Recucrsos kinApp",

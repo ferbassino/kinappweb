@@ -9,8 +9,8 @@ const AdminItems = ({ title }) => {
       case "Usuarios":
         navigate("/admin_users");
         break;
-      case "Clientes":
-        navigate("/admin_clients");
+      case "Projects":
+        navigate("/projects");
         break;
       case "Tests":
         navigate("/admin_tests");

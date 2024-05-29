@@ -30,6 +30,7 @@ import Verification from "./views/forms/Verification";
 import Products from "./views/landing/Products/Products";
 import Loader from "./components/basics/Loader";
 import Error404 from "./components/basics/Error404";
+import Projects from "./views/admin/admin_views/Projects";
 function App() {
   const { user } = useContext(testsContext);
 
@@ -64,6 +65,7 @@ function App() {
         <Route path="/admin_users" element={<Users />} />
         <Route path="/admin_user" element={<User />} />
         <Route path="/admin_Tests" element={<Tests />} />
+        <Route path="/projects" element={<Projects />} />
       </Route>
       <Route path="*" element={<Error404 />}></Route>
     </Routes>

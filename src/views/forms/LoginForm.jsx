@@ -103,7 +103,7 @@ const LoginForm = () => {
       console.log(error);
     }
   });
-  console.log(loading);
+
   return (
     <>
       <header>
