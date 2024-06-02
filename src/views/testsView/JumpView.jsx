@@ -404,7 +404,7 @@ function JumpView() {
           t={arrayT0F}
         />
       </div>
-      <button onClick={() => handleTests()} className="">
+      <button onClick={() => handleTests()} className="volver">
         Ir a evaluaciones
       </button>
     </div>

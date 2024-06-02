@@ -41,6 +41,18 @@ th, td{
 .jump-date{ margin-top: 1rem;}
 .jump-ref{ margin-top: 1rem;}
 .jump-masa{ margin-top: 1rem;}
+
+.volver{
+  
+  margin-left: 1rem;
+  height: 2rem;
+  width: 12rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+margin-bottom: 10rem;
+margin-top: 5rem;
+border-radius: 3px;
+}
 @media only screen and (max-width: 768px) {
   .chart-jump{
     width: 95%;
