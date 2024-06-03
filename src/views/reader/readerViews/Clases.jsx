@@ -44,8 +44,8 @@ const JumpClases = () => {
       subtitle: "biomecánica y evaluación del drop jump y el stiffness",
       description:
         "En esta clase hablaremos de la dinámica del drop jump, la energía potencial elástica y de la aplicación de las herramientas disponibles para su evaluación.",
-      // videoUrl:
-      //   "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
+      videoUrl:
+        "https://storage.googleapis.com/kinapp-web/jump-course/clases/CLASE%204.mp4",
     },
     {
       date: "10/06/2024",
