@@ -33,6 +33,9 @@ const ParagraphComponent = () => {
           <NavLink to="/aviso_legal" className="footer-description">
             Aviso legal
           </NavLink>
+          <NavLink to="/privacy-jump" className="footer-description">
+            Política privacidad Jump
+          </NavLink>
           <NavLink to="/baja" className="footer-description">
             Darse de baja
           </NavLink>

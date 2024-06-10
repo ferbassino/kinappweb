@@ -32,6 +32,7 @@ import Loader from "./components/basics/Loader";
 import Error404 from "./components/basics/Error404";
 import Projects from "./views/admin/admin_views/Projects";
 import Baja from "./views/forms/Baja";
+import JumpPrivacy from "./views/landing/mas/JumpPrivacy";
 function App() {
   const { user } = useContext(testsContext);
 
@@ -47,6 +48,7 @@ function App() {
       <Route path="/web_application" element={<WebApplication />} />
       <Route path="/aviso_legal" element={<AvisoLegal />} />
       <Route path="/baja" element={<Baja />} />
+      <Route path="/privacy-jump" element={<JumpPrivacy />} />
       <Route path="/downloads" element={<Downloads />} />
       <Route path="/expired_role_message" element={<ExpiredRoleMessage />} />
       <Route path="/verification/:userId" element={<Verification />} />
