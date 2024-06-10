@@ -88,13 +88,14 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
     ]);
 
     lArray.push([
-      condiloArr[index][1] - maleoloArr[index][1],
-      condiloArr[index][0] - maleoloArr[index][0],
+      maleoloArr[index][1] - condiloArr[index][1],
+      maleoloArr[index][0] - condiloArr[index][0],
     ]);
     fArray.push([
       quintoMArr[index][1] - maleoloArr[index][1],
       quintoMArr[index][0] - maleoloArr[index][0],
     ]);
+
     fArray2.push([
       quintoMArr[index][1] - calcaneoArr[index][1],
       quintoMArr[index][0] - calcaneoArr[index][0],
@@ -111,12 +112,14 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
     dotProductVT.push(
       vArray[index][0] * tArray[index][0] + vArray[index][1] * tArray[index][1]
     );
+
     dotProductTL.push(
       tArray[index][0] * lArray[index][0] + tArray[index][1] * lArray[index][1]
     );
     dotProductLF.push(
       lArray[index][0] * fArray[index][0] + lArray[index][1] * fArray[index][1]
     );
+    console.log(dotProductLF);
     dotProductLF2.push(
       lArray[index][0] * fArray2[index][0] +
         lArray[index][1] * fArray2[index][1]
@@ -195,20 +198,26 @@ const jumpVideoCSVAnalysis = (verticalString, horizontalString) => {
   moduleTLProduct.map((el, index) => {
     if (dotProductVT[index] < 0) {
       hipAngleArr.push(
-        180 -
-          (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180) /
-            Math.PI
+        (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180) /
+          Math.PI
       );
     } else {
       hipAngleArr.push(
-        (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180 * -1) /
-          Math.PI
+        180 +
+          (Math.acos(dotProductVT[index] / moduleVTProduct[index]) * 180) /
+            Math.PI
       );
     }
+    console.log(dotProductTL[index] > 0);
     kneeAngleArr.push(
-      180 -
-        (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180) /
-          Math.PI
+      (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180) /
+        Math.PI >=
+        0
+        ? (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180) /
+            Math.PI
+        : 180 +
+            (Math.acos(dotProductTL[index] / moduleTLProduct[index]) * 180) /
+              Math.PIe
     );
     // }
 

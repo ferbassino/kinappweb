@@ -8,17 +8,14 @@ import login from "../../services/login";
 import { testsContext } from "../../context/TestsContext";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
-import getDifferenceNowMonth from "../../auxiliaries/basics/getDifferenceNowMonth";
-
-import { updateUser } from "../../services/userServices";
-
+import client from "../../api/client";
 import ExpiredRoleMessage from "../../components/messages/ExpiredRoleMessage";
 import logout from "../../services/logout";
 
 import Loader from "../../components/basics/Loader";
 
-const LoginForm = () => {
-  const { handleUser, handleLoading } = useContext(testsContext);
+const Baja = () => {
+  const { handleUser, handleLoading, handleLogout } = useContext(testsContext);
 
   const navigate = useNavigate();
   const [expiredMessageVisible, setExpiredMessageVisible] = useState(false);
@@ -49,6 +46,7 @@ const LoginForm = () => {
       const credentials = { email: data.email, password: data.password };
       const getCurrentUser = async () => {
         const res = await login(credentials);
+
         if (!res.success) {
           setLoading(false);
           setErrorMessage(res.message);
@@ -58,48 +56,40 @@ const LoginForm = () => {
             setErrorMessage("");
             reset();
           }, 5000);
-        } else {
-          handleUser(res.user);
-          if (res.user.roles === "reader") {
-            navigate("/reader_profile");
-            setLoading(false);
-          }
-          if (res.user.roles === "admin") {
-            navigate("/admin_panel");
-            setLoading(false);
-          }
-          if (res.user.roles === "editor") {
-            const { initialDate } = res.user;
-            const diasDesdeInicio = getDifferenceNowMonth(initialDate);
+        } else if (res.success) {
+          const id = res.user.id;
+          const response = await client.delete(`/api/user/${id}`);
 
-            if (diasDesdeInicio > 31 && res.user.level === "cero") {
-              const changeExpiredRole = async () => {
-                try {
-                  const id = res.user.id;
-                  const values = {
-                    roles: "reader",
-                  };
-                  const res = await updateUser(id, values);
-                  if (res.success) {
-                    localStorage.removeItem("user");
-                    logout();
-                    setLoading(false);
-                  }
-                } catch (error) {
-                  console.log(error);
-                  setLoading(false);
-                }
-              };
-              changeExpiredRole();
-            }
-            navigate("/reader_profile");
+          if (!response.data.success) {
             setLoading(false);
+            setErrorMessageVisible(true);
+            setErrorMessage(
+              "Ocurrió un error eliminando su cuenta, vuelva a intntarlo mas tarde"
+            );
+            setTimeout(() => {
+              setErrorMessageVisible(false);
+              setErrorMessage("");
+              navigate("/");
+            }, 4000);
+          } else {
+            setLoading(false);
+            setErrorMessageVisible(true);
+            setErrorMessage("Su cuenta se eliminó con éxito");
+            setTimeout(() => {
+              setErrorMessageVisible(false);
+              setErrorMessage("");
+              navigate("/");
+              handleLogout();
+            }, 4000);
           }
+
+          setLoading(false);
         }
       };
       getCurrentUser();
       reset();
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   });
@@ -122,6 +112,10 @@ const LoginForm = () => {
             </>
           ) : (
             <>
+              <h2 className="baja-title">Darse de baja de kinApp</h2>
+              <h3 className="baja-sub-title">
+                Ingrese el email y la contraseña para darse de baja
+              </h3>
               {errorMessageVisible ? (
                 <h2 className="error-message">{errorMessage}</h2>
               ) : (
@@ -198,4 +192,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default Baja;

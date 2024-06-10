@@ -58,6 +58,14 @@ input[type="submit"]:hover {
   height: 2rem;
   text-align: center;
 }
+.baja-title{
+  text-align:center;
+  margin-top: 5rem;
+}
+.baja-sub-title{
+  text-align:center;
+  margin-top: 2rem;
+}
 
 /* Media queries para escritorio */
 @media only screen and (min-width: 768px) {

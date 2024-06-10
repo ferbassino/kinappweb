@@ -28,6 +28,15 @@ const ParagraphComponent = () => {
             Capacitaciones
           </NavLink>
         </div>
+        <div className="footer-paragraph">
+          <h3 className="footer-title">Mas</h3>
+          <NavLink to="/aviso_legal" className="footer-description">
+            Aviso legal
+          </NavLink>
+          <NavLink to="/baja" className="footer-description">
+            Darse de baja
+          </NavLink>
+        </div>
       </div>
 
       <div className="footer-footer-container">
