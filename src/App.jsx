@@ -33,6 +33,7 @@ import Error404 from "./components/basics/Error404";
 import Projects from "./views/admin/admin_views/Projects";
 import Baja from "./views/forms/Baja";
 import JumpPrivacy from "./views/landing/mas/JumpPrivacy";
+import Docs from "./views/docs/Docs";
 function App() {
   const { user } = useContext(testsContext);
 
@@ -54,6 +55,7 @@ function App() {
       <Route path="/verification/:userId" element={<Verification />} />
       <Route path="/products" element={<Products />} />
       <Route path="/jump_view" element={<JumpView />} />
+      <Route path="/docs" element={<Docs />} />
       <Route element={<ReaderRoutes roles={user.roles} />}>
         <Route path="/reader_profile" element={<ReaderProfile />} />
         <Route path="/clases" element={<Clases />} />

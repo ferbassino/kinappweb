@@ -1,0 +1,56 @@
+ .docs-container{
+	display: grid;
+ 	grid-template-columns: repeat(6,1fr);
+	grid-template-rows: 35px 1fr;
+	min-height: 80vh;
+	grid-template-areas:
+	"header header header header header header"
+	"content content content content content content" 
+}
+ .docs-header{
+	background-color: aqua;
+	grid-area: header;
+	text-align: center;
+	align-content: center;
+	font-weight: bold;
+
+}
+ .docs-aside{ 
+	background-color: brown;
+	grid-area: aside;
+	display: none;
+	overflow-y: scroll;
+	height: 80vh;
+	
+}
+
+.docs-aside::-webkit-scrollbar{
+	width: 8px; /* Ancho del scrollbar */
+}
+.docs-aside::-webkit-scrollbar-track{
+	background-color:  #ccc;
+}
+.docs-aside::-webkit-scrollbar-thumb {
+    background-color:  #1b1b33;; /* Color del thumb */
+    border-radius: 5px; /* Borde redondeado del thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color del thumb al pasar el mouse */
+}
+ .docs-main{
+	background-color: chartreuse;
+	grid-area: content;
+	
+}
+@media(width>700px){
+	.docs-container{
+		grid-template-areas:
+		"header header header header header header"
+		"aside content content content content content" 
+}
+
+.docs-aside{ 
+	display: grid;
+}
+}    

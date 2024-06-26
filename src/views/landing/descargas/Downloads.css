@@ -51,16 +51,24 @@ margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     text-align: center;
+    
 }
 .down-item-des{
     margin-top: 2rem;
+    margin-bottom: 1rem;
+    
 }
 .down-desc{
-    margin-top: 2rem;
+
+    /* margin-top: 2rem; */
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+
     
 }
 .down-icon-container{
     margin-top: 2rem;
+    margin-left: 3rem;
 }
 .us-image{
     width: 25%;

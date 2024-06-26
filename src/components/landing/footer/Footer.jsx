@@ -44,7 +44,11 @@ const ParagraphComponent = () => {
 
       <div className="footer-footer-container">
         <div className="footer-footer">
-          <p className="footer-title">kinappbiomechanics@gmail.com</p>
+          <div className="footer-title">
+            <a href="mailto:kinappbiomechanics@gmail.com">
+              kinappbiomechanics@gmail.com
+            </a>
+          </div>
         </div>
         <div className="footer-footer">
           <div className="footer-title">
@@ -55,6 +59,18 @@ const ParagraphComponent = () => {
               rel="noopener"
             >
               Instagram
+            </a>
+          </div>
+        </div>
+        <div className="footer-footer">
+          <div className="footer-title">
+            <a
+              href="https://api.whatsapp.com/send/?phone=5491158060332"
+              className="footer-title"
+              target="blanc"
+              rel="noopener"
+            >
+              Whatsapp
             </a>
           </div>
         </div>

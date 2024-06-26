@@ -18,7 +18,7 @@ const JumpClases = () => {
       description:
         "En este clase nos presentaremos, hablaremos de kinApp, describiremos la aplicación web y cuales son los objetivos del curso",
       videoUrl:
-        "https://storage.googleapis.com/kinapp-web/jump-course/clases/clase1.mp4",
+        "https://drive.google.com/file/d/1Ez0spfwKXA2PPU2Sv5rNGxQSOivsKjA6/preview",
     },
     {
       date: "20/05/2024",
@@ -27,7 +27,7 @@ const JumpClases = () => {
       description:
         "En esta clase hablaremos sobre los tipos de salto y su importancia en el deporte y en el rendimiento y de los diferentes métodos de evalauación y entre ellos de las unidades inreciales de movimiento disponibles.",
       videoUrl:
-        "https://storage.googleapis.com/kinapp-web/jump-course/clases/Clase%202%20curso%20kinApp.mp4",
+        "https://drive.google.com/file/d/17JzufphelvFKDhYEw8aSW_XqZVwwWNbR/preview",
     },
     {
       date: "27/05/2024",
@@ -36,7 +36,7 @@ const JumpClases = () => {
       description:
         "En esta clase abordaremos las bases biomecánicas de la evaluación de los saltos con y sin contramovimiento, las variables de interes y los datos obtenidos a través de las unidades inerciales y a través de video.",
       videoUrl:
-        "https://storage.googleapis.com/kinapp-web/jump-course/clases/clase%203.mp4",
+        "https://drive.google.com/file/d/1Qd43GTYeFDCa2cmamH-LQtcEqVhpwG6Z/preview",
     },
     {
       date: "03/06/2024",
@@ -45,7 +45,7 @@ const JumpClases = () => {
       description:
         "En esta clase hablaremos de la dinámica del drop jump, la energía potencial elástica y de la aplicación de las herramientas disponibles para su evaluación.",
       videoUrl:
-        "https://storage.googleapis.com/kinapp-web/jump-course/clases/CLASE%204.mp4",
+        "https://drive.google.com/file/d/1CuT4FEpGwZ8Qkzf1pmpYqR3sBwpaRBG0/preview",
     },
     {
       date: "10/06/2024",

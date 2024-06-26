@@ -10,7 +10,7 @@ const Payment = () => {
     <>
       <div className="first-month-container">
         <h1 className="first-month">
-          ¡Podés utilizar todos los recursos como "Full user" durante el primer
+          ¡Podés utilizar todos los recursos como 'Full user' durante el primer
           mes desde tu suscripción!
         </h1>
       </div>

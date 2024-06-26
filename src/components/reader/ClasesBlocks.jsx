@@ -18,13 +18,22 @@ const ClasesBlocks = ({ date, title, subtitle, description, videoUrl }) => {
           </div>
           <div className="video-container">
             {/* <img src={videoImage} alt="video" /> */}
-            <ReactPlayer
+            <iframe
+              title="Google Drive Video"
+              width="560"
+              height="315"
+              src={videoUrl}
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            ></iframe>
+            {/* <ReactPlayer
               url={videoUrl}
               controls
               width="100%"
               // height="100%"
               light={videoImage}
-            />
+            /> */}
           </div>
         </div>
       </div>

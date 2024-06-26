@@ -24,6 +24,7 @@ function Navbar() {
         <NavLink to="/products">Productos</NavLink>
         <NavLink to="/courses">Capacitaciones</NavLink>
         <NavLink to="/about_us">Quienes somos</NavLink>
+        <NavLink to="/docs">Documentación</NavLink>
         {user.userName === "" ? (
           <>
             <NavLink to="/login_form">Login</NavLink>

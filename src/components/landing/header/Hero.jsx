@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Hero = () => {
   const navigate = useNavigate();
   return (
-    <div className="content">
+    <main className="content">
       <div className="logo-container">
         <img className="hero-image" src={kinAppLogo} />
       </div>
@@ -18,7 +18,7 @@ const Hero = () => {
           ver mas ...
         </button>
       </form>
-    </div>
+    </main>
   );
 };
 

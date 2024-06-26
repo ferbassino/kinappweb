@@ -31,7 +31,8 @@ const Cursos = () => {
                 <img
                   alt="content"
                   className="salto-image"
-                  src="https://storage.googleapis.com/kinapp-web/kinapp-web/cursos/jump.png"
+                  // src="https://storage.googleapis.com/kinapp-web/kinapp-web/cursos/jump.png"
+                  src="jump.png"
                 />
               </div>
               <p className="curse-agotado">Agotado</p>
@@ -52,7 +53,8 @@ const Cursos = () => {
                 <img
                   alt="content"
                   className="jornadas-image"
-                  src="https://storage.googleapis.com/kinapp-web/kinapp-web/cursos/cursos.jpeg"
+                  // src="https://storage.googleapis.com/kinapp-web/kinapp-web/cursos/cursos.jpeg"
+                  src="cursos.jpeg"
                 />
               </div>
               <p className="curse-agotado">Agotado</p>
