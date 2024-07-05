@@ -1,6 +1,6 @@
 import React from "react";
 // import ReactPlayer from "react-player";
-import ClasesBlocks from "../../../components/reader/ClasesBlocks";
+import ClasesBlocks from "../../../components/courses/ClasesBlocks";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/landing/header/Navbar";
 import "./Clases.css";
@@ -47,15 +47,6 @@ const JumpClases = () => {
       videoUrl:
         "https://drive.google.com/file/d/1CuT4FEpGwZ8Qkzf1pmpYqR3sBwpaRBG0/preview",
     },
-    {
-      date: "10/06/2024",
-      title: "Cierre",
-      subtitle: "Conclusiones del curso",
-      description:
-        "En esta clase realizaremos un resumen del curso, de la integración de las herramientas expuesta en la práctica diaria y realizaremos una encuesta final.",
-      // videoUrl:
-      //   "https://storage.cloud.google.com/kinapp-web/jump-course/2_posicion.mp4",
-    },
   ];
   const handleHome = () => {
     navigate("/reader_profile");
@@ -69,7 +60,8 @@ const JumpClases = () => {
         <div className="titles-container">
           <h2 className="title">Tus clases</h2>
           <h2 className="subtitle">
-            Próximamente se irán cargando las clases según el programa previsto
+            Curso de análisis del salto vertical con unidades inerciales y
+            registro por video
           </h2>
         </div>
         <div className="contenedor-bloques">

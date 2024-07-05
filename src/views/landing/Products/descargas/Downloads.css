@@ -69,6 +69,7 @@ margin-bottom: 2rem;
 .down-icon-container{
     margin-top: 2rem;
     margin-left: 3rem;
+    
 }
 .us-image{
     width: 25%;
@@ -77,6 +78,13 @@ margin-bottom: 2rem;
 }
 .android-container{
     margin-top: 2rem;
+}
+.jump-logo-image{
+   width: 80px;
+    height: 80px;
+    border: 3px solid #8f0000;
+    border-radius: 25px;
+    
 }
 
 
@@ -124,5 +132,12 @@ font-size: 1.5rem;
 }
 .down-desc-container{
     margin-bottom: 5rem;
+}
+
+.jump-logo-image{
+    width: 100px;
+    height: 100px;
+    border: 3px solid #8f0000;
+    border-radius: 20px;
 }
 }

@@ -15,7 +15,7 @@ const Landing = () => {
       <main>
         <Hero />
         <Statistics />
-        <Payment />
+        {/* <Payment /> */}
         <Blocks />
       </main>
 

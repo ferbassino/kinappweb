@@ -1,0 +1,133 @@
+.jornadas-image{
+    width: 100%;
+    margin: 0 auto
+}
+/* .image{
+    width: 80%;
+    margin-top: 2rem;
+} */
+.cursos-header-container{
+    padding: 2rem;
+}
+.cursos-container{
+    padding: 2rem;
+
+}
+.curso-container{
+    margin-bottom: 4rem;
+    text-align: center;
+}
+.curse-title{
+margin-bottom: 2rem;
+font-size: 2rem;
+}
+.curse-subtitle{
+margin-bottom: 2rem;
+font-size: 1.5rem;
+}
+
+.curse-description{
+    font-size: 1.3rem;
+    
+    margin-bottom: 3rem;
+    
+}
+.program-container{
+
+}
+.program-title{
+    display: flex;
+   justify-content: center;
+   margin-bottom: 2rem;
+   font-size: 1.8rem;
+}
+.program-item-container{
+    margin-bottom: 3rem;
+}
+.program-item-title{
+    margin-bottom: 0.3rem;
+   
+    font-size: 1.2rem
+}
+.program-item-subtitle{
+    margin-bottom: 0.3rem;
+   
+   
+}
+.program-item-content{
+    margin-bottom: 0.3rem;
+   
+   }
+
+.program-video{
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .program-video{
+    width: 60%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+  
+.image{
+    width: 40%;
+    margin-top: 2rem;
+    
+}
+
+.curso-container{
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.curse-title{
+    margin-top: 3rem;
+margin-bottom: 3rem;
+font-size: 3rem;
+}
+.curse-subtitle{
+margin-bottom: 3rem;
+font-size: 2rem;
+}
+
+
+.curse-description{
+    font-size: 1.5rem;
+    width: 80%;
+    margin: 0 auto;
+}
+.program-container{
+    
+    margin: 0 auto;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+max-width: 70%;
+
+
+}
+.program-item-container{
+    margin-bottom: 5rem;
+}
+.program-item-title{
+    margin-bottom: 0.3rem;
+   margin-top: 2rem;
+    font-size: 1.5rem
+}
+.program-item-subtitle{
+    margin-top: 1.5rem;
+    margin-bottom: 0.3rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+   
+   
+}
+.program-item-content{
+    margin-bottom: 0.3rem;
+    font-size: 1.2rem;
+   
+   }
+
+}

@@ -9,12 +9,9 @@ import { testsContext } from "../../context/TestsContext";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import getDifferenceNowMonth from "../../auxiliaries/basics/getDifferenceNowMonth";
-
 import { updateUser } from "../../services/userServices";
-
 import ExpiredRoleMessage from "../../components/messages/ExpiredRoleMessage";
 import logout from "../../services/logout";
-
 import Loader from "../../components/basics/Loader";
 
 const LoginForm = () => {
@@ -49,6 +46,7 @@ const LoginForm = () => {
       const credentials = { email: data.email, password: data.password };
       const getCurrentUser = async () => {
         const res = await login(credentials);
+
         if (!res.success) {
           setLoading(false);
           setErrorMessage(res.message);

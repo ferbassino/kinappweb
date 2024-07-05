@@ -19,12 +19,8 @@ function Navbar() {
         <h3 className="kinapp ">kinApp</h3>
       </NavLink>
       <nav className="nav-navbar" ref={navRef}>
-        <NavLink to="/about">Acerca de kinApp</NavLink>
-        <NavLink to="/downloads">Descargas</NavLink>
         <NavLink to="/products">Productos</NavLink>
-        <NavLink to="/courses">Capacitaciones</NavLink>
         <NavLink to="/about_us">Quienes somos</NavLink>
-        <NavLink to="/docs">Documentación</NavLink>
         {user.userName === "" ? (
           <>
             <NavLink to="/login_form">Login</NavLink>
@@ -37,7 +33,7 @@ function Navbar() {
                 Perfil {user.userName}
               </NavLink>
             ) : null}
-            {user.roles === "editor" ? (
+            {user.roles === "editor" || user.roles === "reader" ? (
               <NavLink to="/reader_profile" onClick={handleResetCurrentTest}>
                 Perfil {user.userName}
               </NavLink>

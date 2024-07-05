@@ -12,3 +12,9 @@ export const updateUser = async (id, values) => {
   if (!res.data.success) throw new Error("Response not ok");
   return res.data;
 };
+
+export const getUserCourses = async (id) => {
+  const res = await client.put(`user/${id}`);
+  if (!res.data.success) throw new Error("Response not ok");
+  return res.data.updatedUser.courses;
+};

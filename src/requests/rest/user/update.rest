@@ -1,0 +1,15 @@
+PUT   https://kinapp-api.vercel.app/user/6682adaa0d71a473677938f1
+Content-Type: application/json
+###
+PUT     http://localhost:3001/update-user-courses/6682adaa0d71a473677938f1
+Content-Type: application/json
+
+{
+    "id":"3",
+    "name":"basico",
+    "state":"activo",
+    "duration":2628000000,
+    "initialDay":1719918244489,
+    "finalDay":1722546244489,
+    "score":0
+}

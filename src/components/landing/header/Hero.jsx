@@ -15,7 +15,7 @@ const Hero = () => {
       </p>
       <form className="hero-form">
         <button className="hero-button" onClick={() => navigate("/about")}>
-          ver mas ...
+          Conoce kinApp...
         </button>
       </form>
     </main>

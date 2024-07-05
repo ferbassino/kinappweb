@@ -1,5 +1,5 @@
 import React from "react";
-import ProgramBlocks from "../../../components/course/ProgramBlocks";
+import ProgramBlocks from "../../../components/courses/ProgramBlocks";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/landing/header/Navbar";
 import Footer from "../../../components/landing/footer/Footer";

@@ -6,8 +6,8 @@ const ReaderItems = ({ title }) => {
   const navigate = useNavigate();
   const handleTitle = () => {
     switch (title) {
-      case "Clases":
-        navigate("/clases");
+      case "Tus cursos":
+        navigate("/cursos");
         break;
       case "Análisis guardados":
         navigate("/tests");

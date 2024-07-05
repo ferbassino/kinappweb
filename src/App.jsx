@@ -9,17 +9,17 @@ import ReaderProfile from "./views/reader/ReaderProfile";
 import { testsContext } from "./context/TestsContext";
 import { useContext, useEffect, useState } from "react";
 import ImuAnalysis from "./views/reader/readerViews/ImuAnalysis";
-import Clases from "./views/reader/readerViews/Clases";
+import Clases from "./views/courses/jump/Clases";
 import JumpVideoAnalysis from "./views/reader/readerViews/JumpVideoAnalysis";
 import Tests from "./views/reader/readerViews/Tests";
 import JumpView from "./views/testsView/JumpView";
 import Program from "./views/reader/readerViews/Program";
 import About from "./views/landing/about/About";
-import Cursos from "./views/landing/capacitaciones/Cursos";
+import Cursos from "./views/landing/Products/capacitaciones/Cursos";
 import QuienesSomos from "./views/landing/conocenos/QuienesSomos";
 import WebApplication from "./views/landing/recursos-kinapp/WebApplication";
 import AvisoLegal from "./views/landing/mas/AvisoLegal";
-import Downloads from "./views/landing/descargas/Downloads";
+import Downloads from "./views/landing/Products/descargas/Downloads";
 import ForgotPassword from "./views/forms/ForgotPassword";
 import AdminRoutes from "./utils/AdminRoutes";
 import AdminPanel from "./views/admin/AdminPanel";
@@ -34,6 +34,9 @@ import Projects from "./views/admin/admin_views/Projects";
 import Baja from "./views/forms/Baja";
 import JumpPrivacy from "./views/landing/mas/JumpPrivacy";
 import Docs from "./views/docs/Docs";
+import TusCursos from "./views/tus_cursos/TusCursos";
+import CourseDescription from "./views/landing/Products/capacitaciones/CourseDescription";
+import Full from "./views/landing/Products/full/Full";
 function App() {
   const { user } = useContext(testsContext);
 
@@ -44,6 +47,12 @@ function App() {
       <Route path="/login_form" element={<LoginForm />} />
       <Route path="/forgot_password" element={<ForgotPassword />} />
       <Route path="/about" element={<About />} />
+      <Route path="/courses" element={<Cursos />} />
+      <Route path="/full" element={<Full />} />
+      <Route
+        path="/course_description/:courseId"
+        element={<CourseDescription />}
+      />
       <Route path="/courses" element={<Cursos />} />
       <Route path="/about_us" element={<QuienesSomos />} />
       <Route path="/web_application" element={<WebApplication />} />
@@ -58,7 +67,8 @@ function App() {
       <Route path="/docs" element={<Docs />} />
       <Route element={<ReaderRoutes roles={user.roles} />}>
         <Route path="/reader_profile" element={<ReaderProfile />} />
-        <Route path="/clases" element={<Clases />} />
+        <Route path="/cursos" element={<TusCursos />} />
+        <Route path="/clases/jump" element={<Clases />} />
         <Route path="/jump_video_analysis" element={<JumpVideoAnalysis />} />
         <Route path="/imu_analysis" element={<ImuAnalysis />} />
         <Route path="/jump_program" element={<Program />} />

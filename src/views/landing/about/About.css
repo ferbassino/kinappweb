@@ -100,4 +100,8 @@ font-size: 1.5rem;
 .about-desc-container{
     margin-bottom: 5rem;
 }
+
+.about-desc{
+    font-size: 1.3rem;
+  }
 }

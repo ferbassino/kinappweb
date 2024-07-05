@@ -1,16 +1,23 @@
-import logo from "../../../assets/logo.png";
 import "./Products.css";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import client from "../../../api/client";
-
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "../../../components/landing/header/Navbar";
 import Footer from "../../../components/landing/footer/Footer";
 import { useParams } from "react-router-dom";
+import PaymentButton from "../../../components/mercadopago/PaymentButton";
+import Block from "../../../components/landing/main/Block";
+import full from "./../../../assets/full.png";
+import jump from "./../../../assets/jump.png";
+import docs from "./../../../assets/docs.png";
+import cursos from "./../../../assets/cursos.jpeg";
+
 const Products = () => {
   let data = useParams();
-
+  const navigate = useNavigate();
   const [preferenceId, setPreferenceId] = useState(null);
+
   initMercadoPago(`APP_USR-8e90396a-fd28-4c24-81e4-812af239461f`, {
     locale: "es-AR",
   });
@@ -24,6 +31,7 @@ const Products = () => {
       });
 
       const { result } = response.data;
+      console.log(result);
       return result;
     } catch (error) {
       console.log(error);
@@ -33,7 +41,7 @@ const Products = () => {
   const handleBuy = async () => {
     createPreference();
     const result = await createPreference();
-
+    console.log(result);
     if (result) {
       setPreferenceId(result);
     }
@@ -54,43 +62,46 @@ const Products = () => {
         <Navbar />
       </header>
       <main>
-        <div className="card-product-container">
-          <div className="card-product">
-            <div className="card-container">
-              <img src={logo} alt="Product Image" />
-              <h3 className="h3-products">kinApp FULL USER</h3>
-              <h3 className="h3-products">
-                Gana tiempo y obtiene todos los recursos disponibles
-              </h3>
-
-              <div className="products-column">
-                <h2 className="h2-products">✅ Descarga de Jump.apk</h2>
-                <h2 className="h2-products">
-                  ✅ Acceso a variables cinemáticas y gráficas del entorno
-                </h2>
-                <h2 className="h2-products">
-                  ✅ Acceso a variables dinámicas del entorno
-                </h2>
-                <h2 className="h2-products">
-                  ✅ Acceso completo del análisis por video
-                </h2>
-                <h2 className="h2-products">
-                  ✅ Almacenamiento en dispositivos
-                </h2>
-                <h2 className="h2-products">✅ Almacenamiento en la nube</h2>
-                <h2 className="h2-products">✅ Entorno personalizado</h2>
-              </div>
-              <p className="price-product">AR$ 30000</p>
-              <button onClick={handleBuy}>Comprar por un año</button>
-              {preferenceId && (
-                <Wallet
-                  initialization={{ preferenceId: preferenceId }}
-                  customization={{ texts: { valueProp: "smart_option" } }}
-                />
-              )}
-            </div>
-          </div>
-        </div>
+        <header>
+          <h1 className="products-header-title">Nuestros productos</h1>
+        </header>
+        <Block
+          url={full}
+          title={"kinApp full user"}
+          text={"Utiliza todos los recursos de kinApp para ganar tiempo"}
+          buttonText={"obtener ..."}
+          handleProduct={() => navigate("/full")}
+        />
+        <Block
+          url={jump}
+          title={"Jump apk"}
+          text={
+            "Descarga Jump para dispositivos android y analiza el salto vertical de manera rápida y sencilla"
+          }
+          buttonText={"descargar..."}
+          handleProduct={() => navigate("/downloads")}
+        />
+        <Block
+          url={cursos}
+          title={"Capacitaciones"}
+          text={
+            "inscribite en nuestras capacitaciones sobre biomecánica y tecnología de evaluación"
+          }
+          buttonText={"ver capacitaciones"}
+          handleProduct={() => navigate("/courses")}
+        />
+        <Block
+          url={docs}
+          title={"Documentación"}
+          text={
+            "Accede a la toda la documentación en biomecánica, tutoriales paso a paso para navegar el entorno y utilización de los recursos"
+          }
+          buttonText={"ir a documentación..."}
+          handleProduct={() =>
+            alert("Próximamente podras acceder a la documentación")
+          }
+          // handleProduct={() => navigate("/docs")}
+        />
       </main>
       <footer>
         <Footer />
