@@ -52,6 +52,7 @@ export const courses = [
       },
     ],
   },
+
   // {
   //   id: "2",
   //   name: "video",

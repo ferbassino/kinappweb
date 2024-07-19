@@ -13,3 +13,8 @@ Content-Type: application/json
     "finalDay":1722546244489,
     "score":0
 }
+
+###
+POST http://localhost:3001/webhook
+###
+POST https://kinapp-api.vercel.app/webhook

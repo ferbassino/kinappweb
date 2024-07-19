@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom";
 import Navbar from "../../components/landing/header/Navbar";
+import Footer from "../../components/landing/footer/Footer";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { useRef } from "react";
 import { testsContext } from "../../context/TestsContext";
-import login from "../../services/login";
+
 import "./LoginForm.css";
 import client from "../../api/client";
 import { useNavigate } from "react-router-dom";
@@ -173,6 +173,9 @@ const Register = () => {
           <input id="submit" type="submit" name="enviar" />
         </form>
       </div>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };

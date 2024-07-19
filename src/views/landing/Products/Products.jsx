@@ -97,10 +97,7 @@ const Products = () => {
             "Accede a la toda la documentación en biomecánica, tutoriales paso a paso para navegar el entorno y utilización de los recursos"
           }
           buttonText={"ir a documentación..."}
-          handleProduct={() =>
-            alert("Próximamente podras acceder a la documentación")
-          }
-          // handleProduct={() => navigate("/docs")}
+          handleProduct={() => navigate("/docs")}
         />
       </main>
       <footer>

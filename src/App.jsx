@@ -1,13 +1,13 @@
 import "./App.css";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import ReaderRoutes from "./utils/ReaderRoutes";
 import LoginForm from "./views/forms/LoginForm";
 import Register from "./views/forms/Register";
 import Landing from "./views/landing/Landing";
-import { Routes, Route } from "react-router-dom";
 import ReaderProfile from "./views/reader/ReaderProfile";
 import { testsContext } from "./context/TestsContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import ImuAnalysis from "./views/reader/readerViews/ImuAnalysis";
 import Clases from "./views/courses/jump/Clases";
 import JumpVideoAnalysis from "./views/reader/readerViews/JumpVideoAnalysis";
@@ -33,10 +33,20 @@ import Error404 from "./components/basics/Error404";
 import Projects from "./views/admin/admin_views/Projects";
 import Baja from "./views/forms/Baja";
 import JumpPrivacy from "./views/landing/mas/JumpPrivacy";
-import Docs from "./views/docs/Docs";
+import Docs from "./views/landing/Products/docs/Docs";
 import TusCursos from "./views/tus_cursos/TusCursos";
 import CourseDescription from "./views/landing/Products/capacitaciones/CourseDescription";
 import Full from "./views/landing/Products/full/Full";
+import DocsKinappWeb from "./views/landing/Products/docs/kinappWeb/DocsKinappWeb";
+import DocsApks from "./views/landing/Products/docs/register/DocsApks";
+import DocsBiomechanics from "./views/landing/Products/docs/biomecanica/DocsBiomechanics";
+import DocsGetStarted from "./views/landing/Products/docs/getStarted/DocsGetStarted";
+import JumpDocs from "./views/landing/Products/docs/apks/jump/JumpDocs";
+import AppLogin from "./views/landing/Products/docs/register/register-views/AppLogin";
+import Download from "./views/landing/Products/docs/register/register-views/Download";
+import Apks from "./views/landing/Products/docs/apks/Apks";
+import AppResetPassword from "./views/landing/Products/docs/register/register-views/AppResetPassword";
+
 function App() {
   const { user } = useContext(testsContext);
 
@@ -64,7 +74,21 @@ function App() {
       <Route path="/verification/:userId" element={<Verification />} />
       <Route path="/products" element={<Products />} />
       <Route path="/jump_view" element={<JumpView />} />
-      <Route path="/docs" element={<Docs />} />
+      <Route path="/docs" element={<Docs />}>
+        <Route path="/docs" element={<Navigate to="docs_get_started" />} />
+        <Route path="docs_get_started" element={<DocsGetStarted />} />
+        <Route path="docs_kinapp_web" element={<DocsKinappWeb />} />
+
+        <Route path="docs_biomechanics" element={<DocsBiomechanics />} />
+
+        <Route path="docs_apks" element={<DocsApks />} />
+        <Route path="docs_apks_gallery" element={<Apks />} />
+
+        <Route path="apks_download" element={<Download />} />
+        <Route path="apks_login" element={<AppLogin />} />
+        <Route path="apks_reset_password" element={<AppResetPassword />} />
+        <Route path="jump_docs" element={<JumpDocs />} />
+      </Route>
       <Route element={<ReaderRoutes roles={user.roles} />}>
         <Route path="/reader_profile" element={<ReaderProfile />} />
         <Route path="/cursos" element={<TusCursos />} />

@@ -30,7 +30,7 @@ const ReaderItems = ({ title }) => {
     }
   };
   return (
-    <button className="boton" onClick={handleTitle}>
+    <button className="reader-item-boton" onClick={handleTitle}>
       {title}
     </button>
   );

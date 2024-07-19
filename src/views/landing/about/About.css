@@ -1,11 +1,12 @@
 .check{
     width: 30px;
     height: 30px;
-    color: #8f0000;
+    /* color: #8f0000; */
 }
 .about-container{
     display: flex;
     flex-direction: column;
+    color: rgb(235, 235, 253);
 }
 .about-header-container{
     padding: 1rem;
@@ -17,14 +18,18 @@
 .about-title{
 margin-top: 2rem;
 margin-bottom: 2rem;
+
 }
+
 .about-subtitle{
 font-size: 1.3rem;
 margin-bottom: 2rem;
+color: rgb(235, 235, 253);
 }
 .about-ecosistema{
     font-size: 1.3rem;
     margin-bottom: 2rem;
+    color: rgb(235, 235, 253);
 }
 
 .about-items{
@@ -32,15 +37,18 @@ margin-bottom: 2rem;
     width: 70%;
     margin:0 auto;
     margin-bottom: 2rem;
+    color: rgb(235, 235, 253);
 }
 .about-item{
     margin-left: 2rem;
+    color: rgb(235, 235, 253);
 }
 .about-item-e-icon{
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-top: 1rem;
+    color: rgb(235, 235, 253);
 }
 .about-description-container{
     padding: 1rem;
@@ -52,11 +60,12 @@ margin-bottom: 2rem;
 }
 .about-item-des{
     margin-top: 2rem;
+    color: rgb(235, 235, 253);
 }
 .about-desc{
     margin-top: 2rem;
-    margin-bottom: ;
-}
+    line-height: 1.7rem;
+    color: rgb(235, 235, 253);}
 .about-icon-container{
     margin-top: 5rem;
 }

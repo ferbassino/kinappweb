@@ -1,0 +1,111 @@
+/* header */
+
+.header-container{
+    background-color: rgba(41, 51, 92,1);;;
+}
+.docs-header-title{
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: rgba(41, 51, 92,1);
+    color: aliceblue;
+}
+.docs-header-subtitle{
+    line-height: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    background-color: rgba(41, 51, 92,1);
+    color: aliceblue;;
+}
+
+/* items */
+.docs-items-Container{
+    padding: 1.5rem;
+    background-color: rgba(60, 75, 140,1);
+    border-radius: 20px;
+    border: 0.1px solid rgba(130, 153, 255,1) ;
+    margin-top: 2rem;
+}
+
+.docs-ul-items{
+background-color: rgba(60, 75, 140,1);
+}
+.docs-li-items{
+    margin-top: 0.8rem;
+    background-color: rgba(60, 75, 140,1);
+    color: aliceblue;
+   
+}
+.docs-items-title{
+    font-size: 1.5rem;
+    background-color: rgba(60, 75, 140,1);
+    margin-bottom: 1.2rem;
+    color: aliceblue;
+}
+/* bloque solo con contenido*/
+.docs-block-container{
+   background-color: rgba(41, 51, 92,1);
+    margin-top: 3rem;
+}
+.docs-block-title{
+    font-size: 1.5rem;
+   background-color: rgba(41, 51, 92,1);
+   color: aliceblue;
+   font-weight:600;
+   margin-bottom: 1rem;
+}
+.docs-block-subtitle{
+    font-size: 1.3rem;
+   background-color: rgba(41, 51, 92,1);
+   color: aliceblue;
+   font-weight:300;
+   margin-bottom: 1rem;
+}
+.docs-subtitle{
+    font-size: 1.3rem;
+   background-color: rgba(41, 51, 92,1);
+   color: aliceblue;
+   font-weight:300;
+   margin-top: 3rem;
+   margin-bottom: 1rem;
+}
+.docs-block-content{
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+   background-color: rgba(41, 51, 92,1);
+   color: aliceblue;
+   font-weight:300;
+   margin-bottom: 2rem;
+   margin-top: 2rem;
+   
+}
+
+/* button */
+.docs-button{
+    padding: 0.5rem;
+       background-color: rgba(60, 75, 140,1);
+       color: aliceblue;
+       border-radius: 5px;
+       /* margin-top: 1.4rem; */
+       margin-bottom: 0.8rem;
+}
+
+.docs-button:hover{
+    cursor: pointer;
+      background-color: #8f0000;
+}
+.docs-blok-img-container{
+    display: flex;
+}
+.docs-blok-img{
+    width: 70%;
+    margin: auto;
+}
+
+@media only screen and (min-width: 768px) {
+    .docs-blok-img{
+    width: 20%;
+   
+}
+  
+}

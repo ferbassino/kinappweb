@@ -9,9 +9,11 @@
 }
 .us-header-title{
     margin-bottom: 2rem;
+    color: aliceblue;
 }
 .us-header-subtitle{
     margin-bottom: 2rem;
+     color: aliceblue;
 }
 .individual-container{
     width: 80%;
@@ -23,9 +25,20 @@
 }
 .individual-title{
     margin-bottom: 2rem;
+    color: aliceblue;
+
 }
 .individual-subtitle{
     margin-bottom: 1.2rem;
+    color: aliceblue;
+    font-size: 1.1rem;
+}
+.individual-description{
+    margin-bottom: 1.2rem;
+    color: aliceblue;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    
 }
 /* pc */
 @media only screen and (min-width: 768px) {
@@ -47,8 +60,12 @@
     font-size: 1.6rem;
 }
 .individual-description{
-    max-width: 60%;
-    margin: auto;
+    margin-top: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    line-height: 2rem;
+    /* max-width: 60%;
+        margin: auto; */
     /* font-size: 1.2rem; */
 }
 

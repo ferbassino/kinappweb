@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import Chart from "../../components/basics/Chart";
+import ChartOneAxis from "../../components/basics/ChartOneAxis";
 import getDate from "../../auxiliaries/general/getDate";
 import accelerationArrays from "../../auxiliaries/basics/accelerationArrays";
 import freeJumpAnalysis from "../../auxiliaries/jumpAnalysis/freeJump/freeJumpanalysis";
@@ -12,6 +12,7 @@ import { testsContext } from "../../context/TestsContext";
 import { useNavigate } from "react-router-dom";
 import "./JumpView.css";
 import Navbar from "../../components/landing/header/Navbar";
+import Ploty from "../../components/basics/Ploty";
 
 function JumpView() {
   const navigate = useNavigate();
@@ -118,6 +119,8 @@ function JumpView() {
         setPropDist(propulsiveDistance);
         setPower(power);
         setForce(fRM);
+        setXAxisArray(cMJXAxis);
+
         break;
       case "drop jump":
         const { dJDataObject } = dropJumpAnalysis(
@@ -175,223 +178,213 @@ function JumpView() {
       <header>
         <Navbar />
       </header>
-      <section className="">
-        <div className="">
-          <div className="jump-title-container">
-            <h1 className="jump-title">Análisis del salto</h1>
-            {/* <h2 className="jump-subtitle">subtitle</h2> */}
-            <h3 className="jump-jump">{currentTest.motionType}</h3>
-            {currentTest === "undefined" ? (
-              <>
-                <h3 className="jump-ref">Ref:{currentTest.email}</h3>
-                <h3 className="jump-date">Fecha:{currentTest.date}</h3>
-              </>
-            ) : (
-              <>
-                <h3 className="jump-ref">Ref:{test.email}</h3>
-                <h3 className="jump-date">Fecha:{getDate(test.date)}</h3>
-              </>
-            )}
+      <section className="jump-test-container">
+        <div className="jump-title-container">
+          <h1 className="jump-title">Análisis del salto</h1>
+          {/* <h2 className="jump-subtitle">subtitle</h2> */}
+          <h3 className="jump-jump">{currentTest.motionType}</h3>
+          {currentTest === "undefined" ? (
+            <>
+              <h3 className="jump-ref">Ref: {currentTest.email}</h3>
+              <h3 className="jump-date">Fecha: {currentTest.date}</h3>
+            </>
+          ) : (
+            <>
+              <h3 className="jump-ref">Ref:{test.email}</h3>
+              <h3 className="jump-date">Fecha:{getDate(test.date)}</h3>
+            </>
+          )}
 
-            <h3 className="jump-masa">masa:{currentTest.weight} kg</h3>
-          </div>
-          <div className="contenedor-tabla">
-            <table className="">
-              <thead>
-                <tr>
-                  <th className="">Analisis</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="">Tiempo de evaluación</td>
-                  <td className="">{currentTest.testTime / 1000}s</td>
-                </tr>
-                <tr>
-                  <td className="">Intervalo de muestreo</td>
-                  <td className="">{interval.toFixed(3)}s</td>
-                </tr>
-                {squatJumpVisible || cMJumpVisible ? (
-                  <>
-                    <tr>
-                      <td className="3">Tiempo propulsivo</td>
-                      <td className="">{propTime} s</td>
-                    </tr>
-                    <tr>
-                      <td className="">Distancia Propulsiva</td>
-                      <td className="">{propDist}m</td>
-                    </tr>
-                    <tr>
-                      <td className="">Fuerza media propulsiva</td>
-                      <td className="">{force} N</td>
-                    </tr>
-                    <tr>
-                      <td className="">Potencia media propulsiva</td>
-                      <td className="">{power}W</td>
-                    </tr>
-                    <tr>
-                      <td className="">Tiempo de vuelo</td>
-                      <td className="">{flightTime.toFixed(2)}s</td>
-                    </tr>
-                    <tr>
-                      <td className="">Altura de vuelo</td>
-                      <td className="">{flightHeight.toFixed(2)}m</td>
-                    </tr>
-                    <tr>
-                      <td className="">Velocidad de despegue</td>
-                      <td className="">{takeoffSpeed.toFixed(2)}m/s</td>
-                    </tr>
-                  </>
-                ) : null}{" "}
-                {dropJumpVisible ? (
-                  <>
-                    <tr>
-                      <td className=""></td>
-                      <td className=""></td>
-                    </tr>
-                    <thead>
-                      <tr>
-                        <th className="">Fase de caida</th>
-                      </tr>
-                    </thead>
-                    <tr>
-                      <td className="">Tiempo de caida</td>
-                      <td className="">{flightTime.toFixed(2)}s</td>
-                    </tr>
-                    <tr>
-                      <td className="">Altura de caida</td>
-                      <td className="">{flightHeight.toFixed(2)}m</td>
-                    </tr>
-                    <tr>
-                      <td className="">Velocidad de caida</td>
-                      <td className="">{dropSpeed.toFixed(2)}m/s</td>
-                    </tr>
-                    <tr>
-                      <td className=""></td>
-                      <td className=""></td>
-                    </tr>
-                    <tr>
-                      <td className="">Tiempo de contacto</td>
-                      <td className="">{contactTime.toFixed(3)}s</td>
-                    </tr>
-                    <tr>
-                      <td className=""></td>
-                      <td className=""></td>
-                    </tr>
-                    <thead>
-                      <tr>
-                        <th className="">Fase de impulso</th>
-                      </tr>
-                    </thead>
-                    <tr>
-                      <td className="3">Tiempo propulsivo</td>
-                      <td className="">{propTime}s</td>
-                    </tr>
-                    <tr>
-                      <td className="">Distancia Propulsiva</td>
-                      <td className="">{propDist}m</td>
-                    </tr>
-                    <tr>
-                      <td className="">Fuerza media propulsiva</td>
-                      <td className="">{force}N</td>
-                    </tr>
-                    <tr>
-                      <td className="">Potencia media propulsiva</td>
-                      <td className="">{power}W</td>
-                    </tr>
-                    <thead>
-                      <tr>
-                        <th className="">Fase de vuelo</th>
-                      </tr>
-                    </thead>
-                    <tr>
-                      <td className="">Tiempo de vuelo</td>
-                      <td className="">{flightTime2.toFixed(2)}s</td>
-                    </tr>
-                    <tr>
-                      <td className="">Altura del salto</td>
-                      <td className="">{flightHeight2.toFixed(2)}m</td>
-                    </tr>
-                    <tr>
-                      <td className="">Velocidad de despegue</td>
-                      <td className="">{takeoffSpeed2.toFixed(2)} m/s</td>
-                    </tr>
-                  </>
-                ) : null}
-                {stiffnessVisible ? (
-                  <>
-                    <tr>
-                      <td className=""></td>
-                      <td className=""></td>
-                    </tr>
-                    <thead>
-                      <tr>
-                        <th className="">Análisis</th>
-                      </tr>
-                    </thead>
-                    <tr>
-                      <td className="">Stiffness</td>
-                      <td className="">{stiffnessData.stiffness}N/m</td>
-                    </tr>
-                    <tr>
-                      <td className="">Frecuencia</td>
-                      <td className="">
-                        {stiffnessData.frequency.toFixed(2)}Hz
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className=""></td>
-                      <td className=""></td>
-                    </tr>
-                    <thead>
-                      <tr>
-                        <th className="">Tiempos de vuelo y contacto</th>
-                      </tr>
-                    </thead>
-                    <tr>
-                      <td className="">Primer ciclo</td>
-                      <td className="">tv: {stiffnessData.tV23.toFixed(3)}s</td>
-                      <td className="">tc: {stiffnessData.tC34.toFixed(3)}s</td>
-                    </tr>
-                    <tr>
-                      <td className="">Segundo ciclo</td>
-                      <td className="">tv: {stiffnessData.tV45.toFixed(3)}s</td>
-                      <td className="">
-                        tc: {stiffnessData.tC56.toFixed(3)} s
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="">Tercer ciclo</td>
-                      <td className="">tv: {stiffnessData.tV67.toFixed(3)}s</td>
-                      <td className="">tc: {stiffnessData.tC78.toFixed(3)}s</td>
-                    </tr>
-                    <tr>
-                      <td className="">Cuarto ciclo</td>
-                      <td className="">tv: {stiffnessData.tV89.toFixed(3)}s</td>
-                      <td className="">
-                        tc: {stiffnessData.tC910.toFixed(3)}s
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="">Quinto ciclo</td>
-                      <td className="">
-                        tv: {stiffnessData.tV1011.toFixed(3)}s
-                      </td>
-                      <td className="">
-                        tc: {stiffnessData.tC1112.toFixed(3)} s
-                      </td>
-                    </tr>
-                  </>
-                ) : null}
-              </tbody>
-            </table>
-          </div>
-          {/* ---------------------------------- */}
+          <h3 className="jump-masa">masa:{currentTest.weight} kg</h3>
         </div>
+        <div className="contenedor-tabla">
+          <table className="">
+            <thead>
+              <tr>
+                <th className="">Analisis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="">Tiempo de evaluación</td>
+                <td className="">{currentTest.testTime / 1000}s</td>
+              </tr>
+              <tr>
+                <td className="">Intervalo de muestreo</td>
+                <td className="">{interval.toFixed(3)}s</td>
+              </tr>
+              {squatJumpVisible || cMJumpVisible ? (
+                <>
+                  <tr>
+                    <td className="3">Tiempo propulsivo</td>
+                    <td className="">{propTime} s</td>
+                  </tr>
+                  <tr>
+                    <td className="">Distancia Propulsiva</td>
+                    <td className="">{propDist}m</td>
+                  </tr>
+                  <tr>
+                    <td className="">Fuerza media propulsiva</td>
+                    <td className="">{force} N</td>
+                  </tr>
+                  <tr>
+                    <td className="">Potencia media propulsiva</td>
+                    <td className="">{power}W</td>
+                  </tr>
+                  <tr>
+                    <td className="">Tiempo de vuelo</td>
+                    <td className="">{flightTime.toFixed(2)}s</td>
+                  </tr>
+                  <tr>
+                    <td className="">Altura de vuelo</td>
+                    <td className="">{flightHeight.toFixed(2)}m</td>
+                  </tr>
+                  <tr>
+                    <td className="">Velocidad de despegue</td>
+                    <td className="">{takeoffSpeed.toFixed(2)}m/s</td>
+                  </tr>
+                </>
+              ) : null}{" "}
+              {dropJumpVisible ? (
+                <>
+                  <tr>
+                    <td className=""></td>
+                    <td className=""></td>
+                  </tr>
+                  <thead>
+                    <tr>
+                      <th className="">Fase de caida</th>
+                    </tr>
+                  </thead>
+                  <tr>
+                    <td className="">Tiempo de caida</td>
+                    <td className="">{flightTime.toFixed(2)}s</td>
+                  </tr>
+                  <tr>
+                    <td className="">Altura de caida</td>
+                    <td className="">{flightHeight.toFixed(2)}m</td>
+                  </tr>
+                  <tr>
+                    <td className="">Velocidad de caida</td>
+                    <td className="">{dropSpeed.toFixed(2)}m/s</td>
+                  </tr>
+                  <tr>
+                    <td className=""></td>
+                    <td className=""></td>
+                  </tr>
+                  <tr>
+                    <td className="">Tiempo de contacto</td>
+                    <td className="">{contactTime.toFixed(3)}s</td>
+                  </tr>
+                  <tr>
+                    <td className=""></td>
+                    <td className=""></td>
+                  </tr>
+                  <thead>
+                    <tr>
+                      <th className="">Fase de impulso</th>
+                    </tr>
+                  </thead>
+                  <tr>
+                    <td className="3">Tiempo propulsivo</td>
+                    <td className="">{propTime}s</td>
+                  </tr>
+                  <tr>
+                    <td className="">Distancia Propulsiva</td>
+                    <td className="">{propDist}m</td>
+                  </tr>
+                  <tr>
+                    <td className="">Fuerza media propulsiva</td>
+                    <td className="">{force}N</td>
+                  </tr>
+                  <tr>
+                    <td className="">Potencia media propulsiva</td>
+                    <td className="">{power}W</td>
+                  </tr>
+                  <thead>
+                    <tr>
+                      <th className="">Fase de vuelo</th>
+                    </tr>
+                  </thead>
+                  <tr>
+                    <td className="">Tiempo de vuelo</td>
+                    <td className="">{flightTime2.toFixed(2)}s</td>
+                  </tr>
+                  <tr>
+                    <td className="">Altura del salto</td>
+                    <td className="">{flightHeight2.toFixed(2)}m</td>
+                  </tr>
+                  <tr>
+                    <td className="">Velocidad de despegue</td>
+                    <td className="">{takeoffSpeed2.toFixed(2)} m/s</td>
+                  </tr>
+                </>
+              ) : null}
+              {stiffnessVisible ? (
+                <>
+                  <tr>
+                    <td className=""></td>
+                    <td className=""></td>
+                  </tr>
+                  <thead>
+                    <tr>
+                      <th className="">Análisis</th>
+                    </tr>
+                  </thead>
+                  <tr>
+                    <td className="">Stiffness</td>
+                    <td className="">{stiffnessData.stiffness}N/m</td>
+                  </tr>
+                  <tr>
+                    <td className="">Frecuencia</td>
+                    <td className="">{stiffnessData.frequency.toFixed(2)}Hz</td>
+                  </tr>
+                  <tr>
+                    <td className=""></td>
+                    <td className=""></td>
+                  </tr>
+                  <thead>
+                    <tr>
+                      <th className="">Tiempos de vuelo y contacto</th>
+                    </tr>
+                  </thead>
+                  <tr>
+                    <td className="">Primer ciclo</td>
+                    <td className="">tv: {stiffnessData.tV23.toFixed(3)}s</td>
+                    <td className="">tc: {stiffnessData.tC34.toFixed(3)}s</td>
+                  </tr>
+                  <tr>
+                    <td className="">Segundo ciclo</td>
+                    <td className="">tv: {stiffnessData.tV45.toFixed(3)}s</td>
+                    <td className="">tc: {stiffnessData.tC56.toFixed(3)} s</td>
+                  </tr>
+                  <tr>
+                    <td className="">Tercer ciclo</td>
+                    <td className="">tv: {stiffnessData.tV67.toFixed(3)}s</td>
+                    <td className="">tc: {stiffnessData.tC78.toFixed(3)}s</td>
+                  </tr>
+                  <tr>
+                    <td className="">Cuarto ciclo</td>
+                    <td className="">tv: {stiffnessData.tV89.toFixed(3)}s</td>
+                    <td className="">tc: {stiffnessData.tC910.toFixed(3)}s</td>
+                  </tr>
+                  <tr>
+                    <td className="">Quinto ciclo</td>
+                    <td className="">tv: {stiffnessData.tV1011.toFixed(3)}s</td>
+                    <td className="">
+                      tc: {stiffnessData.tC1112.toFixed(3)} s
+                    </td>
+                  </tr>
+                </>
+              ) : null}
+            </tbody>
+          </table>
+        </div>
+        {/* ---------------------------------- */}
       </section>
 
       <div className="chart-jump">
-        <Chart
+        <ChartOneAxis
           x={arrayY0F}
           xName="aceleración en y"
           xColor="red"

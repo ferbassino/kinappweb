@@ -139,11 +139,9 @@ const Tests = () => {
       const indexOfLastItem = currentPage * itemsPerPage;
       const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-      console.log("current", current);
       const curr = current.slice(indexOfFirstItem, indexOfLastItem);
       setUserTests(curr);
       setActiveTab(tabId);
-      console.log(indexOfLastItem >= currentItems.length);
 
       if (indexOfLastItem >= current.length) {
         setDisabledButtonPagination(true);
@@ -155,7 +153,6 @@ const Tests = () => {
 
   // Cambiar de página
   const nextPage = () => {
-    console.log("current page", currentPage);
     setCurrentPage(currentPage + 1);
   };
   const prevPage = () => setCurrentPage(currentPage - 1);

@@ -8,6 +8,8 @@
   padding: 20px;
   margin-top: 10rem;
   margin-bottom: 3rem;
+  background-color: rgba(41, 51, 92,1);
+   
   
 }
 
@@ -22,16 +24,18 @@
 
 .footer-title {
   font-size: 16px;
-  color: #1b1b33; /* Dark blue color */
+ 
   margin-bottom: 8px;
   text-align: center;
   margin-top: 1rem;
+   color: aliceblue;
 }
 
 .footer-description {
   font-size: 16px;
   color: #1b1b33; /* Dark blue color */
   margin-top: 1rem;
+   color: aliceblue;
 }
 
 

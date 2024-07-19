@@ -28,7 +28,7 @@ font-size: 1.5rem;
 
 .curse-description{
     font-size: 1.3rem;
-    
+    color: aliceblue;
     margin-bottom: 3rem;
     
 }
@@ -56,7 +56,7 @@ font-size: 1.5rem;
 }
 .program-item-content{
     margin-bottom: 0.3rem;
-   
+    color: aliceblue;
    }
 
 .program-video{

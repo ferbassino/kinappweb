@@ -1,0 +1,77 @@
+import { useMemo } from "react";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
+
+const options = {
+  // fill: true,
+  responsive: true,
+  aspectRatio: 1.3,
+  plugins: {
+    legend: {
+      display: true,
+    },
+  },
+};
+
+const Chart = ({
+  x = [],
+  y = [],
+  t = [],
+  xName = "",
+  yName = "",
+  xColor = "",
+  yColor = "",
+}) => {
+  const data = useMemo(
+    function () {
+      let labels = t;
+
+      return {
+        datasets: [
+          {
+            label: xName,
+            tension: 0.3,
+            data: x,
+            borderColor: xColor,
+            backgroundColor: xColor,
+            pointRadius: 1,
+          },
+          {
+            label: yName,
+            tension: 0.5,
+            data: y,
+            borderColor: yColor,
+            backgroundColor: yColor,
+            pointRadius: 1,
+          },
+        ],
+        labels,
+      };
+    },
+    [x, y, t]
+  );
+
+  return <Line data={data} options={options} />;
+};
+export default Chart;

@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center; /* Centra horizontalmente en dispositivos móviles */
   margin-top: 3rem;
+  
 }
 
 .formulario {
@@ -9,37 +10,61 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: rgba(130, 153, 255,1) 
 }
 
 .campo {
   margin-bottom: 20px;
+  background-color: rgba(130, 153, 255,1) 
 }
 
 label {
   display: block;
   margin-bottom: 5px;
+  background-color: rgba(130, 153, 255,1) ;
+ color: #1b1b33;
+ font-size: 1.2rem;
 }
 
-input[type="text"],
+input[type="text"]{
+   width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: aliceblue;
+  color: #1b1b33;
+  font-size: 1.3rem;
+}
+
+
 input[type="submit"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-top: 1.3rem;
+  font-size: 1.2rem;
 }
 
 input[type="submit"] {
-  background-color: #8f0000;
+   background-color: #1b1b33;
   color: #fff;
   cursor: pointer;
 }
 input[type="submit"]:hover {
-  background-color: #1b1b33;
+ 
+  background-color: #8f0000;
   
 }
 
 .forgot-container{
   margin-top: 2rem;
+  background-color: rgba(130, 153, 255,1) 
+}
+.forgot{
+  font-size: 1.2rem;
+  background-color: rgba(130, 153, 255,1) ;
+  color:  #1b1b33;
 }
 
 .ingresar-mensaje{

@@ -45,7 +45,9 @@ export default function PaymentButton({ title, quantity, price, buttonTitle }) {
   return (
     <div className="mercado-button-container">
       <p className="price-product">Inversión: AR$ {price}</p>
-      <button onClick={handleBuy}>{buttonTitle}</button>
+      <button className="button-title" onClick={handleBuy}>
+        {buttonTitle}
+      </button>
       {preferenceId && (
         <div className="wallet-container">
           <Wallet

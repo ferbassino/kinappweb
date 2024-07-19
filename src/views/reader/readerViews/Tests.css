@@ -8,7 +8,7 @@
 .tabla-tests{
    width: 100%;
   border-collapse: collapse;
-  border: 2px solid #333;
+  border: 2px solid aliceblue;
 }
 
 .caption-tests{
@@ -16,7 +16,7 @@
   margin-bottom: 10px;
 }
 .th-tests, .td-tests{
-  border: 1px solid #666;
+  border: 2px solid aliceblue;
   padding: 10px;
 }
 .test-title-container{
@@ -38,6 +38,7 @@
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  color: aliceblue;
 }
 
 
@@ -54,6 +55,7 @@
 }
 #tabs-container {
   display: flex;
+ 
 }
 
 .tab {
@@ -61,14 +63,15 @@
   text-align: center;
   padding: 5px;
   cursor: pointer;
-  border: 1px solid #ccc;
-  font-size: 0.8rem;
+  border: 1px solid aliceblue;
+  font-size: 1rem;
+  color: aliceblue;
 }
 /* #8f0000 */
 .tab.active {
   /* background-color:  #1b1b33; */
-  background-color:  #8f0000;
-  color: bisque;
+  background-color: rgba(130, 153, 255,1);;
+  color:  #1b1b33;
 }
 
 
@@ -76,7 +79,7 @@
   .th-tests, .td-tests {
         width: 90%;
     border: none;
-    border: 1px solid #666;
+    border: 1px solid aliceblue;
   }
   .th-tests, .td-tests{
     font-size: 0.9rem;
@@ -96,6 +99,7 @@
      max-width: 95%;
   overflow-x: auto;
   margin: 0 auto;
+  
 }
 .tests-title{
   font-size: 1.6rem;
@@ -108,6 +112,7 @@
   text-align: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  color: aliceblue;
 }
 .tab {
     flex-basis: auto;

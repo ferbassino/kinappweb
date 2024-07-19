@@ -17,14 +17,18 @@
 .down-title{
 margin-top: 2rem;
 margin-bottom: 2rem;
+color: aliceblue;
 }
 .down-subtitle{
 font-size: 1.3rem;
 margin-bottom: 2rem;
+color: aliceblue;
+line-height: 2rem;
 }
 .down-ecosistema{
     font-size: 1.3rem;
     margin-bottom: 2rem;
+    color: aliceblue;
 }
 
 .down-items{
@@ -32,20 +36,24 @@ margin-bottom: 2rem;
     width: 70%;
     margin:0 auto;
     margin-bottom: 2rem;
+    color: aliceblue;
 }
 .down-item{
     font-size: 2rem;
     margin-left: 2rem;
     font-size: 1.5rem;
+    color: aliceblue;
 }
 .down-item-e-icon{
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-top: 1rem;
+    color: aliceblue;
 }
 .down-description-container{
     padding: 1rem;
+   
 }
 .down-desc-container{
     display: flex;
@@ -56,6 +64,7 @@ margin-bottom: 2rem;
 .down-item-des{
     margin-top: 2rem;
     margin-bottom: 1rem;
+    color: aliceblue;
     
 }
 .down-desc{
@@ -63,6 +72,7 @@ margin-bottom: 2rem;
     /* margin-top: 2rem; */
     margin-bottom: 2rem;
     font-size: 1.5rem;
+    color: aliceblue;
 
     
 }
