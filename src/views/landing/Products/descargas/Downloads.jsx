@@ -139,7 +139,7 @@ const Downloads = () => {
             </p>
             <a
               onClick={() => handleAPK()}
-              href="https://play.google.com/apps/test/com.ferbassino.jump/1"
+              href="https://play.google.com/store/apps/details?id=com.ferbassino.jump&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
             >
