@@ -20,11 +20,12 @@
   width: 100%;
   margin-bottom: 4rem;
   text-align: center;
+  background-color: rgba(41, 51, 92,1);
 }
 
 .footer-title {
   font-size: 16px;
- 
+ background-color: transparent;
   margin-bottom: 8px;
   text-align: center;
   margin-top: 1rem;
@@ -36,10 +37,12 @@
   color: #1b1b33; /* Dark blue color */
   margin-top: 1rem;
    color: aliceblue;
+   background-color: rgba(41, 51, 92,1);
 }
 
 
 .footer-footer-title{
+  background-color: rgba(41, 51, 92,1);
   flex-direction: column;
   margin-bottom: 2rem;
   display: flex;

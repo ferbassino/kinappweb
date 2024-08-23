@@ -1,15 +1,18 @@
 import React from "react";
-
+import "./Project.css";
 const Projects = () => {
   return (
-    <div>
-      <a
-        href="https://color-trackin.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <h1>Tracking</h1>
-      </a>
+    <div className="container-project">
+      <button className="button">
+        <a
+          href="https://color-trackin.vercel.app/"
+          className="a-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tracking
+        </a>
+      </button>
     </div>
   );
 };

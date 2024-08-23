@@ -61,7 +61,7 @@ const Products = () => {
       <header>
         <Navbar />
       </header>
-      <main>
+      <main className="main-products">
         <header>
           <h1 className="products-header-title">Nuestros productos</h1>
         </header>

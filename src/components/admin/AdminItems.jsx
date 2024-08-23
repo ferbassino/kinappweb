@@ -6,7 +6,7 @@ const AdminItems = ({ title }) => {
   const navigate = useNavigate();
   const handleTitle = () => {
     switch (title) {
-      case "Usuarios":
+      case "Users":
         navigate("/admin_users");
         break;
       case "Projects":
@@ -14,6 +14,9 @@ const AdminItems = ({ title }) => {
         break;
       case "Tests":
         navigate("/admin_tests");
+        break;
+      case "Jump validation":
+        navigate("/jump_validation");
         break;
       // case "Video análisis":
       //   navigate("/jump_video_analysis");

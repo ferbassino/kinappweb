@@ -10,9 +10,10 @@ import PaymentButton from "../../components/mercadopago/PaymentButton";
 const AdminPanel = () => {
   const { user } = useContext(testsContext);
   const readerOptions = [
-    "Usuarios",
+    "Users",
     "Tests",
     "Projects",
+    "Jump validation",
     // "Video análisis",
     // "Programa",
     // "Recucrsos kinApp",

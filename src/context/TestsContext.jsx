@@ -22,7 +22,12 @@ export const TestsContextProvider = ({ children }) => {
   const [user, setUser] = useState({ userName: "", roles: "" });
   const [roles, setRoles] = useState("");
   const [currentTest, setCurrentTest] = useState([]);
+  const [currentTests, setCurrentTests] = useState([]);
+  const [testsToSpreadSheet, setTestsToSpreadSheet] = useState([]);
+  const [testsToSpreadSheetM, setTestsToSpreadSheetM] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
+  const [currentClient, setCurrentClient] = useState([]);
+  const [jumpClientNumber, setJumpClientNumber] = useState(0);
   const [apps, setApps] = useState([]);
   const [downloadedJumpApp, setDownloadedJumpApp] = useState(0);
 
@@ -121,6 +126,7 @@ export const TestsContextProvider = ({ children }) => {
       setError(null);
       setIsLoading(true);
       const data = await getAllTests();
+
       setTests(data);
     } catch (error) {
       console.log(error);
@@ -168,9 +174,20 @@ export const TestsContextProvider = ({ children }) => {
   // const handleUser = (user) => {
   //   setUser(user);
   // };
+
   const handleCurrentTest = (test) => {
     setCurrentTest(test);
   };
+  const handleCurrentTests = (tests) => {
+    setCurrentTests(tests);
+  };
+  const handleTestsToSpreadSheet = (tests) => {
+    setTestsToSpreadSheet(tests);
+  };
+  const handleTestsToSpreadSheetM = (tests) => {
+    setTestsToSpreadSheetM(tests);
+  };
+
   const handleTest = (test) => {
     setTest(test);
   };
@@ -190,6 +207,12 @@ export const TestsContextProvider = ({ children }) => {
   };
   const handleCurrentUser = (user) => {
     setCurrentUser(user);
+  };
+  const handleCurrentClient = (client) => {
+    setCurrentClient(client);
+  };
+  const handleCurrentClientJumpNumber = (number) => {
+    setJumpClientNumber(number);
   };
 
   const handleLoading = (param) => {
@@ -219,6 +242,16 @@ export const TestsContextProvider = ({ children }) => {
         test,
         handleTest,
         handleLoading,
+        handleCurrentClient,
+        currentClient,
+        handleCurrentTests,
+        currentTests,
+        handleCurrentClientJumpNumber,
+        jumpClientNumber,
+        handleTestsToSpreadSheet,
+        testsToSpreadSheet,
+        handleTestsToSpreadSheetM,
+        testsToSpreadSheetM,
       }}
     >
       {children}

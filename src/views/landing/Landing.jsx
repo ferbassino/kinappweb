@@ -5,10 +5,11 @@ import Blocks from "../../components/landing/main/Blocks";
 import Footer from "../../components/landing/footer/Footer";
 import Statistics from "./statistics/Statistics";
 import Payment from "./payment/Payment";
+import "./Landing.css";
 
 const Landing = () => {
   return (
-    <>
+    <div className="landing-container">
       <header>
         <Navbar />
       </header>
@@ -22,7 +23,7 @@ const Landing = () => {
       <footer>
         <Footer />
       </footer>
-    </>
+    </div>
   );
 };
 

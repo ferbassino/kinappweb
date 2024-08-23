@@ -4,11 +4,15 @@ import powerCMJDropAnalysis from "./powerCMJDropAnalysis";
 
 export default function jumpProcess(accY = [], testTime = 0, weight = 0) {
   const evT = testTime / 1000;
-  const cMjumpInterv = evT / accY.length;
+  const cMjumpInterv = Number((evT / accY.length).toFixed(4));
   const modo = numbers.statistic.mode(accY);
+
   const arrayT0 = [];
   let countArrayT0 = 0;
+
   const arrayY0 = accY.map((el) => (el - modo) * 9.81);
+
+  // z-y angle
 
   arrayY0.map((el) => {
     arrayT0.push(Number((countArrayT0 += cMjumpInterv).toFixed(3)));
@@ -66,7 +70,7 @@ export default function jumpProcess(accY = [], testTime = 0, weight = 0) {
   const arrayY3T = [];
   let county3T = 0;
   arrayY0.map((el, index) => {
-    if (index > index2 && index < index3) {
+    if (index >= index2 && index < index3) {
       arrayY3.push(el);
 
       arrayY3T.push((county3T += cMjumpInterv));
@@ -90,10 +94,10 @@ export default function jumpProcess(accY = [], testTime = 0, weight = 0) {
     }
   });
 
-  const tV = arrayY4.length * cMjumpInterv;
+  const tV = Number((arrayY4.length * cMjumpInterv).toFixed(3));
 
-  const alturaVuelo = (1 / 8) * 9.81 * Math.pow(tV, 2);
-  const velD = Math.sqrt(2 * 9.81 * alturaVuelo);
+  const alturaVuelo = Number(((1 / 8) * 9.81 * Math.pow(tV, 2)).toFixed(3));
+  const velD = Number(Math.sqrt(2 * 9.81 * alturaVuelo).toFixed(3));
 
   // ----------------------reverse
 
@@ -105,6 +109,8 @@ export default function jumpProcess(accY = [], testTime = 0, weight = 0) {
   // como la velocidad es maxima, la aceleración debe ser cero, entonces integramos hacia atras la aceleración partiendo como valor incial de velocidad la máxima
   const integralArray = [];
   let countDP = velMax;
+
+  // MULTIPLICAR * 1.5 PARA ELEVAR LA CURVA
   for (let i = 0; i < arrayY3Invertido.length - 1; i++) {
     countDP -=
       ((Number(arrayY3Invertido[i]) + Number(arrayY3Invertido[i + 1])) *
@@ -124,7 +130,7 @@ export default function jumpProcess(accY = [], testTime = 0, weight = 0) {
   // a. del triangulo cuya base es el intervalo de tiempo desde la posición mas baja hasta la velocidad máxima
 
   const propulsiveMaxTime = Number(
-    (arrayY3InvertidoPositivo.length * cMjumpInterv).toFixed(2)
+    (arrayY3InvertidoPositivo.length * cMjumpInterv).toFixed(3)
   );
   const propulsiveMaxDist = (propulsiveMaxTime * velMax) / 2;
 
@@ -136,22 +142,19 @@ export default function jumpProcess(accY = [], testTime = 0, weight = 0) {
 
   // sumamos
 
-  const propulsiveDistance = (propulsiveMaxDist + propulsiveDespDist).toFixed(
-    2
-  );
+  const propulsiveDistance = Number(propulsiveMaxDist.toFixed(3));
 
   // el tiempo propulsivo seria
-
-  const propulsiveTime = (
-    intervalo +
-    arrayY3InvertidoPositivo.length * cMjumpInterv
-  ).toFixed(2);
+  // VER ACA CORREGIR TIEMPO PROPULSIVO
+  const propulsiveTime = // intervalo +
+    Number((arrayY3InvertidoPositivo.length * cMjumpInterv).toFixed(3));
   // {----------------------------------------------------}
 
   const index5 = arrayY0.findIndex((el, index) => el < 0 && index > index4);
   const index6 = arrayY0.findIndex((el, index) => el > 0 && index > index5);
 
   const arrayY0F = [];
+
   const accT = [];
   let countInterval = 0;
   const arrayY0Vuelo = [];
@@ -159,12 +162,13 @@ export default function jumpProcess(accY = [], testTime = 0, weight = 0) {
 
   arrayY0.forEach((el, index) => {
     if (index > index1 && index < index6) {
-      arrayY0F.push(Number(el.toFixed(2)));
+      arrayY0F.push(Number(el.toFixed(3)));
+
       cMJXAxis.push(0);
-      accT.push((countInterval += cMjumpInterv).toFixed(2));
+      accT.push((countInterval += cMjumpInterv).toFixed(3));
     }
     if (index > index3 && index < index4) {
-      arrayY0Vuelo.push(Number(el.toFixed(2)));
+      arrayY0Vuelo.push(Number(el.toFixed()));
     }
   });
 
@@ -202,6 +206,42 @@ export default function jumpProcess(accY = [], testTime = 0, weight = 0) {
   //
   const arrayY0FLong = arrayY0F;
   const cMJXAxisLong = cMJXAxis;
+
+  // --------------------------IntegralArrayModificado--------------------------------
+  const integralArrayModified = [];
+  let countDPModified = velMax;
+  for (let i = 0; i < arrayY3Invertido.length - 1; i++) {
+    countDPModified -=
+      ((Number(arrayY3Invertido[i]) + Number(arrayY3Invertido[i + 1])) *
+        1.5 *
+        (arrayY3T[i + 1] - arrayY3T[i])) /
+      2;
+    integralArrayModified.push(countDPModified);
+  }
+  const arrayY3InvertidoPositivoModified = integralArrayModified.filter(
+    (el) => el > 0
+  );
+  integralArrayModified.reverse();
+  // imprimir tiempo propulsivo
+  const propulsiveMaxTimeModified = Number(
+    (arrayY3InvertidoPositivoModified.length * cMjumpInterv).toFixed(3)
+  );
+  // imprimir distancia propulsiva
+  const propulsiveMaxDistModified = Number(
+    ((propulsiveMaxTimeModified * velMax) / 2).toFixed(3)
+  );
+
+  const resultM = powerCMJDropAnalysis(
+    weight,
+    tV,
+    propulsiveMaxTimeModified,
+    alturaVuelo
+  );
+
+  const fRMModified = resultM.fRM;
+  const powerModified = resultM.power;
+
+  // -------------------------------Fin modified------------------------------------
   return {
     arrayY0,
     accT,
@@ -220,5 +260,9 @@ export default function jumpProcess(accY = [], testTime = 0, weight = 0) {
     validation,
     arrayY4,
     arrayXAxis,
+    propulsiveMaxTimeModified,
+    propulsiveMaxDistModified,
+    fRMModified,
+    powerModified,
   };
 }

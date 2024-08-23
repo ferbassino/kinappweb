@@ -46,6 +46,10 @@ import AppLogin from "./views/landing/Products/docs/register/register-views/AppL
 import Download from "./views/landing/Products/docs/register/register-views/Download";
 import Apks from "./views/landing/Products/docs/apks/Apks";
 import AppResetPassword from "./views/landing/Products/docs/register/register-views/AppResetPassword";
+import JumpValidation from "./views/admin/admin_views/JumpValidation";
+import JumpValidationParticipant from "./views/admin/admin_views/JumpValidationParticipant";
+import JumpValidationParticipantTest from "./views/admin/admin_views/JumpValidationParticipantTest";
+import JumpValidationSpreadSheet from "./views/admin/admin_views/JumpValidationSpreadSheet";
 
 function App() {
   const { user } = useContext(testsContext);
@@ -100,12 +104,28 @@ function App() {
         <Route path="/tests" element={<Tests />} />
         {/* <Route path="/jump_test" element={<JumpTest />} /> */}
       </Route>
+
       <Route element={<AdminRoutes roles={user.roles} />}>
         <Route path="/admin_panel" element={<AdminPanel />} />
         <Route path="/admin_users" element={<Users />} />
         <Route path="/admin_user" element={<User />} />
         <Route path="/admin_Tests" element={<Tests />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/jump_validation" element={<JumpValidation />} />
+        <Route
+          path="/jump_validationParticipant"
+          element={<JumpValidationParticipant />}
+        />
+
+        <Route
+          path="/jump_validationSpreadSheet"
+          element={<JumpValidationSpreadSheet />}
+        />
+
+        <Route
+          path="/jump_validationParticipantTest"
+          element={<JumpValidationParticipantTest />}
+        />
       </Route>
       <Route path="*" element={<Error404 />}></Route>
     </Routes>

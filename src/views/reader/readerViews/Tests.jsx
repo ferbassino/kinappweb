@@ -70,7 +70,9 @@ const Tests = () => {
     handleTest(test);
 
     const dataObject = {
-      accY: accY,
+      accX,
+      accY,
+      accZ,
       testTime: test.testTime,
       weight: test.weight,
       motionType: test.motionType,

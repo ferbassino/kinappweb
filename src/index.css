@@ -16,7 +16,7 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-    background-color: rgba(41, 51, 92,1);
+     background-color: #4B5F9F; /* Un azul grisáceo intermedio entre el color principal y el final del degradado */
     color: aliceblue;
     
 

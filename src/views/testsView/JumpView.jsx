@@ -28,7 +28,9 @@ function JumpView() {
   const [flightTime, setFlightTime] = useState(0);
   const [flightHeight, setFlightHeight] = useState(0);
   const [takeoffSpeed, setTakeoffSpeed] = useState(0);
+  const [arrayX0F, setArrayXF] = useState([]);
   const [arrayY0F, setArrayYF] = useState([]);
+  const [arrayZ0F, setArrayZF] = useState([]);
   const [arrayT0F, setArrayT0F] = useState([]);
   const [xAxisArray, setXAxisArray] = useState([]);
   const [interval, setInterval] = useState(0);
@@ -50,7 +52,7 @@ function JumpView() {
   //   currentTest.testTime
   // );
 
-  const accY = currentTest.accY;
+  const { accX, accY, accZ } = currentTest;
   useEffect(() => {
     // setWeight(weight);
     switch (currentTest.motionType) {
@@ -106,8 +108,18 @@ function JumpView() {
           validation,
           arrayY4,
           arrayXAxis,
-        } = jumpProcess(accY, currentTest.testTime, currentTest.weight);
+          arrayX0F,
+          arrayZ0F,
+        } = jumpProcess(
+          accY,
+          currentTest.testTime,
+          currentTest.weight,
+          accX,
+          accZ
+        );
+        setArrayXF(arrayX0F);
         setArrayYF(arrayY0F);
+        setArrayZF(arrayZ0F);
         // setXAxisArray(cMJXAxis);
         setCMJumpVisible(true);
         setFlightTime(tV);
@@ -233,15 +245,15 @@ function JumpView() {
                   </tr>
                   <tr>
                     <td className="">Tiempo de vuelo</td>
-                    <td className="">{flightTime.toFixed(2)}s</td>
+                    <td className="">{flightTime.toFixed(3)}s</td>
                   </tr>
                   <tr>
                     <td className="">Altura de vuelo</td>
-                    <td className="">{flightHeight.toFixed(2)}m</td>
+                    <td className="">{flightHeight.toFixed(3)}m</td>
                   </tr>
                   <tr>
                     <td className="">Velocidad de despegue</td>
-                    <td className="">{takeoffSpeed.toFixed(2)}m/s</td>
+                    <td className="">{takeoffSpeed.toFixed(3)}m/s</td>
                   </tr>
                 </>
               ) : null}{" "}
@@ -388,12 +400,13 @@ function JumpView() {
           x={arrayY0F}
           xName="aceleración en y"
           xColor="red"
+          // y={arrayX0F}
           y={xAxisArray}
           yName="x axis"
           yColor="black"
-          // z={verticalWristArray}
+          // z={arrayZ0F}
           // zName="transparent"
-          zColor="white"
+          // zColor="white"
           t={arrayT0F}
         />
       </div>
