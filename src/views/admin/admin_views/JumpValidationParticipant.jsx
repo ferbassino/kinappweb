@@ -68,65 +68,7 @@ const JumpValidationParticipant = () => {
 
     const result = addIndexToObjects(dataToSpreadSheet);
 
-    const addSum = [
-      ...result,
-      {
-        index: "Average",
-        propulsiveDistance: `=AVERAGE(B1:B${result.length})`,
-        propulsiveTime: `=AVERAGE(C1:C${result.length})`,
-        fRM: `=AVERAGE(D1:D${result.length})`,
-        power: `=AVERAGE(E1:E${result.length})`,
-        velD: `=AVERAGE(F1:F${result.length})`,
-        tV: `=AVERAGE(G1:G${result.length})`,
-        alturaVuelo: `=AVERAGE(H1:H${result.length})`,
-        cMjumpInterv: `=AVERAGE(I1:I${result.length})`,
-      },
-    ];
-
-    handleTestsToSpreadSheet(addSum);
-
-    // modified *1,5
-    const dataToSpreadSheetM = [];
-    const requiredPropertiesM = [
-      "tV",
-      "alturaVuelo",
-      "velD",
-      "cMjumpInterv",
-      "powerModified",
-      "fRMModified",
-      "propulsiveMaxTimeModified",
-      "propulsiveMaxDistModified",
-    ];
-    currentDataToSpreadSheetM.map((el) => {
-      dataToSpreadSheetM.push(filterObjectProperties(el, requiredPropertiesM));
-    });
-
-    function addIndexToObjectsM(arr) {
-      return arr.map((item, index) => ({
-        index: index + 1,
-        ...item,
-      }));
-    }
-
-    const resultM = addIndexToObjectsM(dataToSpreadSheetM);
-
-    const addSumM = [
-      ...resultM,
-      {
-        index: "Average",
-        propulsiveMaxDistModified: `=AVERAGE(B1:B${result.length})`,
-        propulsiveMaxTimeModified: `=AVERAGE(C1:C${result.length})`,
-        fRMModified: `=AVERAGE(D1:D${result.length})`,
-        powerModified: `=AVERAGE(E1:E${result.length})`,
-        velD: `=AVERAGE(F1:F${result.length})`,
-        tV: `=AVERAGE(G1:G${result.length})`,
-        alturaVuelo: `=AVERAGE(H1:H${result.length})`,
-        cMjumpInterv: `=AVERAGE(I1:I${result.length})`,
-      },
-    ];
-
-    handleTestsToSpreadSheetM(addSumM);
-    // fin modified
+    handleTestsToSpreadSheet(result);
 
     return dataToSpreadSheet;
   };
@@ -162,11 +104,6 @@ const JumpValidationParticipant = () => {
         <section className="">
           <div className="test-title-container">
             <h1 className="tests-title">Saltos de {currentClient.email}</h1>
-            {/* <p className="tests-subtitle">
-              Listado de participantes con la cantidad de evaluaciones y fecha
-              de inicio. hacer clic sobre cada uno de ellos para acceder a los
-              detalles.
-            </p> */}
           </div>
 
           <>

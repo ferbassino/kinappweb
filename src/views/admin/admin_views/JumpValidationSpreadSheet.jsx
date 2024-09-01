@@ -39,17 +39,7 @@ const JumpValidationSpreadSheet = () => {
       columnHeaders: true,
     });
   };
-  const downloadFileM = () => {
-    const downloadPluginM =
-      hotTableComponentM.current.hotInstance.getPlugin("exportFile");
 
-    downloadPluginM.downloadFile("csv", {
-      filename: `${currentClient.email}_jumps_modified`,
-      fileExtension: "csv",
-      MimeTypeArray: "text/csv",
-      columnHeaders: true,
-    });
-  };
   const hyperformulaInstance = HyperFormula.buildEmpty({
     licenseKey: "internal-use-in-handsontable",
   });
@@ -91,44 +81,6 @@ const JumpValidationSpreadSheet = () => {
           <HotColumn data="propulsiveTime" title="TP [s]" />
           <HotColumn data="fRM" title="FM [N]" />
           <HotColumn data="power" title="PM [N]" />
-          <HotColumn data="velD" title="VD [m/s]" />
-          <HotColumn data="tV" title="TV [s]" />
-          <HotColumn data="alturaVuelo" title="AV [m]" />
-          <HotColumn data="cMjumpInterv" title="IM [s]" />
-        </HotTable>
-      </div>
-      <h1 className="tests-title">Saltos de {currentClient.email} M</h1>
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          boxSizing: "border-box",
-          marginLeft: "3rem",
-        }}
-      >
-        <button onClick={() => downloadFileM()}>Descargar Archivo</button>
-        <HotTable
-          ref={hotTableComponentM}
-          data={testsToSpreadSheetM}
-          licenseKey="non-commercial-and-evaluation"
-          colHeaders={true}
-          rowHeaders={true}
-          columnSorting={true}
-          contextMenu={true}
-          readOnly={true}
-          manualRowMove={true}
-          headerClassName="custom-header"
-          fillHandle={true}
-          formulas={{
-            engine: hyperformulaInstance,
-            sheetName: "Sheet2",
-          }}
-        >
-          <HotColumn data="index" title="salto" />
-          <HotColumn data="propulsiveMaxDistModified" title="DP [m]" />
-          <HotColumn data="propulsiveMaxTimeModified" title="TP [s]" />
-          <HotColumn data="fRMModified" title="FM [N]" />
-          <HotColumn data="powerModified" title="PM [N]" />
           <HotColumn data="velD" title="VD [m/s]" />
           <HotColumn data="tV" title="TV [s]" />
           <HotColumn data="alturaVuelo" title="AV [m]" />
