@@ -85,6 +85,7 @@ const JumpValidationSpreadSheet = () => {
           <HotColumn data="tV" title="TV [s]" />
           <HotColumn data="alturaVuelo" title="AV [m]" />
           <HotColumn data="cMjumpInterv" title="IM [s]" />
+          <HotColumn data="rSI" title="RSI [m/s]" />
         </HotTable>
       </div>
 

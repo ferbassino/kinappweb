@@ -54,6 +54,7 @@ const JumpValidationParticipant = () => {
       "fRM",
       "propulsiveTime",
       "propulsiveDistance",
+      "rSI",
     ];
     currentDataToSpreadSheet.map((el) => {
       dataToSpreadSheet.push(filterObjectProperties(el, requiredProperties));

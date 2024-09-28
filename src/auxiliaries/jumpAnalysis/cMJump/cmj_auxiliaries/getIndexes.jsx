@@ -130,6 +130,15 @@ const getIndexes = (accY, modo, cMjumpInterv) => {
       arrayY13T.push((county13T += cMjumpInterv));
     }
   });
+  const groundContactTime = (index3 - index1) * cMjumpInterv;
+
+  const groundContactArray = [];
+
+  arrayY0.map((el, index) => {
+    if (index >= index1 && index < index3) {
+      groundContactArray.push(el);
+    }
+  });
 
   return {
     index1,
@@ -150,6 +159,8 @@ const getIndexes = (accY, modo, cMjumpInterv) => {
     cMJXAxisLong,
     arrayY13,
     arrayY13T,
+    groundContactTime,
+    groundContactArray,
   };
 };
 

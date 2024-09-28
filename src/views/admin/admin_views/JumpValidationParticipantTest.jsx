@@ -12,6 +12,8 @@ import { HotTable, HotColumn } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
 import "handsontable/dist/handsontable.full.min.css";
 
+import Chart from "../../../components/basics/Chart";
+
 registerAllModules();
 const convertObjectToTableData = (obj) => {
   // Convertir el objeto en un array de arrays para Handsontable
@@ -61,6 +63,27 @@ const JumpValidationParticipant = () => {
     motionType: currentTest.motionType,
   };
 
+  const {
+    arrayY0,
+    accT,
+    arrayY0F,
+    arrayY0FLong,
+    cMJXAxis,
+    cMJXAxisLong,
+    tV,
+    alturaVuelo,
+    velD,
+    cMjumpInterv,
+    power,
+    fRM,
+    propulsiveTime,
+    propulsiveDistance,
+    validation,
+    arrayY4,
+    arrayXAxis,
+    rSI,
+  } = jumpProcess(dataObject.accY, dataObject.testTime, dataObject.weight);
+
   return (
     <>
       <header>
@@ -83,7 +106,7 @@ const JumpValidationParticipant = () => {
           licenseKey="non-commercial-and-evaluation" // Usa una clave de licencia adecuada
         />
       </section>
-
+      <Chart x={cMJXAxis} y={arrayY0F} t={accT} />
       <footer>
         <Footer />
       </footer>

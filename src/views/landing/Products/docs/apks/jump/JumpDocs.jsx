@@ -45,13 +45,12 @@ export default function Jump() {
       <DocsItems
         title={"En el video verás:"}
         array={[
-          "La selección del tipo de salto",
           "Datos a ingresar",
           "Forma de sujetar el dispositivo",
           "Forma adecuada de esperar la señales para evaluar",
           "Ver los datos en el dispositivo",
           "Guardar datos en el dispositivo, compartirlos y eliminarlos",
-          "Guardar datos en la nube",
+
           "Ver los datos en tu perfil de kinApp web",
         ]}
       />
@@ -86,7 +85,7 @@ export default function Jump() {
           "Que el salto no se realice hacia arriba",
         ]}
       />
-      <DocsItems
+      {/* <DocsItems
         title={"Del Drop Jump"}
         array={[
           "No realizar la técnica del drop jump",
@@ -103,7 +102,7 @@ export default function Jump() {
       <DocsItems
         title={"Del Stiffness"}
         array={["No realizar un rebote adecuado", "Interrumpir el multisalto"]}
-      />
+      /> */}
       <DocsSubtitle subtitle="Con el tiempo los mensajes de error tienden a desaparecer ya que las personas evaluadas aprenden a sujetar el dispositivo y a realizar el salto correctamente." />
       <DocsSubtitle
         subtitle="
