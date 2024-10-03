@@ -37,14 +37,13 @@ const options = {
 const Chart = ({
   x = [],
   y = [],
-  z = [],
+
   t = [],
   xName = "",
   yName = "",
-  zName = "",
+
   xColor = "",
   yColor = "",
-  zColor = "",
 }) => {
   const data = useMemo(
     function () {
@@ -66,14 +65,6 @@ const Chart = ({
             data: y,
             borderColor: yColor,
             backgroundColor: yColor,
-            pointRadius: 1,
-          },
-          {
-            label: yName,
-            tension: 0.5,
-            data: z,
-            borderColor: zColor,
-            backgroundColor: zColor,
             pointRadius: 1,
           },
         ],

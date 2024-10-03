@@ -43,25 +43,15 @@ const ImuAnalysis = () => {
         date: dataObj.date,
         email: dataObj.email,
       };
+
       handleCurrentTest(dataObject);
+
       navigate("/jump_view");
       setAnalysisVisible(true);
       setInputVisible(false);
     };
     reader.readAsText(files[0]);
   };
-  // const uploadVerticalFile = (file) => {
-  //   if (file[0].type === "text/csv") {
-  //     let read = new FileReader();
-  //     read.onload = function (e) {
-  //       const rawData = read.result;
-  //       const verticalData = rawData.split("\n").slice(1);
-  //       const verticalRows = verticalData.map((el) => el.split(";"));
-  //       verticalRows.pop();
-  //     };
-  //     read.readAsText(file[0]);
-  //   }
-  // };
 
   const handleTestVisible = () => {
     setAnalysisVisible(false);
