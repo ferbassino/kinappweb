@@ -50,6 +50,7 @@ import JumpValidation from "./views/admin/admin_views/JumpValidation";
 import JumpValidationParticipant from "./views/admin/admin_views/JumpValidationParticipant";
 import JumpValidationParticipantTest from "./views/admin/admin_views/JumpValidationParticipantTest";
 import JumpValidationSpreadSheet from "./views/admin/admin_views/JumpValidationSpreadSheet";
+import SensorData from "./views/socket/SensorData";
 
 function App() {
   const { user } = useContext(testsContext);
@@ -100,6 +101,7 @@ function App() {
         <Route path="/jump_video_analysis" element={<JumpVideoAnalysis />} />
         <Route path="/imu_analysis" element={<ImuAnalysis />} />
         <Route path="/jump_program" element={<Program />} />
+        <Route path="/real-time" element={<SensorData />} />
         {/* <Route path="/success-verification" element={<SuccessVerification />} /> */}
         <Route path="/tests" element={<Tests />} />
         {/* <Route path="/jump_test" element={<JumpTest />} /> */}

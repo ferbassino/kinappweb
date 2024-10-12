@@ -37,11 +37,9 @@ const options = {
 const Chart = ({
   x = [],
   y = [],
-
   t = [],
   xName = "",
   yName = "",
-
   xColor = "",
   yColor = "",
 }) => {

@@ -27,6 +27,9 @@ const ReaderItems = ({ title }) => {
       case "Otros":
         navigate("/tests");
         break;
+      case "Tiempo real":
+        navigate("/real-time");
+        break;
     }
   };
   return (

@@ -12,6 +12,7 @@ const ReaderProfile = () => {
     "I.M.U. análisis",
     "Video análisis",
     "Tus cursos",
+    "Tiempo real",
   ];
 
   const navigate = useNavigate();

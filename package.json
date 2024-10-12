@@ -15,6 +15,8 @@
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@mercadopago/sdk-react": "^0.0.19",
+    "@react-three/drei": "^9.114.3",
+    "@react-three/fiber": "^8.17.10",
     "axios": "^1.6.7",
     "chart.js": "^4.4.2",
     "dotenv": "^16.4.5",
@@ -42,7 +44,9 @@
     "react-plotly.js": "^2.6.0",
     "react-router-dom": "^6.22.2",
     "react-select": "^5.8.0",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "socket.io-client": "^4.8.0",
+    "three": "^0.169.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
