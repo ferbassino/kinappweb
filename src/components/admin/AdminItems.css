@@ -1,30 +1,131 @@
-.boton {
-  padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  background-color: #8f0000;
-  color: #fff;
-  border-radius: 5px;
-  border-radius: 3px;margin-top: 1rem;
-  font-size: 1.2rem;
+.admin-card-container {
+  position: relative;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  box-shadow: 0 10px 30px rgba(30, 58, 138, 0.3);
 }
-.boton:hover{
-background-color:  #1b1b33
-}
-@media only screen and (min-width: 768px) {
-  
 
-  .boton {
-   
-    padding: 20px;
-    text-align: left;
-    background-color: #8f0000;
-    color: #ccc;;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    
+.admin-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--blue-gradient);
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+
+.admin-card-container:hover .admin-card-bg {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  transform: scale(1.05);
+}
+
+.admin-card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  z-index: 2;
+  color: var(--white);
+}
+
+.admin-card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.admin-card-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  text-shadow: var(--text-shadow);
+  transition: all 0.3s ease;
+}
+
+.admin-card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(216, 70, 239, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.admin-card-container:hover .admin-card-glow {
+  opacity: 1;
+}
+
+.admin-card-container:hover .admin-card-title {
+  transform: translateY(5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-card-container {
+    height: 180px;
   }
-  .boton:hover {
-background-color:  #1b1b33;
+  
+  .admin-card-icon {
+    font-size: 2rem;
+  }
+  
+  .admin-card-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-card-container {
+    height: 150px;
+  }
+  
+  .admin-card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .admin-card-title {
+    font-size: 1rem;
+  }
+}
+
+/* Special effects */
+.admin-card-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.admin-card-container:hover::after {
+  animation: shine 1.5s ease infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(100%) skewX(-15deg);
   }
 }

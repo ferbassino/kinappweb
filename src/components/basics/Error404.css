@@ -1,42 +1,333 @@
-.error-container {
+.error-404-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--primary);
+}
+
+.error-404-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 70% 30%, rgba(30, 58, 138, 0.15) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.error-404-content {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  margin-top: 30vh;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-h1 {
-  font-size: 4rem;
+.error-404-illustration {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 2rem;
 }
 
-p {
+.error-404-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--blue-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 35px rgba(30, 58, 138, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.error-404-circle::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    transparent 45%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 55%
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite linear;
+}
+
+.error-404-icon {
+  font-size: 5rem;
+  color: var(--white);
+  z-index: 2;
+}
+
+.error-404-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.error-404-particle {
+  position: absolute;
+  background: var(--tertiary);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: float 4s infinite ease-in-out;
+}
+
+.error-404-particle:nth-child(1) {
+  top: 10%;
+  left: 20%;
+  width: 10px;
+  height: 10px;
+  animation-delay: 0s;
+}
+.error-404-particle:nth-child(2) {
+  top: 80%;
+  left: 10%;
+  width: 8px;
+  height: 8px;
+  animation-delay: 0.5s;
+}
+.error-404-particle:nth-child(3) {
+  top: 20%;
+  left: 80%;
+  width: 12px;
+  height: 12px;
+  animation-delay: 1s;
+}
+.error-404-particle:nth-child(4) {
+  top: 70%;
+  left: 70%;
+  width: 6px;
+  height: 6px;
+  animation-delay: 1.5s;
+}
+.error-404-particle:nth-child(5) {
+  top: 30%;
+  left: 30%;
+  width: 9px;
+  height: 9px;
+  animation-delay: 2s;
+}
+.error-404-particle:nth-child(6) {
+  top: 60%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  animation-delay: 2.5s;
+}
+.error-404-particle:nth-child(7) {
+  top: 40%;
+  left: 10%;
+  width: 11px;
+  height: 11px;
+  animation-delay: 3s;
+}
+.error-404-particle:nth-child(8) {
+  top: 90%;
+  left: 80%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 3.5s;
+}
+
+.error-404-title {
+  font-size: 8rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 5px 15px rgba(59, 130, 246, 0.5);
+  background: linear-gradient(to right, var(--white), var(--light-gray));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+
+.error-404-subtitle {
   font-size: 2rem;
-}
-.link-home{
-  margin-top: 2rem;
+  color: var(--white);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
 }
 
-/* Media queries para hacer el componente responsivo */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 3rem;
+.error-404-subtitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--tertiary);
+  border-radius: 3px;
+}
+
+.error-404-message {
+  font-size: 1.2rem;
+  color: var(--light-gray);
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.error-404-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background: var(--accent);
+  color: var(--white);
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+  transition: var(--transition);
+}
+
+.error-404-button-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.error-404-button-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.error-404-button:hover .error-404-button-glow {
+  opacity: 1;
+}
+
+.error-404-decoration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.error-404-decoration-item {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 45%, rgba(59, 130, 246, 0.1) 50%, transparent 55%);
+  animation: wave 15s linear infinite;
+}
+
+.error-404-decoration-item:nth-child(2) {
+  bottom: 20px;
+  animation-delay: 0.5s;
+  opacity: 0.7;
+}
+
+.error-404-decoration-item:nth-child(3) {
+  bottom: 40px;
+  animation-delay: 1s;
+  opacity: 0.4;
+}
+
+/* Animations */
+@keyframes shine {
+  0% {
+    transform: rotate(45deg) translate(-30%, -30%);
   }
+  100% {
+    transform: rotate(45deg) translate(30%, 30%);
+  }
+}
 
-  p {
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .error-404-title {
+    font-size: 6rem;
+  }
+  
+  .error-404-subtitle {
     font-size: 1.5rem;
   }
-  .link-home{
-  margin-top: 2rem;
-}
-}
-
-@media (max-width: 576px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  p {
+  
+  .error-404-message {
     font-size: 1rem;
   }
-  .link-home{
-  margin-top: 2rem;
+  
+  .error-404-illustration {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .error-404-icon {
+    font-size: 3.5rem;
+  }
 }
+
+@media (max-width: 480px) {
+  .error-404-title {
+    font-size: 4rem;
+  }
+  
+  .error-404-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .error-404-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .error-404-illustration {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .error-404-icon {
+    font-size: 3rem;
+  }
 }

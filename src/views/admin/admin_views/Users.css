@@ -1,108 +1,296 @@
-.contenedor-tabla{
-     max-width: 60%;
-  overflow-x: auto;
+/* Users.css */
+.ud-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.ud-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
   margin: 0 auto;
-}#011
-
-.tabla-tests{
-   width: 100%;
-  border-collapse: collapse;
-  border: 2px solid #333;
+  width: 100%;
 }
 
-.caption-tests{
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-.th-tests, .td-tests{
-  border: 1px solid #666;
-  padding: 10px;
-}
-.td-tests1{
-  width: 50%;
-}
-.test-title-container{
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  width: 60%;
-  margin:0 auto
-
-}
-
-.tests-title{
-  font-size: 2rem;
-  text-align: center;
-  margin-top: 2rem;
+.ud-header {
   margin-bottom: 2rem;
-}
-.tests-subtitle{
-  font-size: 1.4rem;
   text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 
-.tr-user{
-cursor: pointer;
+.ud-title {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  background: var(--light-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: var(--text-shadow);
 }
-.td-tests:hover{
-background-color: 344;
+
+.ud-search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
 }
-.user-button{
-  margin-top: 2rem;
-  padding: 0.9rem;
+
+.ud-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--dark-gray);
+  font-size: 1.2rem;
+}
+
+.ud-search-input {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 3rem;
+  border-radius: 50px;
+  border: none;
+  background-color: var(--white);
+  color: var(--primary);
   font-size: 1rem;
-  width: 30%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.ud-search-input:focus {
+  outline: none;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.ud-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ud-stat-card {
+  flex: 1;
+  min-width: 200px;
+  background: rgba(30, 58, 138, 0.3);
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  transition: var(--transition);
+}
+
+.ud-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.ud-stat-icon {
+  font-size: 2rem;
+  color: var(--tertiary);
+  background: rgba(248, 250, 252, 0.1);
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+.ud-stat-number {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.ud-stat-label {
+  font-size: 0.9rem;
+  color: var(--light-gray);
+}
+
+.ud-table-container {
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+}
+
+.ud-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ud-table-header {
+  background: var(--blue-gradient);
+}
+
+.ud-th {
+  padding: 1.2rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--white);
+  position: relative;
+}
+
+.ud-th:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 1px;
+  background: rgba(248, 250, 252, 0.2);
+}
+
+.ud-table-body {
+  background: rgba(15, 23, 42, 0.3);
+}
+
+.ud-tr {
+  border-bottom: 1px solid rgba(248, 250, 252, 0.1);
+  transition: var(--transition);
+}
+
+.ud-tr:hover {
+  background: rgba(59, 130, 246, 0.1);
   cursor: pointer;
-  
 }
-.user-button:hover{
-  background-color: #010e71;
-  color: aliceblue;
-  
+
+.ud-td {
+  padding: 1rem;
+  color: var(--white);
 }
-@media only screen and (max-width: 768px) {
-  .th-tests, .td-tests {
-        width: 90%;
-    border: none;
-    border: 1px solid #666;
+
+.ud-user-name, .ud-user-email {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ud-user-icon, .ud-email-icon {
+  color: var(--tertiary-light);
+  font-size: 1.1rem;
+}
+
+.ud-role {
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.ud-role.admin {
+  background: rgba(217, 70, 239, 0.2);
+  color: var(--tertiary);
+  border: 1px solid var(--tertiary);
+}
+
+.ud-role.user {
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.ud-tr-empty {
+  height: 200px;
+}
+
+.ud-td-empty {
+  text-align: center;
+  color: var(--dark-gray);
+  font-size: 1.1rem;
+}
+
+.ud-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.ud-pagination-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(30, 58, 138, 0.5);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.ud-pagination-button:hover:not(:disabled) {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+.ud-pagination-button.active {
+  background: var(--tertiary);
+  font-weight: 600;
+}
+
+.ud-pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ud-main {
+    padding: 1rem;
   }
-  .th-tests, .td-tests{
+  
+  .ud-title {
+    font-size: 1.8rem;
+  }
+  
+  .ud-stat-card {
+    min-width: 150px;
+    padding: 1rem;
+  }
+  
+  .ud-stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .ud-th, .ud-td {
+    padding: 0.8rem 0.5rem;
     font-size: 0.9rem;
   }
-  .test-title-container{
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  width: 80%;
-  margin:0 auto
+  
+  .ud-user-icon, .ud-email-icon {
+    display: none;
+  }
 }
 
-  /* .tabla-tests .tbody-tests tr:last-child .td-tests {
-    border-bottom: none;
-    
-  } */
-  .contenedor-tabla{
-     max-width: 95%;
-  overflow-x: auto;
-  margin: 0 auto;
-}
-.tests-title{
-  font-size: 1.6rem;
-  text-align: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.tests-subtitle{
-  font-size: 1.2rem;
-  text-align: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.user-button{
-width: 50%;
+@media (max-width: 480px) {
+  .ud-title {
+    font-size: 1.5rem;
+  }
   
-}
-.td-tests1{
-  width: 50%;
-}
+  .ud-search-container {
+    max-width: 100%;
+  }
+  
+  .ud-stat-card {
+    min-width: 100%;
+  }
+  
+  .ud-pagination {
+    flex-wrap: wrap;
+  }
+  
+  .ud-pagination-button {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
 }

@@ -1,22 +1,17 @@
 import { NavLink } from "react-router-dom";
-import Navbar from "../../components/landing/header/Navbar";
-import Footer from "../../components/landing/footer/Footer";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { useRef } from "react";
 import login from "../../services/login";
 import { testsContext } from "../../context/TestsContext";
 import { useNavigate } from "react-router-dom";
-import "./LoginForm.css";
-import getDifferenceNowMonth from "../../auxiliaries/basics/getDifferenceNowMonth";
-import { updateUser } from "../../services/userServices";
 import ExpiredRoleMessage from "../../components/messages/ExpiredRoleMessage";
-import logout from "../../services/logout";
 import Loader from "../../components/basics/Loader";
+import { FaEnvelope, FaLock, FaArrowRight } from "react-icons/fa";
+import "./LoginForm.css";
 
 const LoginForm = () => {
   const { handleUser, handleLoading } = useContext(testsContext);
-
   const navigate = useNavigate();
   const [expiredMessageVisible, setExpiredMessageVisible] = useState(false);
   const [errorMessageVisible, setErrorMessageVisible] = useState(false);
@@ -41,7 +36,6 @@ const LoginForm = () => {
 
   const onSubmit = handleSubmit((data) => {
     setLoading(true);
-
     try {
       const credentials = { email: data.email, password: data.password };
       const getCurrentUser = async () => {
@@ -58,39 +52,8 @@ const LoginForm = () => {
           }, 5000);
         } else {
           handleUser(res.user);
-          if (res.user.roles === "reader") {
-            navigate("/reader_profile");
-            setLoading(false);
-          }
           if (res.user.roles === "admin") {
             navigate("/admin_panel");
-            setLoading(false);
-          }
-          if (res.user.roles === "editor") {
-            const { initialDate } = res.user;
-            const diasDesdeInicio = getDifferenceNowMonth(initialDate);
-
-            if (diasDesdeInicio > 31 && res.user.level === "cero") {
-              const changeExpiredRole = async () => {
-                try {
-                  const id = res.user.id;
-                  const values = {
-                    roles: "reader",
-                  };
-                  const res = await updateUser(id, values);
-                  if (res.success) {
-                    localStorage.removeItem("user");
-                    logout();
-                    setLoading(false);
-                  }
-                } catch (error) {
-                  console.log(error);
-                  setLoading(false);
-                }
-              };
-              changeExpiredRole();
-            }
-            navigate("/reader_profile");
             setLoading(false);
           }
         }
@@ -103,96 +66,98 @@ const LoginForm = () => {
   });
 
   return (
-    <>
-      <header>
-        <Navbar />
-      </header>
-
+    <div className="lf-container">
       {loading ? (
-        <>
+        <div className="lf-loader-container">
           <Loader />
-        </>
+        </div>
+      ) : expiredMessageVisible ? (
+        <ExpiredRoleMessage />
       ) : (
         <>
-          {expiredMessageVisible ? (
-            <>
-              <ExpiredRoleMessage />
-            </>
-          ) : (
-            <>
-              {errorMessageVisible ? (
-                <h2 className="error-message">{errorMessage}</h2>
-              ) : (
-                <h2 className="error-message-ghost"> </h2>
-              )}
-
-              <div className="formulario-container">
-                <form className="formulario" onSubmit={onSubmit}>
-                  <div className="campo">
-                    <label htmlFor="email" className="label-login">
-                      Email
-                    </label>
-                    <input
-                      type="text"
-                      name="email"
-                      id="email"
-                      {...register("email", {
-                        required: {
-                          value: true,
-                          message: "El email es requerido...",
-                        },
-                        pattern: {
-                          value:
-                            /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
-                          message: "El formato del email no es válido",
-                        },
-                      })}
-                    />
-                    <p> {errors.email?.message}</p>
-                  </div>
-                  <div className="campo">
-                    <label htmlFor="password" className="label-login">
-                      Contraseña
-                    </label>
-                    <input
-                      type="text"
-                      name="password"
-                      id="password"
-                      {...register("password", {
-                        required: {
-                          value: true,
-                          message: "La contraseña es requerida...",
-                        },
-                        minLength: {
-                          value: 8,
-                          message: "La contraseña debe tener 8 caracteres",
-                        },
-                        maxLength: {
-                          value: 8,
-                          message: "La contraseña debe tener 8 caracteres",
-                        },
-                      })}
-                    />
-                    <p> {errors.password?.message}</p>
-                  </div>
-
-                  <input id="submit" type="submit" name="enviar" />
-                  <div className="forgot-container">
-                    <NavLink to={"/forgot_password"} className="forgot">
-                      ¿Olvidó la contraseña?
-                    </NavLink>
-                  </div>
-                </form>
+          {errorMessageVisible && (
+            <div className="lf-error-message">
+              <div className="lf-error-content">
+                <span className="lf-error-icon">!</span>
+                <p>{errorMessage}</p>
               </div>
-            </>
+            </div>
           )}
+
+          <form className="lf-form" onSubmit={onSubmit}>
+            <div className="lf-input-group">
+              <label htmlFor="email" className="lf-label">
+                <FaEnvelope className="lf-input-icon" />
+                Email
+              </label>
+              <div className="lf-input-container">
+                <input
+                  type="text"
+                  id="email"
+                  className={`lf-input ${errors.email ? "lf-input-error" : ""}`}
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "El email es requerido...",
+                    },
+                    pattern: {
+                      value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                      message: "El formato del email no es válido",
+                    },
+                  })}
+                />
+                {errors.email && (
+                  <p className="lf-error-text">{errors.email.message}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="lf-input-group">
+              <label htmlFor="password" className="lf-label">
+                <FaLock className="lf-input-icon" />
+                Contraseña
+              </label>
+              <div className="lf-input-container">
+                <input
+                  type="password"
+                  id="password"
+                  className={`lf-input ${
+                    errors.password ? "lf-input-error" : ""
+                  }`}
+                  {...register("password", {
+                    required: {
+                      value: true,
+                      message: "La contraseña es requerida...",
+                    },
+                    minLength: {
+                      value: 8,
+                      message: "La contraseña debe tener 8 caracteres",
+                    },
+                    maxLength: {
+                      value: 8,
+                      message: "La contraseña debe tener 8 caracteres",
+                    },
+                  })}
+                />
+                {errors.password && (
+                  <p className="lf-error-text">{errors.password.message}</p>
+                )}
+              </div>
+            </div>
+
+            <button type="submit" className="lf-submit-button">
+              Ingresar <FaArrowRight className="lf-submit-icon" />
+            </button>
+
+            <div className="lf-forgot-password">
+              <NavLink to="/forgot_password" className="lf-forgot-link">
+                ¿Olvidó la contraseña?
+              </NavLink>
+            </div>
+          </form>
         </>
       )}
-
-      <footer>
-        <Footer />
-      </footer>
-    </>
+    </div>
   );
 };
 

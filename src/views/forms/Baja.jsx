@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Navbar from "../../components/landing/header/Navbar";
-import Footer from "../../components/landing/footer/Footer";
+
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { useRef } from "react";
@@ -184,10 +184,6 @@ const Baja = () => {
           )}
         </>
       )}
-
-      <footer>
-        <Footer />
-      </footer>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/landing/header/Navbar";
-import Footer from "../../components/landing/footer/Footer";
+
 import "./Verification.css";
 import client from "../../api/client";
 
@@ -88,9 +88,6 @@ const Verification = () => {
           </>
         )}
       </main>
-      <footer>
-        <Footer />
-      </footer>
     </>
   );
 };

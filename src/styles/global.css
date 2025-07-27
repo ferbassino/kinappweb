@@ -1,0 +1,44 @@
+/* src/styles/global.css */
+:root {
+   /* Azules principales (tonos más suaves y modernos) */
+  --primary: #0f172a;       /* Azul noche más suave */
+  --secondary: #1e3a8a;     /* Azul marino vibrante */
+  --accent: #3b82f6;        /* Azul brillante para elementos importantes */
+  
+  /* Contraste (en lugar del rojo) */
+  --tertiary: #d946ef;      /* Púrpura suave como color de acento */
+  --tertiary-light: #a855f7; /* Versión más clara para hover */
+  
+  /* Gradientes */
+  --blue-gradient: linear-gradient(135deg, #0f172a, #1e3a8a);
+  --light-gradient: linear-gradient(135deg, #3b82f6, #93c5fd);
+  
+  /* Estados interactivos */
+  --button-hover: #2563eb;  /* Azul más claro para hover */
+  --button-active: #1e40af; /* Azul más oscuro para active */
+  
+  /* Efectos de texto */
+  --text-shadow: 0 2px 4px rgba(30, 58, 138, 0.3); /* Sutil sombra azul */
+  
+  /* Neutrales */
+  --white: #f8fafc;         /* Blanco ligeramente cálido */
+  --light-gray: #e2e8f0;    /* Para fondos secundarios */
+  --dark-gray: #64748b;     /* Para texto secundario */
+  
+  /* Transiciones */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset básico para evitar inconsistencias */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--primary);
+  color: var(--white);
+  line-height: 1.6;
+}

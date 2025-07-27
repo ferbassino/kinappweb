@@ -1,5 +1,5 @@
 import Navbar from "../../components/landing/header/Navbar";
-import Footer from "../../components/landing/footer/Footer";
+
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { useRef } from "react";
@@ -173,9 +173,6 @@ const Register = () => {
           <input id="submit" type="submit" name="enviar" />
         </form>
       </div>
-      <footer>
-        <Footer />
-      </footer>
     </>
   );
 };

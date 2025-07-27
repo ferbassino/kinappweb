@@ -1,0 +1,341 @@
+/* User.css */
+.up-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.up-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.up-header {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.up-title {
+  font-size: 2.2rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--light-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: var(--text-shadow);
+}
+
+.up-title-icon {
+  font-size: 1.8rem;
+}
+
+.up-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.up-action-button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.up-action-button.up-edit {
+  background-color: var(--accent);
+  color: white;
+}
+
+.up-action-button.up-edit:hover {
+  background-color: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+.up-action-button.up-save {
+  background-color: var(--success);
+  color: white;
+}
+
+.up-action-button.up-save:hover {
+  background-color: var(--success-dark);
+  transform: translateY(-2px);
+}
+
+.up-action-button.up-cancel {
+  background-color: var(--danger);
+  color: white;
+}
+
+.up-action-button.up-cancel:hover {
+  background-color: var(--danger-dark);
+  transform: translateY(-2px);
+}
+
+.up-error-message {
+  padding: 1rem;
+  background-color: var(--danger-light);
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.up-error-icon {
+  font-size: 1.2rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.up-two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.up-profile-card {
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  transition: var(--transition);
+}
+
+.up-profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.up-section-title {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--tertiary-light);
+}
+
+.up-section-icon {
+  font-size: 1.1rem;
+}
+
+.up-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.up-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.up-field-label {
+  font-size: 0.9rem;
+  color: var(--light-gray);
+  font-weight: 500;
+}
+
+.up-field-input, .up-field-select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(248, 250, 252, 0.2);
+  background-color: rgba(30, 41, 59, 0.5);
+  color: white;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.up-field-input:focus, .up-field-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.up-field-value {
+  padding: 0.6rem 0;
+  font-size: 1rem;
+  color: white;
+}
+
+.up-apps-row {
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.up-apps-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.up-app-card {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.up-app-card:hover {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+.up-app-name {
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.up-app-remove {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+  margin-left: 0.5rem;
+}
+
+.up-app-remove:hover {
+  color: var(--danger-dark);
+  transform: scale(1.1);
+}
+
+.up-add-app {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.up-app-select {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(248, 250, 252, 0.2);
+  background-color: rgba(30, 41, 59, 0.5);
+  color: white;
+  font-size: 0.9rem;
+}
+
+.up-add-app-button {
+  padding: 0.6rem 1rem;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.up-add-app-button:hover {
+  background-color: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+.up-counters-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.up-counter-card {
+  flex: 1;
+  background: rgba(30, 41, 59, 0.7);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.up-counter-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--tertiary-light);
+}
+
+.up-counter-label {
+  font-size: 0.8rem;
+  color: var(--light-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .up-main {
+    padding: 1rem;
+  }
+  
+  .up-title {
+    font-size: 1.8rem;
+  }
+  
+  .up-two-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .up-fields-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .up-title {
+    font-size: 1.5rem;
+  }
+  
+  .up-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .up-field-input, .up-field-select {
+    font-size: 0.9rem;
+  }
+  
+  .up-fields-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .up-apps-grid {
+    flex-direction: column;
+  }
+}

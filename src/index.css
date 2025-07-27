@@ -6,8 +6,6 @@
     --button-hover:#8f0000;
     --text-shadow: .2rem .2rem .2rem #8f0000;
     --white: #f7faff
-
-
 }
 
 *{
@@ -16,7 +14,7 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-     background-color: #4B5F9F; /* Un azul grisáceo intermedio entre el color principal y el final del degradado */
+     background-color: #4B5F9F; 
     color: aliceblue;
     
 

@@ -8,9 +8,19 @@ export const getAllUsers = async () => {
 };
 
 export const updateUser = async (id, values) => {
-  const res = await client.put(`user/${id}`, values, { new: true });
-  if (!res.data.success) throw new Error("Response not ok");
-  return res.data;
+  try {
+    const res = await client.put(`/user/${id}`, values);
+    console.log("respuesta", res);
+
+    if (!res.data.success) {
+      throw new Error(res.data.message || "Error en la actualización");
+    }
+
+    return res.data;
+  } catch (error) {
+    console.error("Error in updateUser service:", error);
+    throw error;
+  }
 };
 
 export const getUserCourses = async (id) => {

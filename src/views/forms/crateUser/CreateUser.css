@@ -1,34 +1,40 @@
-/* LoginForm.css */
-.lf-container {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.lf-loader-container {
+/* Register.css */
+.reg-container {
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
+  flex-direction: column;
+  background-color: var(--primary);
+  color: var(--white);
 }
 
-.lf-error-message {
+.reg-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.reg-error-message {
   background-color: rgba(239, 68, 68, 0.2);
   border-left: 4px solid var(--tertiary);
   padding: 1rem;
   margin-bottom: 1.5rem;
   border-radius: 4px;
-  animation: lf-fadeIn 0.3s ease-out;
+  max-width: 400px;
+  width: 100%;
+  animation: reg-fadeIn 0.3s ease-out;
 }
 
-.lf-error-content {
+.reg-error-content {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   color: var(--white);
 }
 
-.lf-error-icon {
+.reg-error-icon {
   background-color: var(--tertiary);
   color: var(--white);
   width: 20px;
@@ -40,19 +46,38 @@
   font-weight: bold;
 }
 
-.lf-form {
+.reg-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-.lf-input-group {
+.reg-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  background: var(--light-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: var(--text-shadow);
+}
+
+.reg-input-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.lf-label {
+.reg-label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -61,16 +86,16 @@
   font-weight: 500;
 }
 
-.lf-input-icon {
+.reg-input-icon {
   color: var(--tertiary);
   font-size: 0.9rem;
 }
 
-.lf-input-container {
+.reg-input-container {
   position: relative;
 }
 
-.lf-input {
+.reg-input {
   width: 100%;
   padding: 0.8rem 1rem;
   background-color: rgba(248, 250, 252, 0.1);
@@ -82,23 +107,23 @@
   backdrop-filter: blur(5px);
 }
 
-.lf-input:focus {
+.reg-input:focus {
   outline: none;
   border-color: var(--tertiary);
   box-shadow: 0 0 0 2px rgba(217, 70, 239, 0.2);
 }
 
-.lf-input-error {
+.reg-input-error {
   border-color: var(--tertiary);
 }
 
-.lf-error-text {
+.reg-error-text {
   color: var(--tertiary);
   font-size: 0.8rem;
   margin-top: 0.3rem;
 }
 
-.lf-submit-button {
+.reg-submit-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,41 +140,25 @@
   margin-top: 0.5rem;
 }
 
-.lf-submit-button:hover {
+.reg-submit-button:hover:not(:disabled) {
   background: var(--button-hover);
   transform: translateY(-2px);
 }
 
-.lf-submit-button:active {
-  transform: translateY(0);
+.reg-submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
-.lf-submit-icon {
+.reg-submit-icon {
   transition: var(--transition);
 }
 
-.lf-submit-button:hover .lf-submit-icon {
+.reg-submit-button:hover .reg-submit-icon {
   transform: translateX(3px);
 }
 
-.lf-forgot-password {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.lf-forgot-link {
-  color: var(--tertiary-light);
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.lf-forgot-link:hover {
-  color: var(--tertiary);
-  text-decoration: underline;
-}
-
-@keyframes lf-fadeIn {
+@keyframes reg-fadeIn {
   from {
     opacity: 0;
     transform: translateY(-10px);
@@ -162,15 +171,23 @@
 
 /* Responsive */
 @media (max-width: 480px) {
-  .lf-container {
-    padding: 0 1rem;
+  .reg-main {
+    padding: 1rem;
   }
   
-  .lf-input {
+  .reg-form {
+    padding: 1.5rem;
+  }
+  
+  .reg-title {
+    font-size: 1.5rem;
+  }
+  
+  .reg-input {
     padding: 0.7rem 1rem;
   }
   
-  .lf-submit-button {
+  .reg-submit-button {
     padding: 0.7rem;
   }
 }

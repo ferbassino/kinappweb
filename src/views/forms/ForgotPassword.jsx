@@ -5,7 +5,7 @@ import SuccessForgot from "../../components/logins/SuccessForgot";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import Navbar from "../../components/landing/header/Navbar";
-import Footer from "../../components/landing/footer/Footer";
+
 import { testsContext } from "../../context/TestsContext";
 import { useForm } from "react-hook-form";
 
@@ -130,9 +130,6 @@ const ForgotPassword = () => {
           )}
         </>
       )}
-      <footer>
-        <Footer />
-      </footer>
     </>
   );
 };
